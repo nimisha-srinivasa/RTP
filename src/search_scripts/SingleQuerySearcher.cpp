@@ -16,68 +16,38 @@ static int i_max = INC;  /* maximum offset in s */
 using namespace std;
 
 void SingleQuerySearcher::pre_process_query(){
-	this->query = doStemClean(query);
+	full_query = doStemClean(full_query);
 }
 
 void SingleQuerySearcher::run_phase1_lucene_jar(){
 	system("rm -rf ./target/search_frag.txt");
 
 	//generate SEARCH_FRAGMENT_FILE_NAME
-	string command = "java -jar ../src/phase1/search_step/lucene_search.jar " + query;
-  cout << "command is:" << command << endl;
+	string command = "java -jar ../src/phase1/search_step/lucene_search.jar " + full_query;
 	system(command.c_str());
 }
 
 
 void SingleQuerySearcher::generate_phase1_results(){
-	string command = "./phase1_search " + to_string(num_words_in_query) + " " + this->query ;
-	system(command.c_str());
+  phase1_searcher = new Phase1_Searcher();
+  phase1_searcher->query_len = num_words_in_query;
+  phase1_searcher->query.clear();
+  for (int i=0; i<phase1_searcher->query_len; i++)
+        phase1_searcher->query.push_back(query_words_arr[i]);
+  phase1_searcher->runSearch();
+}
+
+void SingleQuerySearcher::generate_phase1_results_again(){
+  phase1_searcher->query_len = num_words_in_query;
+  phase1_searcher->query.clear();
+  for (int i=0; i < phase1_searcher->query_len; i++)
+        phase1_searcher->query.push_back(query_words_arr[i]);
+  phase1_searcher->runSearchAgain();
 }
 
 void SingleQuerySearcher::run_phase2_search(){
-	string command = "python ../src/phase2/search_step/run_phase2_search.py \"" + this->query + "\" " + to_string(this->num_words_in_query) + " " + to_string(this->top_k);
+	string command = "python ../src/phase2/search_step/run_phase2_search.py \"" + full_query + "\" " + to_string(num_words_in_query) + " " + to_string(top_k) + " &> /dev/null";
 	system(command.c_str()); 
-}
-
-char* SingleQuerySearcher::appendChar(char* str, char c){
-  size_t len = strlen(str);
-    str[len] = c;
-    str[len + 1] = '\0';
-    return str;
-}
-
-char* stemstring1(struct stemmer * z, char* string1)
-{
-  int j=0;
-  char* result=(char*) malloc(strlen(string1)*sizeof(char));  //assuming stemmed string is same or lesser in size than orig string
-  strcat(result, "");
-  while(TRUE)
-   {  int ch = string1[j++];
-      if (ch == 0) return result;
-      if (LETTER(ch))
-      {  int i = 0;
-         while(TRUE)
-         {  if (i == i_max)
-            {  i_max += INC;
-               s = (char*)realloc(s, i_max + 1);
-            }
-            ch = tolower(ch); //forces lower case
-
-            s[i] = ch; i++;
-            ch = string1[j++];
-            if (!LETTER(ch)) {j--; break; }
-         }
-         s[stem(z, s, i - 1) + 1] = 0;
-         /* the previous line calls the stemmer and uses its result to
-            zero-terminate the string in s */
-         strcat(result,s);
-      }
-
-      else{
-        char char_to_append = (char) ch;
-        //result = appendChar(result,char_to_append);
-      } 
-   }
 }
 
 string SingleQuerySearcher::stemstring(struct stemmer * z, string str_to_stem)
@@ -146,4 +116,23 @@ string SingleQuerySearcher::doStemClean(string str)
   string res = doStem(str);
   res = doClean(res);
   return res;
+}
+
+void SingleQuerySearcher::runSearch_without_preprocess(){
+    run_phase1_lucene_jar();
+    generate_phase1_results();
+    run_phase2_search();
+}
+
+void SingleQuerySearcher::searchAgain_without_preprocess(){
+    run_phase1_lucene_jar();
+    generate_phase1_results_again();
+    run_phase2_search();
+}
+
+void SingleQuerySearcher::runSearch(){
+    pre_process_query();
+    run_phase1_lucene_jar();
+    generate_phase1_results();
+    run_phase2_search();
 }

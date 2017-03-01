@@ -17,6 +17,7 @@ int main(int argc, char** argv)
 
     Phase1_Searcher* searcher = new Phase1_Searcher();
     searcher->query_len=atoi(argv[1]);
+    vector<string> query_words_arr;
 
     if (argc-2 != searcher->query_len)
     {
@@ -24,14 +25,9 @@ int main(int argc, char** argv)
         exit(1);
     }
     for (int i=0; i<searcher->query_len; i++)
-        searcher->query[i].assign(argv[2+i]);
+        searcher->query.push_back(argv[2+i]);
     
-    searcher->init();
-    searcher->read_index();
-    searcher->read_search_frag();
-    searcher->read_superinfo();
-    searcher->intersection();
-    searcher->scoring();
+    searcher->runSearch();
 
     // added by Susen
     cout << "Phase1 Search: Duration without I/O: " << searcher->duration << endl;

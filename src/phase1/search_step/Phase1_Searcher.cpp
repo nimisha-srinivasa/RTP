@@ -8,6 +8,30 @@ using namespace std;
 
 string rel_path_to_target_dir = "./";
 
+//query and query_len has to be set already
+void Phase1_Searcher::runSearch(){
+    init();
+    read_title_len();
+    read_search_frag();
+    read_superinfo();
+    intersection();
+    scoring();
+}
+
+void Phase1_Searcher::re_init(){
+    intersection_hash.clear();
+    search_frag.clear();
+}
+
+//query and query_len has to be set already
+void Phase1_Searcher::runSearchAgain(){
+    //no need to load super_index and title_len.txt this time
+    re_init();
+    read_search_frag();
+    intersection();
+    scoring();
+}
+
 void Phase1_Searcher::init()
 {
     vid_titlelen_hash.clear();
@@ -15,7 +39,10 @@ void Phase1_Searcher::init()
     super_index.clear();
 }
 
-void Phase1_Searcher::read_index(){
+void Phase1_Searcher::read_title_len(){
+    // added by Nimisha
+    clock_t start1 = clock();  // start ticking
+    // added by Nimisha
 
 	ifstream fin;
     fin.open(rel_path_to_target_dir + RTP::TITLE_LEN_FILE_NAME);
@@ -40,10 +67,18 @@ void Phase1_Searcher::read_index(){
         frag_reuse_table[vid] = v;
     }
     fin.close();
+
+    // added by Nimisha
+    double duration1 = (clock() - start1) / (double) CLOCKS_PER_SEC;
+    cout << "Phase1 Search - read title_len.txt: " << duration1 << endl;
+    // added by Nimisha
 }
 
 void Phase1_Searcher::validate()
 {
+    // added by Nimisha
+    clock_t start1 = clock();  // start ticking
+    // added by Nimisha
 
     ofstream fout;
     fout.open(rel_path_to_target_dir + RTP::VALIDATION_FILE_NAME);
@@ -60,10 +95,18 @@ void Phase1_Searcher::validate()
         }
     }
     fout.close();
+
+    // added by Nimisha
+    double duration1 = (clock() - start1) / (double) CLOCKS_PER_SEC;
+    cout << "Phase1 Search - output validate.txt: " << duration1 << endl;
+    // added by Nimisha
 }
 
 void Phase1_Searcher::read_search_frag()
 {
+    // added by Nimisha
+    clock_t start1 = clock();  // start ticking
+    // added by Nimisha
 
     ifstream fin;
     fin.open(rel_path_to_target_dir + RTP::SEARCH_FRAGMENT_FILE_NAME);
@@ -104,10 +147,18 @@ void Phase1_Searcher::read_search_frag()
     }
     //validate();
     fin.close();
+
+    // added by Nimisha
+    double duration1 = (clock() - start1) / (double) CLOCKS_PER_SEC;
+    cout << "Phase1 Search - read search_frag.txt: " << duration1 << endl;
+    // added by Nimisha
 }
 
 void Phase1_Searcher::read_superinfo()
 {
+    // added by Nimisha
+    clock_t start1 = clock();  // start ticking
+    // added by Nimisha
 
     ifstream fin;
     int vid, did;
@@ -130,6 +181,11 @@ void Phase1_Searcher::read_superinfo()
         super_index[word] = *m;
     }
     fin.close();
+
+    // added by Nimisha
+    double duration1 = (clock() - start1) / (double) CLOCKS_PER_SEC;
+    cout << "Phase1 Search - read super_index: " << duration1 << endl;
+    // added by Nimisha
 }
 
 void Phase1_Searcher::intersection()

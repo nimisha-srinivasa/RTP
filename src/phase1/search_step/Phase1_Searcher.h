@@ -21,15 +21,11 @@ class Phase1_Searcher{
 
 public:
 	int query_len;
-	string query[20]; // assume query length will not be greater than 20
+	vector<string> query;
 	double duration;  // global variable added to calculate non-I/O time
 
-	void init();
-	void read_index();
-	void read_search_frag();
-	void read_superinfo();
-	void intersection();
-	void scoring();
+	void runSearch();	//query and query_len has to be set already
+	void runSearchAgain();
 
 private:
 	unordered_map<int, vector<ReuseTableInfo>> frag_reuse_table;
@@ -40,15 +36,23 @@ private:
 	unordered_map<string, unordered_map<int, double>> super_index;
 	clock_t start;  // global variable added to mark the starting point of time statistics
 
+	void init();
+	void re_init();
+	void read_title_len();
+	void read_search_frag();
+	void read_superinfo();
+	void intersection();
+	void scoring();
+
 	//helper methods
+	
 	void validate();
+
 	//int body_tf(int vid, vector<set<int>> &occur_terms, int term_number)
 	double body_tf_avg(int vid, int term_number);
 	void score_page(int vid, vector<set<int>> &occur_terms);
-	bool my_sort_function(const ScoreResult &v1, const ScoreResult &v2);
 
-	// Print the information after intersection step. 
-	// Term_number specified how many terms in the query.
+	// Print the information after intersection step. Term_number specified how many terms in the query.
 	void print_intersection(int term_number);
 
 	// calculate the min span in title: sliding window algorithm O(n)

@@ -4,7 +4,7 @@ import sys
 import subprocess
 
 list = []
-query_file_path = "./target/" + sys.argv[1]
+query_file_path = sys.argv[1]
 with open(query_file_path, 'r') as f:
     for line in f:
         q = line.strip()

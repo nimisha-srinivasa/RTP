@@ -1,0 +1,15 @@
+INDEX VERSION 1.126+/home/xin_jin/workspace/archive_lucene/.metadata/.plugins/org.eclipse.jdt.core
+285736547.index
+1545452936.index
+2466915394.index
+3723546079.index
+1746331358.index
+1854719445.index
+3829551101.index
+860531280.index
+2345819487.index
+2043613395.index
+4046885064.index
+2390316836.index
+113776406.index
+527992125.index

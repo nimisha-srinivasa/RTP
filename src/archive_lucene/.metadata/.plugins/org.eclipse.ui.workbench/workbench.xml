@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench progressCount="17" version="2.0">
+<workbenchAdvisor/>
+<window height="769" maximized="true" width="1022" x="773" y="80">
+<fastViewData fastViewLocation="1024"/>
+<perspectiveBar>
+<itemSize x="200"/>
+</perspectiveBar>
+<coolbarLayout locked="0">
+<coolItem id="group.file" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="132" y="30"/>
+<coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="120" y="30"/>
+<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="76" y="30"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="76" y="30"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="124" y="30"/>
+<coolItem id="group.nav" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="184" y="30"/>
+<coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="group.help" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
+</coolbarLayout>
+<page aggregateWorkingSetId="Aggregate for window 1394222640890" focus="true" label="Workspace - Java">
+<editors>
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
+<part id="9"/>
+<part id="10"/>
+<part id="11"/>
+<part id="12"/>
+<part id="13"/>
+<part id="14"/>
+<part id="15"/>
+<part id="16"/>
+<part id="17"/>
+<part id="18"/>
+<part id="19"/>
+<part id="20"/>
+<part id="21"/>
+<part id="22"/>
+<part id="23"/>
+<part id="24"/>
+<part id="25"/>
+<part id="26"/>
+<part id="27"/>
+<part id="28"/>
+<part id="29"/>
+<part id="30"/>
+<part id="31"/>
+<part id="32"/>
+<part id="33"/>
+<part id="34"/>
+<part id="35"/>
+<part id="36"/>
+<part id="37"/>
+<part id="38"/>
+<part id="41"/>
+<part id="39"/>
+<part id="40"/>
+<part id="42"/>
+<part id="43"/>
+<part id="44"/>
+<part id="45"/>
+</presentation>
+</folder>
+</info>
+</editorArea>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IndexFiles.java" partName="IndexFiles.java" path="/home/xin_jin/workspace/archive_lucene/archive_demo/src/org/apache/lucene/demo/IndexFiles.java" title="IndexFiles.java" tooltip="archive_demo/src/org/apache/lucene/demo/IndexFiles.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_demo/src/org/apache/lucene/demo/IndexFiles.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1565" selectionTopPixel="178"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SearchFiles.java" partName="SearchFiles.java" path="/home/xin_jin/workspace/archive_lucene/archive_demo/src/org/apache/lucene/demo/SearchFiles.java" title="SearchFiles.java" tooltip="archive_demo/src/org/apache/lucene/demo/SearchFiles.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_demo/src/org/apache/lucene/demo/SearchFiles.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1999" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DocInverterPerField.java" partName="DocInverterPerField.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/DocInverterPerField.java" title="DocInverterPerField.java" tooltip="archive_lucene/src/org/apache/lucene/index/DocInverterPerField.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/DocInverterPerField.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6745" selectionTopPixel="2824"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DocumentsWriter.java" partName="DocumentsWriter.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/DocumentsWriter.java" title="DocumentsWriter.java" tooltip="archive_lucene/src/org/apache/lucene/index/DocumentsWriter.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/DocumentsWriter.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="26612" selectionTopPixel="14332"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DocumentsWriterThreadState.java" partName="DocumentsWriterThreadState.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/DocumentsWriterThreadState.java" title="DocumentsWriterThreadState.java" tooltip="archive_lucene/src/org/apache/lucene/index/DocumentsWriterThreadState.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/DocumentsWriterThreadState.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1459" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DocConsumerPerThread.java" partName="DocConsumerPerThread.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/DocConsumerPerThread.java" title="DocConsumerPerThread.java" tooltip="archive_lucene/src/org/apache/lucene/index/DocConsumerPerThread.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/DocConsumerPerThread.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1281" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DocFieldProcessorPerThread.java" partName="DocFieldProcessorPerThread.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/DocFieldProcessorPerThread.java" title="DocFieldProcessorPerThread.java" tooltip="archive_lucene/src/org/apache/lucene/index/DocFieldProcessorPerThread.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/DocFieldProcessorPerThread.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8098" selectionTopPixel="3873"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DocFieldConsumerPerThread.java" partName="DocFieldConsumerPerThread.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/DocFieldConsumerPerThread.java" title="DocFieldConsumerPerThread.java" tooltip="archive_lucene/src/org/apache/lucene/index/DocFieldConsumerPerThread.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/DocFieldConsumerPerThread.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="940" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TermVectorsTermsWriterPerThread.java" partName="TermVectorsTermsWriterPerThread.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/TermVectorsTermsWriterPerThread.java" title="TermVectorsTermsWriterPerThread.java" tooltip="archive_lucene/src/org/apache/lucene/index/TermVectorsTermsWriterPerThread.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/TermVectorsTermsWriterPerThread.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1839" selectionTopPixel="456"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TermsHashConsumerPerThread.java" partName="TermsHashConsumerPerThread.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/TermsHashConsumerPerThread.java" title="TermsHashConsumerPerThread.java" tooltip="archive_lucene/src/org/apache/lucene/index/TermsHashConsumerPerThread.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/TermsHashConsumerPerThread.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="865" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FreqProxTermsWriterPerThread.java" partName="FreqProxTermsWriterPerThread.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/FreqProxTermsWriterPerThread.java" title="FreqProxTermsWriterPerThread.java" tooltip="archive_lucene/src/org/apache/lucene/index/FreqProxTermsWriterPerThread.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/FreqProxTermsWriterPerThread.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1393" selectionTopPixel="570"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DocInverterPerThread.java" partName="DocInverterPerThread.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/DocInverterPerThread.java" title="DocInverterPerThread.java" tooltip="archive_lucene/src/org/apache/lucene/index/DocInverterPerThread.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/DocInverterPerThread.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2941" selectionTopPixel="559"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InvertedDocConsumerPerThread.java" partName="InvertedDocConsumerPerThread.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/InvertedDocConsumerPerThread.java" title="InvertedDocConsumerPerThread.java" tooltip="archive_lucene/src/org/apache/lucene/index/InvertedDocConsumerPerThread.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/InvertedDocConsumerPerThread.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InvertedDocEndConsumerPerThread.java" partName="InvertedDocEndConsumerPerThread.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/InvertedDocEndConsumerPerThread.java" title="InvertedDocEndConsumerPerThread.java" tooltip="archive_lucene/src/org/apache/lucene/index/InvertedDocEndConsumerPerThread.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/InvertedDocEndConsumerPerThread.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1053" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="NormsWriterPerThread.java" partName="NormsWriterPerThread.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/NormsWriterPerThread.java" title="NormsWriterPerThread.java" tooltip="archive_lucene/src/org/apache/lucene/index/NormsWriterPerThread.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/NormsWriterPerThread.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1423" selectionTopPixel="570"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="StoredFieldsWriterPerThread.java" partName="StoredFieldsWriterPerThread.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/StoredFieldsWriterPerThread.java" title="StoredFieldsWriterPerThread.java" tooltip="archive_lucene/src/org/apache/lucene/index/StoredFieldsWriterPerThread.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/StoredFieldsWriterPerThread.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1748" selectionTopPixel="342"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Document.java" partName="Document.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/document/Document.java" title="Document.java" tooltip="archive_lucene/src/org/apache/lucene/document/Document.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/document/Document.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6968" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DocFieldConsumerPerField.java" partName="DocFieldConsumerPerField.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/DocFieldConsumerPerField.java" title="DocFieldConsumerPerField.java" tooltip="archive_lucene/src/org/apache/lucene/index/DocFieldConsumerPerField.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/DocFieldConsumerPerField.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1006" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TermsHashPerField.java" partName="TermsHashPerField.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/TermsHashPerField.java" title="TermsHashPerField.java" tooltip="archive_lucene/src/org/apache/lucene/index/TermsHashPerField.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/TermsHashPerField.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="14358" selectionTopPixel="8240"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TermsHashConsumerPerField.java" partName="TermsHashConsumerPerField.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/TermsHashConsumerPerField.java" title="TermsHashConsumerPerField.java" tooltip="archive_lucene/src/org/apache/lucene/index/TermsHashConsumerPerField.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/TermsHashConsumerPerField.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TermVectorsTermsWriterPerField.java" partName="TermVectorsTermsWriterPerField.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/TermVectorsTermsWriterPerField.java" title="TermVectorsTermsWriterPerField.java" tooltip="archive_lucene/src/org/apache/lucene/index/TermVectorsTermsWriterPerField.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/TermVectorsTermsWriterPerField.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1396" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IndexWriter.java" partName="IndexWriter.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/IndexWriter.java" title="IndexWriter.java" tooltip="archive_lucene/src/org/apache/lucene/index/IndexWriter.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/IndexWriter.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="38892" selectionTopPixel="17794"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InvertedDocConsumerPerField.java" partName="InvertedDocConsumerPerField.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/InvertedDocConsumerPerField.java" title="InvertedDocConsumerPerField.java" tooltip="archive_lucene/src/org/apache/lucene/index/InvertedDocConsumerPerField.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/InvertedDocConsumerPerField.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Directory.java" partName="Directory.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/store/Directory.java" title="Directory.java" tooltip="archive_lucene/src/org/apache/lucene/store/Directory.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/store/Directory.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1688" selectionTopPixel="88"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LockFactory.java" partName="LockFactory.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/store/LockFactory.java" title="LockFactory.java" tooltip="archive_lucene/src/org/apache/lucene/store/LockFactory.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/store/LockFactory.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1271" selectionTopPixel="205"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FSDirectory.java" partName="FSDirectory.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/store/FSDirectory.java" title="FSDirectory.java" tooltip="archive_lucene/src/org/apache/lucene/store/FSDirectory.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/store/FSDirectory.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="837" selectionTopPixel="1072"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RAMDirectory.java" partName="RAMDirectory.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/store/RAMDirectory.java" title="RAMDirectory.java" tooltip="archive_lucene/src/org/apache/lucene/store/RAMDirectory.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/store/RAMDirectory.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2556" selectionTopPixel="446"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IndexInput.java" partName="IndexInput.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/store/IndexInput.java" title="IndexInput.java" tooltip="archive_lucene/src/org/apache/lucene/store/IndexInput.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/store/IndexInput.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2354" selectionTopPixel="383"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IndexOutput.java" partName="IndexOutput.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/store/IndexOutput.java" title="IndexOutput.java" tooltip="archive_lucene/src/org/apache/lucene/store/IndexOutput.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/store/IndexOutput.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1258" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UserInfo.java" partName="UserInfo.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/search/UserInfo.java" title="UserInfo.java" tooltip="archive_lucene/src/org/apache/lucene/search/UserInfo.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/search/UserInfo.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="88" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ReadOnlySegmentReader.java" partName="ReadOnlySegmentReader.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/ReadOnlySegmentReader.java" title="ReadOnlySegmentReader.java" tooltip="archive_lucene/src/org/apache/lucene/index/ReadOnlySegmentReader.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/ReadOnlySegmentReader.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="889" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SegmentReader.java" partName="SegmentReader.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/SegmentReader.java" title="SegmentReader.java" tooltip="archive_lucene/src/org/apache/lucene/index/SegmentReader.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/SegmentReader.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="29025" selectionTopPixel="16625"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IndexReader.java" partName="IndexReader.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/IndexReader.java" title="IndexReader.java" tooltip="archive_lucene/src/org/apache/lucene/index/IndexReader.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/IndexReader.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="37807" selectionTopPixel="15098"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SegmentTermPositions.java" partName="SegmentTermPositions.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/SegmentTermPositions.java" title="SegmentTermPositions.java" tooltip="archive_lucene/src/org/apache/lucene/index/SegmentTermPositions.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/SegmentTermPositions.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="994" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SegmentTermDocs.java" partName="SegmentTermDocs.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/SegmentTermDocs.java" title="SegmentTermDocs.java" tooltip="archive_lucene/src/org/apache/lucene/index/SegmentTermDocs.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/SegmentTermDocs.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="994" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TermPositions.java" partName="TermPositions.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/index/TermPositions.java" title="TermPositions.java" tooltip="archive_lucene/src/org/apache/lucene/index/TermPositions.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/index/TermPositions.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1239" selectionTopPixel="121"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SloppyPhraseScorer.java" partName="SloppyPhraseScorer.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/search/SloppyPhraseScorer.java" title="SloppyPhraseScorer.java" tooltip="archive_lucene/src/org/apache/lucene/search/SloppyPhraseScorer.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/search/SloppyPhraseScorer.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1717" selectionTopPixel="19"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DocIdSetIterator.java" partName="DocIdSetIterator.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/search/DocIdSetIterator.java" title="DocIdSetIterator.java" tooltip="archive_lucene/src/org/apache/lucene/search/DocIdSetIterator.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/search/DocIdSetIterator.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="11" selectionOffset="2242" selectionTopPixel="412"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PhraseScorer.java" partName="PhraseScorer.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/search/PhraseScorer.java" title="PhraseScorer.java" tooltip="archive_lucene/src/org/apache/lucene/search/PhraseScorer.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/search/PhraseScorer.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2148" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Scorer.java" partName="Scorer.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/search/Scorer.java" title="Scorer.java" tooltip="archive_lucene/src/org/apache/lucene/search/Scorer.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/search/Scorer.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2114" selectionTopPixel="732"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PhraseQuery.java" partName="PhraseQuery.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/search/PhraseQuery.java" title="PhraseQuery.java" tooltip="archive_lucene/src/org/apache/lucene/search/PhraseQuery.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/search/PhraseQuery.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="2" selectionOffset="5934" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PhrasePositions.java" partName="PhrasePositions.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/search/PhrasePositions.java" title="PhrasePositions.java" tooltip="archive_lucene/src/org/apache/lucene/search/PhrasePositions.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/search/PhrasePositions.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1827" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Searcher.java" partName="Searcher.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/search/Searcher.java" title="Searcher.java" tooltip="archive_lucene/src/org/apache/lucene/search/Searcher.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/search/Searcher.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="25" selectionOffset="2620" selectionTopPixel="1787"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ExactPhraseScorer.java" partName="ExactPhraseScorer.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/search/ExactPhraseScorer.java" title="ExactPhraseScorer.java" tooltip="archive_lucene/src/org/apache/lucene/search/ExactPhraseScorer.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/search/ExactPhraseScorer.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MultiPhraseQuery.java" partName="MultiPhraseQuery.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/search/MultiPhraseQuery.java" title="MultiPhraseQuery.java" tooltip="archive_lucene/src/org/apache/lucene/search/MultiPhraseQuery.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/search/MultiPhraseQuery.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LucenePackage.java" partName="LucenePackage.java" path="/home/xin_jin/workspace/archive_lucene/archive_lucene/src/org/apache/lucene/LucenePackage.java" title="LucenePackage.java" tooltip="archive_lucene/src/org/apache/lucene/LucenePackage.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/archive_lucene/src/org/apache/lucene/LucenePackage.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+</editors>
+<views>
+<view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
+<viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
+</view>
+<view id="org.eclipse.ui.views.ProblemView" partName="Problems">
+<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>&#x0A;<category IMemento.internal.id="Warnings (31 items)"/>
+<category IMemento.internal.id="Errors"/>
+</expanded>
+<columnWidths org.eclipse.ui.ide.locationField="73" org.eclipse.ui.ide.markerType="721" org.eclipse.ui.ide.pathField="143" org.eclipse.ui.ide.resourceField="108" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+</viewState>
+</view>
+<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
+<view id="org.eclipse.jdt.ui.PackageExplorer" partName="Package Explorer">
+<viewState group_libraries="1" layout="2" linkWithEditor="0" rootMode="1" workingSetName="">
+<customFilters userDefinedPatternsEnabled="false">
+<xmlDefinedFilters>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.LibraryFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.LocalTypesFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.StaticsFilter" isEnabled="false"/>
+<child filterId="org.eclipse.pde.ui.ExternalPluginLibrariesFilter1" isEnabled="true"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.ClosedProjectsFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.NonSharedProjectsFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.NonJavaElementFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.ContainedLibraryFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.CuAndClassFileFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.NonJavaProjectsFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.internal.ui.PackageExplorer.EmptyInnerPackageFilter" isEnabled="true"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.PackageDeclarationFilter" isEnabled="true"/>
+<child filterId="org.eclipse.jdt.internal.ui.PackageExplorer.EmptyPackageFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.ImportDeclarationFilter" isEnabled="true"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.FieldsFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.internal.ui.PackageExplorer.HideInnerClassFilesFilter" isEnabled="true"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.NonPublicFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer_patternFilterId_.*" isEnabled="true"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.EmptyLibraryContainerFilter" isEnabled="true"/>
+<child filterId="org.eclipse.pde.ui.BinaryProjectFilter1" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.SyntheticMembersFilter" isEnabled="true"/>
+</xmlDefinedFilters>
+</customFilters>
+</viewState>
+</view>
+<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks">
+<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.completionField" categoryGroup="none" markerContentGenerator="org.eclipse.ui.ide.tasksGenerator" partName="Tasks">
+<columnWidths org.eclipse.ui.ide.completionField="40" org.eclipse.ui.ide.descriptionField="353" org.eclipse.ui.ide.locationField="73" org.eclipse.ui.ide.markerType="108" org.eclipse.ui.ide.pathField="143" org.eclipse.ui.ide.priorityField="19" org.eclipse.ui.ide.resourceField="108"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.completionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.priorityField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.descriptionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+</viewState>
+</view>
+<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<viewState/>
+</view>
+<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
+</views>
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<show_view_action id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<show_view_action id="org.eclipse.ui.views.BookmarkView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.PropertySheet"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.views.ProgressView"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ant.ui.views.AntView"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<new_wizard_action id="org.eclipse.ui.editors.wizards.UntitledTextFileWizard"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaPerspective"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaBrowsingPerspective"/>
+<perspective_action id="org.eclipse.team.cvs.ui.cvsPerspective"/>
+<perspective_action id="org.eclipse.team.ui.TeamSynchronizingPerspective"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.ui.internal.introview"/>
+<fastViewBars/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="topLeft">&#x0A;<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<page content="org.eclipse.team.ccvs.ui.RepositoriesView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@3bae4940" ratio="0.7495049" ratioLeft="757" ratioRight="253" relationship="2" relative="topLeft">&#x0A;<folder activePageID="org.eclipse.ui.internal.introview" appearance="2" expanded="1">&#x0A;<page content="org.eclipse.ui.internal.introview" label="Welcome"/>
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.25940594" ratioLeft="262" ratioRight="748" relationship="2" relative="topLeft"/>
+<info folder="true" part="bottomRight" ratio="0.6593407" ratioLeft="420" ratioRight="217" relationship="4" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.TaskList" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.team.ui.GenericHistoryView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="bottomLeft" ratio="0.49921507" ratioLeft="318" ratioRight="319" relationship="4" relative="topLeft">&#x0A;<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.ui.JavaActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.ui.JavaElementCreationActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.debug.ui.JDTDebugActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.junit.JUnitActionSet"/>
+<show_view_action id="org.eclipse.jdt.ui.PackageExplorer"/>
+<show_view_action id="org.eclipse.jdt.ui.TypeHierarchy"/>
+<show_view_action id="org.eclipse.jdt.ui.SourceView"/>
+<show_view_action id="org.eclipse.jdt.ui.JavadocView"/>
+<show_view_action id="org.eclipse.search.ui.views.SearchView"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.views.ResourceNavigator"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ui.views.ProgressView"/>
+<show_view_action id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<show_view_action id="org.eclipse.ui.texteditor.TemplatesView"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<show_view_action id="org.eclipse.ant.ui.views.AntView"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.JavaProjectWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewPackageCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewClassCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewInterfaceCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewEnumCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewAnnotationCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewSourceFolderCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewSnippetFileCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewJavaWorkingSetWizard"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<new_wizard_action id="org.eclipse.ui.editors.wizards.UntitledTextFileWizard"/>
+<new_wizard_action id="org.eclipse.jdt.junit.wizards.NewTestCaseCreationWizard"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaBrowsingPerspective"/>
+<perspective_action id="org.eclipse.debug.ui.DebugPerspective"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.jdt.ui.PackageExplorer"/>
+<fastViewBars>
+<fastViewBar fastViewLocation="1024" id="bottom" orientation="256" selectedTabId="org.eclipse.ui.console.ConsoleView" style="0">
+<fastViews>
+<view id="org.eclipse.ui.views.ProblemView" ratio="0.3"/>
+<view id="org.eclipse.jdt.ui.JavadocView" ratio="0.3"/>
+<view id="org.eclipse.jdt.ui.SourceView" ratio="0.3"/>
+</fastViews>
+</fastViewBar>
+<fastViewBar fastViewLocation="1024" id="org.eclipse.ui.internal.ViewStack@9729f49" orientation="256" selectedTabId="org.eclipse.ui.console.ConsoleView" style="0">
+<fastViews>
+<view id="org.eclipse.ui.console.ConsoleView" ratio="0.3"/>
+</fastViews>
+</fastViewBar>
+</fastViewBars>
+<layout>
+<mainWindow>
+<info folder="true" part="left">
+<folder activePageID="org.eclipse.jdt.ui.PackageExplorer" appearance="2" expanded="2">
+<page content="org.eclipse.jdt.ui.PackageExplorer" label="Package Explorer"/>
+<page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<page content="org.eclipse.ui.navigator.ProjectExplorer" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.junit.ResultView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1b55f68a" ratio="0.7495049" ratioLeft="757" ratioRight="253" relationship="2" relative="left">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.22262552" ratioLeft="368" ratioRight="1285" relationship="2" relative="left"/>
+<info folder="true" part="bottom" ratio="0.74925816" ratioLeft="505" ratioRight="169" relationship="4" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ProblemView" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.JavadocView" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.SourceView" label="LabelNotFound"/>
+<page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="right" ratio="0.74934036" ratioLeft="568" ratioRight="190" relationship="2" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
+<page content="org.eclipse.ui.texteditor.TemplatesView" label="LabelNotFound"/>
+<page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@9729f49" ratio="0.75" ratioLeft="675" ratioRight="225" relationship="4" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.eclipse.debug.internal.ui.DebugPerspectiveFactory" id="org.eclipse.debug.ui.DebugPerspective" label="Debug"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.debug.ui.JDTDebugActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.ui.JavaActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<show_view_action id="org.eclipse.debug.ui.DebugView"/>
+<show_view_action id="org.eclipse.debug.ui.VariableView"/>
+<show_view_action id="org.eclipse.debug.ui.BreakpointView"/>
+<show_view_action id="org.eclipse.debug.ui.ExpressionView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ant.ui.views.AntView"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<show_view_action id="org.eclipse.jdt.debug.ui.DisplayView"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaPerspective"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaBrowsingPerspective"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.debug.ui.VariableView"/>
+<view id="org.eclipse.debug.ui.BreakpointView"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.debug.ui.DebugView"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<fastViewBars/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.PackageExplorer" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.8698554" ratioLeft="782" ratioRight="117" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.debug.ui.DisplayView" label="LabelNotFound"/>
+<page content="org.eclipse.search.SearchResultView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.38254172" ratioLeft="298" ratioRight="481" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
+<page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
+<page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
+<page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+</perspectives>
+<workingSets/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/search/PhraseScorer.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_demo/src/org/apache/lucene/demo/SearchFiles.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/search/PhraseScorer.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/LucenePackage.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/search/PhrasePositions.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_demo/src/org/apache/lucene/demo/SearchFiles.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/search/PhrasePositions.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/search/Scorer.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/search/PhraseQuery.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/search/Searcher.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/search/MultiPhraseQuery.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_demo/src/org/apache/lucene/demo/IndexFiles.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/LucenePackage.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/search/PhraseScorer.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_demo/src/org/apache/lucene/demo/IndexFiles.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_demo/src/org/apache/lucene/demo/SearchFiles.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/search/PhraseQuery.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/search/Scorer.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/search/PhrasePositions.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/archive_lucene/src/org/apache/lucene/search/PhraseScorer.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/archive_demo/search_frag.txt"/>
+</editors>
+<item historyLabel="PhraseScorer.java" index="0">
+<position info="not_deleted" x="3357" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="1">
+<position info="not_deleted" x="5315" y="0"/>
+</item>
+<item historyLabel="PhraseScorer.java" index="0">
+<position info="not_deleted" x="4180" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="1">
+<position info="not_deleted" x="5315" y="0"/>
+</item>
+<item historyLabel="PhraseScorer.java" index="2">
+<position info="not_deleted" x="3302" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="1">
+<position info="not_deleted" x="6398" y="0"/>
+</item>
+<item historyLabel="PhraseScorer.java" index="2">
+<position info="not_deleted" x="4161" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="1">
+<position info="not_deleted" x="4499" y="0"/>
+</item>
+<item historyLabel="PhraseScorer.java" index="2">
+<position info="not_deleted" x="4161" y="0"/>
+</item>
+<item historyLabel="LucenePackage.java" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="PhrasePositions.java" index="4">
+<position info="not_deleted" x="1169" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="5">
+<position info="not_deleted" x="4499" y="0"/>
+</item>
+<item historyLabel="PhrasePositions.java" index="6">
+<position info="not_deleted" x="1675" y="0"/>
+</item>
+<item historyLabel="Scorer.java" index="7">
+<position info="not_deleted" x="2155" y="0"/>
+</item>
+<item historyLabel="PhraseQuery.java" index="8">
+<position info="not_deleted" x="5487" y="0"/>
+</item>
+<item historyLabel="Searcher.java" index="9">
+<position info="not_deleted" x="2620" y="25"/>
+</item>
+<item historyLabel="MultiPhraseQuery.java" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="PhraseQuery.java" index="8">
+<position info="not_deleted" x="5487" y="0"/>
+</item>
+<item historyLabel="PhrasePositions.java" index="6">
+<position info="not_deleted" x="1675" y="0"/>
+</item>
+<item historyLabel="IndexFiles.java" index="11">
+<position info="not_deleted" x="1565" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="5">
+<position info="not_deleted" x="2594" y="0"/>
+</item>
+<item historyLabel="PhraseQuery.java" index="8">
+<position info="not_deleted" x="4772" y="0"/>
+</item>
+<item historyLabel="PhrasePositions.java" index="6">
+<position info="not_deleted" x="1827" y="0"/>
+</item>
+<item historyLabel="Scorer.java" index="7">
+<position info="not_deleted" x="2155" y="0"/>
+</item>
+<item historyLabel="PhraseQuery.java" index="8">
+<position info="not_deleted" x="4772" y="0"/>
+</item>
+<item historyLabel="Searcher.java" index="9">
+<position info="not_deleted" x="2620" y="25"/>
+</item>
+<item historyLabel="MultiPhraseQuery.java" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="LucenePackage.java" index="12">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="PhraseScorer.java" index="13">
+<position info="not_deleted" x="4047" y="0"/>
+</item>
+<item historyLabel="IndexFiles.java" index="14">
+<position info="not_deleted" x="1565" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="15">
+<position info="not_deleted" x="2594" y="0"/>
+</item>
+<item historyLabel="IndexFiles.java" index="14">
+<position info="not_deleted" x="1565" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="15">
+<position info="not_deleted" x="2594" y="0"/>
+</item>
+<item historyLabel="PhraseQuery.java" index="16">
+<position info="not_deleted" x="4772" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="15">
+<position info="not_deleted" x="5371" y="0"/>
+</item>
+<item historyLabel="Scorer.java" index="17">
+<position info="not_deleted" x="2114" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="15">
+<position info="not_deleted" x="5269" y="0"/>
+</item>
+<item historyLabel="PhraseQuery.java" index="16">
+<position info="not_deleted" x="4772" y="0"/>
+</item>
+<item historyLabel="PhrasePositions.java" index="18">
+<position info="not_deleted" x="1827" y="0"/>
+</item>
+<item historyLabel="PhraseQuery.java" index="16">
+<position info="not_deleted" x="5934" y="2"/>
+</item>
+<item historyLabel="PhraseScorer.java" index="19">
+<position info="not_deleted" x="4066" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="15">
+<position info="not_deleted" x="5293" y="0"/>
+</item>
+<item historyLabel="PhraseScorer.java" index="19">
+<position info="not_deleted" x="4066" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="15">
+<position info="not_deleted" x="5690" y="0"/>
+</item>
+<item historyLabel="search_frag.txt" index="20">
+<position info="not_deleted" x="205" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="15">
+<position info="not_deleted" x="5386" y="0"/>
+</item>
+<item historyLabel="PhraseScorer.java" index="19">
+<position info="not_deleted" x="4066" y="0"/>
+</item>
+<item historyLabel="SearchFiles.java" index="15">
+<position info="not_deleted" x="5386" y="0"/>
+</item>
+<item historyLabel="PhraseScorer.java" index="19">
+<position info="not_deleted" x="2148" y="0"/>
+</item>
+<item active="true" historyLabel="SearchFiles.java" index="15">
+<position info="not_deleted" x="5386" y="0"/>
+</item>
+</navigationHistory>
+<input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
+</page>
+<workbenchWindowAdvisor/>
+<actionBarAdvisor/>
+<trimLayout>
+<trimArea IMemento.internal.id="128">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
+</trimArea>
+<trimArea IMemento.internal.id="1024">
+<trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
+<trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+<trimItem IMemento.internal.id="bottom"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@9729f49"/>
+</trimArea>
+</trimLayout>
+</window>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="search_frag.txt" tooltip="archive_demo/search_frag.txt">
+<persistable path="/archive_demo/search_frag.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LucenePackage.java" tooltip="archive_lucene/src/org/apache/lucene/LucenePackage.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/LucenePackage.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MultiPhraseQuery.java" tooltip="archive_lucene/src/org/apache/lucene/search/MultiPhraseQuery.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/search/MultiPhraseQuery.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ExactPhraseScorer.java" tooltip="archive_lucene/src/org/apache/lucene/search/ExactPhraseScorer.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/search/ExactPhraseScorer.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Searcher.java" tooltip="archive_lucene/src/org/apache/lucene/search/Searcher.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/search/Searcher.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PhrasePositions.java" tooltip="archive_lucene/src/org/apache/lucene/search/PhrasePositions.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/search/PhrasePositions.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IndexSearcher.java" tooltip="archive_lucene/src/org/apache/lucene/search/IndexSearcher.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/search/IndexSearcher.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Scorer.java" tooltip="archive_lucene/src/org/apache/lucene/search/Scorer.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/search/Scorer.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PhraseScorer.java" tooltip="archive_lucene/src/org/apache/lucene/search/PhraseScorer.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/search/PhraseScorer.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DocIdSetIterator.java" tooltip="archive_lucene/src/org/apache/lucene/search/DocIdSetIterator.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/search/DocIdSetIterator.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SloppyPhraseScorer.java" tooltip="archive_lucene/src/org/apache/lucene/search/SloppyPhraseScorer.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/search/SloppyPhraseScorer.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TermPositions.java" tooltip="archive_lucene/src/org/apache/lucene/index/TermPositions.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/index/TermPositions.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SegmentTermDocs.java" tooltip="archive_lucene/src/org/apache/lucene/index/SegmentTermDocs.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/index/SegmentTermDocs.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SegmentTermPositions.java" tooltip="archive_lucene/src/org/apache/lucene/index/SegmentTermPositions.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/index/SegmentTermPositions.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IndexReader.java" tooltip="archive_lucene/src/org/apache/lucene/index/IndexReader.java">
+<persistable path="/archive_lucene/src/org/apache/lucene/index/IndexReader.java"/>
+</file>
+</mruList>
+</workbench>

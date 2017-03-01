@@ -1,0 +1,6 @@
+In RTP
+First run make to compile all needed source file;
+Second ./index.sh path_to_xml_data, to index, e.g. ./index.sh ./data/data.xml;
+Then put your queries in query/queries_all.txt & ./run_batch.sh queries_all.txt to query. 
+
+Remember to change the top_k in src/search_scripts/run_optionTestCluster_vector_new.sh.

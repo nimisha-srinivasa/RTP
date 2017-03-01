@@ -70,7 +70,6 @@ for p in range(k):
 
     #generate vidlist.txt from bitmap.txt
     com = curr_path_to_target_dir + 'phase2_read_bitmap '+query
-    print(com)
     print 'run phase2_read_bitmap:'
     run_command(com)
 

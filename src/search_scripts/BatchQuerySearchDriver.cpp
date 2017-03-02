@@ -48,6 +48,10 @@ int main(int argc, char** argv){
 	bool first_time = true;
 	int no_words_in_query=0;
 
+	// added by Nimisha
+    clock_t start1 = clock();  // start ticking
+    // added by Nimisha
+
 	SingleQuerySearcher* single_searcher = new SingleQuerySearcher();
 	single_searcher->top_k = top_k;
 
@@ -67,4 +71,9 @@ int main(int argc, char** argv){
     	}
     }
     delete single_searcher;
+
+    // added by Nimisha
+    double duration1 = (clock() - start1) / (double) CLOCKS_PER_SEC;
+    cout << "The batch query took: " << duration1 << endl;
+    // added by Nimisha
 }

@@ -95,7 +95,7 @@ void Phase2_Searcher::read_search_frag(){
     // sort search_frag to make each posing sorted by fid
     for (int i=0; i<query_len; i++){
         sort(search_frag[i].begin(), search_frag[i].end(), Fid_Occurence::compare);
-        cout << "Term " << i << " contains " << search_frag[i].size() << " postings" << endl;
+        //cout << "Term " << i << " contains " << search_frag[i].size() << " postings" << endl;
     }
     //validate();
 }
@@ -128,7 +128,7 @@ void Phase2_Searcher::read_vid(){
     int v;
     while(fin >> v)
         vid_list.push_back(v);
-    cout << "Read "<< vid_list.size() << " vids from previous intersection results."<< endl;
+    //cout << "Read "<< vid_list.size() << " vids from previous intersection results."<< endl;
     fin.close();
 }
 
@@ -155,7 +155,7 @@ void Phase2_Searcher::read_forward(){
         forward_table[vid] = v; // create one entry for vid
     }
     fin.close();
-    cout << "Read " << count << " forward reuse table entries in forward_table." << endl;
+    //cout << "Read " << count << " forward reuse table entries in forward_table." << endl;
 }
 
 // calculate the positional information for each vid
@@ -187,15 +187,13 @@ void Phase2_Searcher::get_positional_info(){
     else
         ratio = 0.2;
     ratio = 0.4;
-    cout << "Option C:" << endl;
-    cout << "Query Len:" << query_len <<endl;
+    //cout << "Option C:" << endl;
     for (int k=0; k<query_len; k++) // each time, deal with one term
     {
         dwtime_sort = 0.0;
         vector<Vid_Occurence> current_posting; // doc posting for current term
         current_posting.clear();
 		bool aa = MakeChoice(k);
-        cout << "result of options:" << aa <<endl;
 
 		//timing 
 		gettimeofday(&dwstart, NULL);
@@ -352,10 +350,10 @@ void Phase2_Searcher::get_positional_info(){
         dwtime = 1000.0*(dwend.tv_sec-dwstart.tv_sec)+(dwend.tv_usec-dwstart.tv_usec)/1000.0 -dwtime_sort;
         //timing
 
-        printf("%d %d\n",k,query_len);
-        cout << "Calculate Term " << k << " : " << dwtime << " ms f= " << aa << endl;
+        //printf("%d %d\n",k,query_len);
+        //cout << "Calculate Term " << k << " : " << dwtime << " ms f= " << aa << endl;
     }
-    cout << endl;
+    //cout << endl;
 
     // end OptionC algorithm
 

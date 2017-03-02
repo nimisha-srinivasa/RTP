@@ -217,6 +217,8 @@ int main(int argc, char *argv[]) {
   bool term_count = false;
   bool parse_qid = false;
   bool show_postings = false;
+  std::string full_query = "";
+  bool first_query = true;
 
   int argi = 1;
   while (argi < argc) {
@@ -252,13 +254,15 @@ int main(int argc, char *argv[]) {
       term_count = true;
     } else if (!strcmp(arg,"--qid")) {
       parse_qid = true;
-    } else if (!strcmp(arg,"--")) {
-      break;
-    } else if (arg[0] == '-') {
-      std::cerr << "unknown option '" << arg << "'\n"; return 1;
     } else {
-      argi--;
-      break;
+      //these are the query words
+      if(first_query){
+        first_query = false;
+        full_query += std::string(arg);
+      }
+
+      else
+        full_query += " " + std::string(arg);
     }
   }
 
@@ -287,7 +291,10 @@ int main(int argc, char *argv[]) {
     std::string strline;
     int qid = 0;
     const char *qid_str = NULL;
-    while(getline(std::cin, strline)) {
+    int i=0;
+    while(i<1) {
+      i++;
+      strline = full_query;
       if (strline.size() < 1) return 0;
       if (strline.size() >= linelen) {
         delete[] line;

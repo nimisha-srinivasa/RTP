@@ -74,8 +74,8 @@ for p in range(k):
     run_command(com)
 
     #generate result.txt
-    com = curr_path_to_target_dir + 'phase2_search '+ str(query_len)
-    print 'run phase2_search:'
+    com = curr_path_to_target_dir + 'phase2_cluster_search '+ str(query_len)
+    print 'run phase2_cluster_search:'
     run_command(com)
 
     fr = open('result.txt', 'r')
@@ -91,7 +91,7 @@ for p in range(k):
     os.chdir('../..')
 
 final_result.sort(cmp=mycmp)
-fout=open(path_to_target_dir + 'final_result.txt', 'w')
+fout=open(path_to_target_dir + 'final_results.txt', 'w')
 for item in final_result:
     fout.write(str(item[0])+' '+str(item[1])+'\n')
 fout.close()

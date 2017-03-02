@@ -40,7 +40,7 @@
 #include <stdlib.h>  /* for malloc, free */
 #include <string.h>  /* for memcmp, memmove */
 #include <ctype.h>  /* for tolower */
-#include "stemmer.h"
+#include "Stemmer.h"
 
 /* Member b is a buffer holding a word to be stemmed. The letters are in
    b[0], b[1] ... ending at b[z->k]. Member k is readjusted downwards as

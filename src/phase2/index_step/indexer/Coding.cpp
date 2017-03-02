@@ -1,4 +1,4 @@
-#include "coding.h"
+#include "Coding.h"
 #include <inttypes.h>
 #define CODING_DEBUG 1
 

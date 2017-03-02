@@ -46,8 +46,9 @@ void SingleQuerySearcher::generate_phase1_results_again(){
 }
 
 void SingleQuerySearcher::run_phase2_search(){
-	string command = "python ../src/phase2/search_step/run_phase2_search.py \"" + full_query + "\" " + to_string(num_words_in_query) + " " + to_string(top_k) + " &> /dev/null";
-	system(command.c_str()); 
+  cout << "Came to phase2 Search :" << endl;
+  string command = "./phase2_search "+ to_string(top_k) + " " + to_string(num_words_in_query) + " " + full_query;
+  system(command.c_str()); 
 }
 
 string SingleQuerySearcher::stemstring(struct stemmer * z, string str_to_stem)

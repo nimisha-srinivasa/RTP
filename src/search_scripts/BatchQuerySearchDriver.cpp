@@ -33,7 +33,7 @@ vector<string> splitIntoWords(string sentence){
 	}
 	return strWords;
 }
-
+// NOTE: the query_file contains the cleaned, stemmed data
 int main(int argc, char** argv){
 	if(argc<=2){
 		cout << "Illegal num of args. Format: ./batch_query_search <query_file> <top_k>" << endl;
@@ -46,7 +46,7 @@ int main(int argc, char** argv){
 	string line;
 	vector<string> query_words_arr;
 	bool first_time = true;
-	int no_words_in_query=0;
+	int num_words_in_query=0, curr_query_num=1;
 
 	// added by Nimisha
     clock_t start1 = clock();  // start ticking
@@ -58,9 +58,11 @@ int main(int argc, char** argv){
     fin.open(rel_path_to_target_dir1 + query_file_name);
     
     while (std::getline(fin, line)){
+    	cout << "####################Processing query number: " << curr_query_num << "####################" << endl;
+    	
 	    single_searcher->full_query = line;
-	    no_words_in_query = calculateLength(line);
-	    single_searcher->num_words_in_query = no_words_in_query;
+	    num_words_in_query = calculateLength(line);
+	    single_searcher->num_words_in_query = num_words_in_query;
     	single_searcher->query_words_arr = splitIntoWords(line);
 
     	if(first_time){
@@ -69,6 +71,9 @@ int main(int argc, char** argv){
     	}else{
     		single_searcher->searchAgain_without_preprocess();
     	}
+
+    	cout << "#################### Done with query number: " << curr_query_num << "####################" << endl;
+    	curr_query_num ++;
     }
     delete single_searcher;
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # $1 -> all queries
-TOP_K=5
+TOP_K=1
 if [ "$#" -eq 1 ]; then
 	EXEC_NAME="batch_query_search"
 	./src/pre_process_query/batch_pre_process/pre_process.sh $1

@@ -12,6 +12,7 @@ static char * s;         /* buffer for words tobe stemmed */
 #define INC 50           /* size units in which s is increased */
 static int i_max = INC;  /* maximum offset in s */
 
+string rel_path_to_target = "./";
 
 using namespace std;
 
@@ -20,10 +21,11 @@ void SingleQuerySearcher::pre_process_query(){
 }
 
 void SingleQuerySearcher::run_phase1_lucene_jar(){
-	system("rm -rf ./target/search_frag.txt");
+  string command = "rm -rf " + rel_path_to_target + "search_frag.txt";
+	system(command.c_str());
 
 	//generate SEARCH_FRAGMENT_FILE_NAME
-	string command = "java -jar ../src/phase1/search_step/lucene_search.jar " + full_query;
+	command = "java -jar " + rel_path_to_target + "lucene_search.jar " + full_query;
 	system(command.c_str());
 }
 
@@ -47,7 +49,7 @@ void SingleQuerySearcher::generate_phase1_results_again(){
 
 void SingleQuerySearcher::run_phase2_search(){
   cout << "Came to phase2 Search :" << endl;
-  string command = "./phase2_search "+ to_string(top_k) + " " + to_string(num_words_in_query) + " " + full_query;
+  string command = rel_path_to_target + "phase2_search "+ to_string(top_k) + " " + to_string(num_words_in_query) + " " + full_query;
   system(command.c_str()); 
 }
 

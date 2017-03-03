@@ -90,7 +90,7 @@ void runSearchInCluster(int curr_did, string phase2_exec_name, string curr_rel_p
     system(command.c_str());
     command = cd_command + "cp "+ curr_rel_path_to_target_dir + phase2_exec_name + " ./";
     system(command.c_str());
-    command = cd_command + "./" + phase2_exec_name + " --index index --no-features --postings " + query + " &> /dev/null" ;
+    command = cd_command + "./" + phase2_exec_name + " --index index --no-features --postings " + query;
     cout << "Generate search_frag.txt" << endl;
     system(command.c_str());
     command = cd_command + "rm -rf " + phase2_exec_name;
@@ -138,7 +138,7 @@ int main(int argc, char** argv){
 	int num_lines = phase1_results.size();
 
 	if(num_lines < top_k){
-    	cout << "not enough lines, k<result length, set k to be " << num_lines << endl;
+    	cout << "not enough lines, k less than result length, set k to be " << num_lines << endl;
     	top_k = num_lines;
     }
 

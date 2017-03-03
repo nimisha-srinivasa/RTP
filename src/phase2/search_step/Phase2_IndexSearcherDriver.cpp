@@ -388,15 +388,15 @@ int main(int argc, char *argv[]) {
         if (show_postings) {
           //std::cout << term;
           for(std::vector<std::pair<uint64_t,std::vector<uint32_t> > >::const_iterator it2 = posting.begin(); it2 != posting.end(); ++it2) {
-            std::cout << curTerm << " " << it2->first << " ";
+            //std::cout << curTerm << " " << it2->first << " ";
             fout << curTerm << " " << it2->first << " ";
             for(std::vector<uint32_t>::const_iterator it3 = it2->second.begin(); it3 != it2->second.end(); ++it3) {
-              std::cout << *it3 << " ";
+              //std::cout << *it3 << " ";
               fout << *it3 << " ";
             }
-            std::cout << -1;
+            //std::cout << -1;
             fout << -1;
-            std::cout << "\n";
+            //std::cout << "\n";
             fout << "\n";
             features.push_back(std::pair<uint64_t,double>(it2->first,it2->second.size()));
           }

@@ -1,12 +1,14 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <chrono>
 
 #include "Phase1_Searcher.h"
 
 using namespace std;
 
 string rel_path_to_target_dir = "./";
+typedef chrono::system_clock Clock;
 
 //query and query_len has to be set already
 void Phase1_Searcher::runSearch(){
@@ -41,7 +43,9 @@ void Phase1_Searcher::init()
 
 void Phase1_Searcher::read_title_len(){
     // added by Nimisha
-    clock_t start1 = clock();  // start ticking
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
     // added by Nimisha
 
 	ifstream fin;
@@ -69,15 +73,18 @@ void Phase1_Searcher::read_title_len(){
     fin.close();
 
     // added by Nimisha
-    double duration1 = (clock() - start1) / (double) CLOCKS_PER_SEC;
-    cout << "Phase1 Search - read title_len.txt: " << duration1 << endl;
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase1 Search - read title_len.txt: " << elapsed_seconds.count() << endl;
     // added by Nimisha
 }
 
 void Phase1_Searcher::validate()
 {
     // added by Nimisha
-    clock_t start1 = clock();  // start ticking
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
     // added by Nimisha
 
     ofstream fout;
@@ -97,15 +104,18 @@ void Phase1_Searcher::validate()
     fout.close();
 
     // added by Nimisha
-    double duration1 = (clock() - start1) / (double) CLOCKS_PER_SEC;
-    cout << "Phase1 Search - output validate.txt: " << duration1 << endl;
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase1 Search - output validate.txt:" << elapsed_seconds.count() << endl;
     // added by Nimisha
 }
 
 void Phase1_Searcher::read_search_frag()
 {
     // added by Nimisha
-    clock_t start1 = clock();  // start ticking
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
     // added by Nimisha
 
     ifstream fin;
@@ -149,15 +159,18 @@ void Phase1_Searcher::read_search_frag()
     fin.close();
 
     // added by Nimisha
-    double duration1 = (clock() - start1) / (double) CLOCKS_PER_SEC;
-    cout << "Phase1 Search - read search_frag.txt: " << duration1 << endl;
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase1 Search - read search_frag.txt:" << elapsed_seconds.count() << endl;
     // added by Nimisha
 }
 
 void Phase1_Searcher::read_superinfo()
 {
     // added by Nimisha
-    clock_t start1 = clock();  // start ticking
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
     // added by Nimisha
 
     ifstream fin;
@@ -183,8 +196,9 @@ void Phase1_Searcher::read_superinfo()
     fin.close();
 
     // added by Nimisha
-    double duration1 = (clock() - start1) / (double) CLOCKS_PER_SEC;
-    cout << "Phase1 Search - read super_index: " << duration1 << endl;
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase1 Search - read super_index:" << elapsed_seconds.count() << endl;
     // added by Nimisha
 }
 

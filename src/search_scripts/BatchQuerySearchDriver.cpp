@@ -1,11 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <chrono>
 
 #include "SingleQuerySearcher.h"
 
 using namespace std;
 
+typedef chrono::system_clock Clock;
 string rel_path_to_target_dir1 = "./";
 
 int calculateLength(string str){
@@ -49,7 +51,9 @@ int main(int argc, char** argv){
 	int num_words_in_query=0, curr_query_num=1;
 
 	// added by Nimisha
-    clock_t start1 = clock();  // start ticking
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
     // added by Nimisha
 
 	SingleQuerySearcher* single_searcher = new SingleQuerySearcher();
@@ -78,7 +82,8 @@ int main(int argc, char** argv){
     delete single_searcher;
 
     // added by Nimisha
-    double duration1 = (clock() - start1) / (double) CLOCKS_PER_SEC;
-    cout << "The batch query took: " << duration1 << endl;
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "The batch query took: " << elapsed_seconds.count() << endl;
     // added by Nimisha
 }

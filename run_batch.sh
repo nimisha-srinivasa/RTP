@@ -16,5 +16,5 @@ if [ "$#" -eq 1 ]; then
  	#./$EXEC_NAME $FILE_PATH $TOP_K
 
 else
-	echo "Illegal number of arguments. Should be of format: ./my_batch.sh <queries_file>"
+	echo "Illegal number of arguments. Should be of format: ./run_batch.sh <queries_file>"
 fi

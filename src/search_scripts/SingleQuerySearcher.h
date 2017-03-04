@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "../phase1/search_step/Phase1_Searcher.h"
+#include "../phase2/search_step/Phase2_SearchRunner.h"
 
 using namespace std;
 
@@ -12,6 +13,7 @@ public:
 	int num_words_in_query;
 	int top_k;
 	Phase1_Searcher* phase1_searcher;
+	Phase2_SearchRunner* phase2_searcher;
 
 	void runSearch_without_preprocess();
 	void searchAgain_without_preprocess();
@@ -22,6 +24,7 @@ public:
 	void generate_phase1_results();
 	void generate_phase1_results_again();
 	void run_phase2_search();
+	void run_phase2_search_again();
 	
 private:
 	//helper methods

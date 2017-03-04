@@ -48,9 +48,14 @@ void SingleQuerySearcher::generate_phase1_results_again(){
 }
 
 void SingleQuerySearcher::run_phase2_search(){
+  phase2_searcher = new Phase2_SearchRunner();
   cout << "Came to phase2 Search :" << endl;
-  string command = rel_path_to_target + "phase2_search "+ to_string(top_k) + " " + to_string(num_words_in_query) + " " + full_query;
-  system(command.c_str()); 
+  phase2_searcher->run_search(top_k, num_words_in_query, full_query);
+}
+
+void SingleQuerySearcher::run_phase2_search_again(){
+  cout << "Came to phase2 Search :" << endl;
+  phase2_searcher->run_search_again(top_k, num_words_in_query, full_query);
 }
 
 string SingleQuerySearcher::stemstring(struct stemmer * z, string str_to_stem)
@@ -130,7 +135,7 @@ void SingleQuerySearcher::runSearch_without_preprocess(){
 void SingleQuerySearcher::searchAgain_without_preprocess(){
     run_phase1_lucene_jar();
     generate_phase1_results_again();
-    run_phase2_search();
+    run_phase2_search_again();
 }
 
 void SingleQuerySearcher::runSearch(){

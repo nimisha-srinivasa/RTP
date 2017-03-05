@@ -25,7 +25,7 @@ void SingleQuerySearcher::run_phase1_lucene_jar(){
 	system(command.c_str());
 
 	//generate SEARCH_FRAGMENT_FILE_NAME
-	command = "java -jar " + rel_path_to_target + "lucene_search.jar " + full_query;
+	command = "java -jar " + rel_path_to_target + "lucene_search.jar " + full_query + " &> /dev/null";
 	system(command.c_str());
 }
 
@@ -53,13 +53,11 @@ int SingleQuerySearcher::setQueryLength(){
 
 void SingleQuerySearcher::run_phase2_search(){
   phase2_searcher = new Phase2_SearchRunner();
-  cout << "Came to phase2 Search :" << endl;
   int num_words = setQueryLength();
   phase2_searcher->run_search(top_k, num_words, full_query);
 }
 
 void SingleQuerySearcher::run_phase2_search_again(){
-  cout << "Came to phase2 Search :" << endl;
   int num_words = setQueryLength();
   phase2_searcher->run_search_again(top_k, num_words, full_query);
 }

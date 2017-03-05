@@ -49,7 +49,7 @@ Possible choices for &lt;choice_of_representative&gt; are:
 
 9) To run single queries: Run the following command:
 
-`./run_single_query.sh "<query>" <top_k" `
+`./run_single_query.sh "<query>" <top_k> `
 
 Dataset Format:
 ------------

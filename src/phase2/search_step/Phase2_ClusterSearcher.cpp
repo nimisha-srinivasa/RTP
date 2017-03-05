@@ -203,7 +203,6 @@ void Phase2_ClusterSearcher::get_positional_info(){
         flag_do_optionA = f < (y*ratio);
         if(aa)
         {
-            cout << "Chose option A" << endl;
             // Option A:
             // Step 1: Convert the fragment posting to document posting.
             //vector<Vid_Occurence> current_posting; // doc posting for current term
@@ -285,7 +284,6 @@ void Phase2_ClusterSearcher::get_positional_info(){
         }
         else
         {
-            cout << "Chose option B" << endl;
             // Option B:
             vector<Fid_Occurence> *term_posting = &(search_frag[k]);
             //y=0; // avg number of frags in vid_list

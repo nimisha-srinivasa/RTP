@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+     content="width=device-width, initial-scale=1, user-scalable=yes">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/search.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $(document).on('click', '.dropdown-menu', function (e) {
+      e.stopPropagation();
+    });
+  </script>
+</head>
+<body>
+ 
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10"></div>
+      <div class="col-md-1"></div>
+  </div>
+ 
+  <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-7">
+        <h1>RTP Search</h1>
+      </div>
+      <div class="col-md-3"></div>
+  </div>
+</div>
+<br/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <form action= "/cgi-bin/search.sh" method = "get">
+        <div class="input-group" id="adv-search">
+              <input type="text" class="form-control" name="query" placeholder="Search for queries" />
+              <div class="input-group-btn">
+                  <div class="btn-group" role="group">
+                      <div class="dropdown dropdown-lg">
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                          <div class="dropdown-menu dropdown-menu-right" role="menu" style="min-width: 500px;">
+                              <div class="form-horizontal">
+                              <!--<form class="form-horizontal" role="form">-->
+                                <div class="form-group">
+                                  <label for="filter">Top K value</label>
+                                  <input type="number" name="topk" class="form-control" value="5"/>
+                                </div>
+                              <!--</form>-->
+                              </div>
+                          </div>
+                      </div>
+                      <button type="submit" name="subbtn" class="btn btn-primary" value="Submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                      <!--<a href='/cgi-bin/first.sh' class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></a>-->
+                  </div>
+              </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-2"></div>
+
+        </div>
+  </div>
+</div>
+ 
+</body>
+</html>

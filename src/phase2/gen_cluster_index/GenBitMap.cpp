@@ -1,3 +1,7 @@
+/** This program is used to generate the BITMAP_FILE from the ALL_VERSIONS_FILE for a cluster
+ *  Author: Jiyu
+ **/
+
 #include <iostream>
 #include <fstream>
 #include <vector>

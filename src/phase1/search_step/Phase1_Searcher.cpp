@@ -1,21 +1,86 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <chrono>
 
 #include "Phase1_Searcher.h"
 
 using namespace std;
 
 string rel_path_to_target_dir = "./";
+typedef chrono::system_clock Clock;
+
+void Phase1_Searcher::splitFullQuery(){
+    short counter = 0;
+    query_words_arr.push_back("");
+    for(short i=0;i<full_query.length();i++){
+        if(full_query[i] == ' '){
+            query_words_arr.push_back("");
+            counter++;
+            i++;
+        }
+        query_words_arr[counter] += full_query[i];
+    }
+}
+
+void Phase1_Searcher::setQueryLength(){
+    int res = 0;
+    if (full_query.length()!=0){
+        res=1;
+        for(int i=0;i<full_query.length();i++){
+            if(full_query[i]==' ')
+                res++;
+        }
+    }
+    query_len = res;
+}
 
 void Phase1_Searcher::init()
 {
     vid_titlelen_hash.clear();
     intersection_hash.clear();
     super_index.clear();
+    splitFullQuery();
+    setQueryLength();
 }
 
-void Phase1_Searcher::read_index(){
+void Phase1_Searcher::re_init(){
+    intersection_hash.clear();
+    search_frag.clear();
+    splitFullQuery();
+    setQueryLength();
+}
+
+//query and query_len has to be set already
+void Phase1_Searcher::runSearch(string query){
+    full_query = query;
+    init();
+    splitFullQuery();
+    setQueryLength();
+    read_title_len();
+    read_search_frag();
+    read_superinfo();
+    intersection();
+    scoring();
+}
+ 
+//query and query_len has to be set already
+void Phase1_Searcher::runSearchAgain(string query){
+    full_query = query;
+    //no need to load super_index and title_len.txt this time
+    re_init();
+    splitFullQuery();
+    setQueryLength();
+    read_search_frag();
+    intersection();
+    scoring();
+}
+
+void Phase1_Searcher::read_title_len(){
+
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
 
 	ifstream fin;
     fin.open(rel_path_to_target_dir + RTP::TITLE_LEN_FILE_NAME);
@@ -40,10 +105,17 @@ void Phase1_Searcher::read_index(){
         frag_reuse_table[vid] = v;
     }
     fin.close();
+
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase1 Search - read title_len.txt: " << elapsed_seconds.count() << endl;
 }
 
 void Phase1_Searcher::validate()
 {
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
 
     ofstream fout;
     fout.open(rel_path_to_target_dir + RTP::VALIDATION_FILE_NAME);
@@ -60,14 +132,23 @@ void Phase1_Searcher::validate()
         }
     }
     fout.close();
+
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase1 Search - output validate.txt:" << elapsed_seconds.count() << endl;
 }
 
 void Phase1_Searcher::read_search_frag()
 {
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
 
     ifstream fin;
-    fin.open(rel_path_to_target_dir + RTP::SEARCH_FRAGMENT_FILE_NAME);
+    string search_frag_path = rel_path_to_target_dir + RTP::SEARCH_FRAGMENT_FILE_NAME;
+    fin.open(search_frag_path);
     search_frag.clear();
+
     int fid, pos, term;
     int previous_term=-1;
     while(fin >> term) // each time deal with an occurence
@@ -76,7 +157,7 @@ void Phase1_Searcher::read_search_frag()
         {
             if (term != previous_term+1)
             {
-                cout << "missing frags for term " << previous_term+1 << endl;
+                cout << " missing frags for term " << previous_term+1 << endl;
                 exit(1);
             }
             vector<Fid_Occurence> cur_v;
@@ -104,10 +185,17 @@ void Phase1_Searcher::read_search_frag()
     }
     //validate();
     fin.close();
+
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase1 Search - read search_frag.txt:" << elapsed_seconds.count() << endl;
 }
 
 void Phase1_Searcher::read_superinfo()
 {
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
 
     ifstream fin;
     int vid, did;
@@ -130,6 +218,10 @@ void Phase1_Searcher::read_superinfo()
         super_index[word] = *m;
     }
     fin.close();
+
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase1 Search - read super_index:" << elapsed_seconds.count() << endl;
 }
 
 void Phase1_Searcher::intersection()
@@ -478,7 +570,7 @@ double Phase1_Searcher::body_tf_avg(int vid, int term_number)
     double min_tf = 99999;
     for (int i=0; i<term_number; i++)
     {
-        tf_avg[i] = super_index[query[i]][did];
+        tf_avg[i] = super_index[query_words_arr[i]][did];
         //cout << vid+3532308 << " " << did << " "<< i << " " << tf_avg[i] << endl;
         if (min_tf > tf_avg[i])
             min_tf = tf_avg[i];

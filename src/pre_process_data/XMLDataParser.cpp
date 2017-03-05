@@ -1,7 +1,3 @@
-/** This project is used to generate fragment-based index for multiversion data in XML format.
- *  Author: Nimisha Srinivasa
- **/
-
 #include "XMLDataParser.h"
 #include <glibmm/convert.h> //For Glib::ConvertError
 #include "Stem.h"

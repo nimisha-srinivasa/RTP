@@ -1,6 +1,3 @@
-/** This project is used to generate clusters; fragment data and index data within each cluster.
- *  Author: Nimisha
- **/
 #include <stdlib.h>
 #include <iostream>
 #include <sstream>

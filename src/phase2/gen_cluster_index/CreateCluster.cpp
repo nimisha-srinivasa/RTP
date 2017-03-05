@@ -194,17 +194,18 @@ void CreateCluster::gen_index_for_cluster_longest(string& folder_base){
     string line; // each line of the input file is a document
     int doc_num=0;
     cluster_init();
-    
+    std::size_t found;
     string longest_line="";
     int longest_line_length=0;
     while(getline(fin, line)){
-        // deal with each document
-        deal_with_doc(line, doc_num, folder_base);
-        doc_num++;
         if(line.length() >= longest_line_length){    //take latest longest version
             longest_line_length = line.length();
             longest_line = line;
         }
+
+        // deal with each document
+        deal_with_doc(line, doc_num, folder_base);
+        doc_num++;
     }
     representative_version << longest_line << endl;
     

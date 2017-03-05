@@ -1,3 +1,6 @@
+#ifndef _V_OCCURENCE_H_
+#define _V_OCCURENCE_H_
+
 #include <set>
 
 using namespace std;
@@ -10,3 +13,5 @@ public:
 
     static bool compare(const V_Occurence &obj1, const V_Occurence &obj2);
 };
+
+#endif

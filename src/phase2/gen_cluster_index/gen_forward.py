@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+
+#This python script is used to output the FORWARD_TABLE from index.txt for all clusters
+
 import os
 
 path_to_target_dir = "./target/"

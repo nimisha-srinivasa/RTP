@@ -43,9 +43,13 @@ Possible choices for &lt;choice_of_representative&gt; are:
 
 	2: for longest representative
 
-8) To run queries: Enter all the queries (1 per line) in a .txt file and run the following command:
+8) To run batch queries: Enter all the queries (1 per line) in a .txt file and run the following command:
 
-`./run_batch.sh <query_file>`
+`./run_batch_query.sh <query_file>`
+
+9) To run single queries: Run the following command:
+
+`./run_single_query.sh "<query>" <top_k" `
 
 Dataset Format:
 ------------

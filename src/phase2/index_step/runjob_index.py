@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+
+#this python script is used to generate all the required files within a cluster for all clusters
+
 import os
 
 path_to_target_dir = "./target/"

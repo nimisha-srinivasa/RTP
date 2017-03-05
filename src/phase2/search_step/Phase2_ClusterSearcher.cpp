@@ -6,14 +6,14 @@
 #include <iterator>
 #include <sys/time.h>
 
-#include "Phase2_Searcher.h"
+#include "Phase2_ClusterSearcher.h"
 #include "../../Constants.h"
 
 using namespace std;
 
 string rel_path_to_target_dir = "./";
 
-void Phase2_Searcher::read_index(){
+void Phase2_ClusterSearcher::read_index(){
 	ifstream fin;
     fin.open(rel_path_to_target_dir + RTP::INDEX_FILE_NAME);
 
@@ -50,7 +50,7 @@ void Phase2_Searcher::read_index(){
 }
 
 // read postings
-void Phase2_Searcher::read_search_frag(){
+void Phase2_ClusterSearcher::read_search_frag(){
 	ifstream fin;
     fin.open(rel_path_to_target_dir + RTP::SEARCH_FRAGMENT_FILE_NAME);
     search_frag.clear();
@@ -95,13 +95,13 @@ void Phase2_Searcher::read_search_frag(){
     // sort search_frag to make each posing sorted by fid
     for (int i=0; i<query_len; i++){
         sort(search_frag[i].begin(), search_frag[i].end(), Fid_Occurence::compare);
-        cout << "Term " << i << " contains " << search_frag[i].size() << " postings" << endl;
+        //cout << "Term " << i << " contains " << search_frag[i].size() << " postings" << endl;
     }
     //validate();
 }
 
 // print search_frag in txt format
-void Phase2_Searcher::validate()
+void Phase2_ClusterSearcher::validate()
 {
     ofstream fout;
     fout.open(rel_path_to_target_dir + RTP::VALIDATION_FILE_NAME);
@@ -121,19 +121,19 @@ void Phase2_Searcher::validate()
 }
 
 // read vids for Option C
-void Phase2_Searcher::read_vid(){
+void Phase2_ClusterSearcher::read_vid(){
 	ifstream fin;
     fin.open(rel_path_to_target_dir + RTP::VID_LIST_FILE_NAME);
     vid_list.clear();
     int v;
     while(fin >> v)
         vid_list.push_back(v);
-    cout << "Read "<< vid_list.size() << " vids from previous intersection results."<< endl;
+    //cout << "Read "<< vid_list.size() << " vids from previous intersection results."<< endl;
     fin.close();
 }
 
 // read forward reuse table: vid -> a list of fids for Option C
-void Phase2_Searcher::read_forward(){
+void Phase2_ClusterSearcher::read_forward(){
 	ifstream fin;
     fin.open(rel_path_to_target_dir + RTP::FORWARD_FILE_NAME);
     int vid, size, fid, offset;
@@ -155,12 +155,12 @@ void Phase2_Searcher::read_forward(){
         forward_table[vid] = v; // create one entry for vid
     }
     fin.close();
-    cout << "Read " << count << " forward reuse table entries in forward_table." << endl;
+    //cout << "Read " << count << " forward reuse table entries in forward_table." << endl;
 }
 
 // calculate the positional information for each vid
 // each vid: vector<set<int>>, each term corresponds to a set of positions
-void Phase2_Searcher::get_positional_info(){
+void Phase2_ClusterSearcher::get_positional_info(){
 
     // begin timing
     struct timeval dwstart, dwend, dwstart_sort, dwend_sort, dwstartA, dwendA, dwstartC, dwendC;
@@ -187,15 +187,13 @@ void Phase2_Searcher::get_positional_info(){
     else
         ratio = 0.2;
     ratio = 0.4;
-    cout << "Option C:" << endl;
-    cout << "Query Len:" << query_len <<endl;
+    //cout << "Option C:" << endl;
     for (int k=0; k<query_len; k++) // each time, deal with one term
     {
         dwtime_sort = 0.0;
         vector<Vid_Occurence> current_posting; // doc posting for current term
         current_posting.clear();
 		bool aa = MakeChoice(k);
-        cout << "result of options:" << aa <<endl;
 
 		//timing 
 		gettimeofday(&dwstart, NULL);
@@ -352,10 +350,10 @@ void Phase2_Searcher::get_positional_info(){
         dwtime = 1000.0*(dwend.tv_sec-dwstart.tv_sec)+(dwend.tv_usec-dwstart.tv_usec)/1000.0 -dwtime_sort;
         //timing
 
-        printf("%d %d\n",k,query_len);
-        cout << "Calculate Term " << k << " : " << dwtime << " ms f= " << aa << endl;
+        //printf("%d %d\n",k,query_len);
+        //cout << "Calculate Term " << k << " : " << dwtime << " ms f= " << aa << endl;
     }
-    cout << endl;
+    //cout << endl;
 
     // end OptionC algorithm
 
@@ -364,7 +362,7 @@ void Phase2_Searcher::get_positional_info(){
     //print_vid_postingA(); // validate results posting
 }
 
-bool Phase2_Searcher::MakeChoice(int k)
+bool Phase2_ClusterSearcher::MakeChoice(int k)
 {
     vector<Fid_Occurence> v = search_frag[k];
     int f = v.size();
@@ -391,7 +389,7 @@ bool Phase2_Searcher::MakeChoice(int k)
     return res;
 }
 
-void Phase2_Searcher::scoring(){
+void Phase2_ClusterSearcher::scoring(){
 
 	// go through the intersection_hash and score each entry
     score_result.clear();
@@ -414,7 +412,7 @@ void Phase2_Searcher::scoring(){
     fout.close();
 }
 
-void Phase2_Searcher::score_page(int vid, vector<set<int>> &occur_terms)
+void Phase2_ClusterSearcher::score_page(int vid, vector<set<int>> &occur_terms)
 {
     ScoreResult new_entry;
     new_entry.vid = vid;
@@ -478,7 +476,7 @@ void Phase2_Searcher::score_page(int vid, vector<set<int>> &occur_terms)
 }
 
 // calculate the min span in title: sliding window algorithm O(n)
-void Phase2_Searcher::cal_min_span_title(int &min_span, int vid, vector<set<int>> &occur_terms, int term_number, int title_len)
+void Phase2_ClusterSearcher::cal_min_span_title(int &min_span, int vid, vector<set<int>> &occur_terms, int term_number, int title_len)
 {
     // cur_pos saves the current focus of terms' positions in the algorithm
     int *cur_pos = new int[term_number];
@@ -533,7 +531,7 @@ void Phase2_Searcher::cal_min_span_title(int &min_span, int vid, vector<set<int>
 }
 
 // calculate the min span in body: sliding window algorithm O(n)
-void Phase2_Searcher::cal_min_span(int &min_span, int vid, vector<set<int>> &occur_terms, int term_number)
+void Phase2_ClusterSearcher::cal_min_span(int &min_span, int vid, vector<set<int>> &occur_terms, int term_number)
 {
     // cur_pos saves the current focus of terms' positions in the algorithm
     int *cur_pos = new int[term_number];
@@ -583,7 +581,7 @@ void Phase2_Searcher::cal_min_span(int &min_span, int vid, vector<set<int>> &occ
     delete []cur_index;
 }
 
-int Phase2_Searcher::body_tf(int vid, vector<set<int>> &occur_terms, int term_number)
+int Phase2_ClusterSearcher::body_tf(int vid, vector<set<int>> &occur_terms, int term_number)
 {
     if (term_number != occur_terms.size())
     {
@@ -601,7 +599,7 @@ int Phase2_Searcher::body_tf(int vid, vector<set<int>> &occur_terms, int term_nu
     return min_tf;
 }
 
-int Phase2_Searcher::find_index(vector<Fid_Occurence> *term_posting, int fid, int start, int end)
+int Phase2_ClusterSearcher::find_index(vector<Fid_Occurence> *term_posting, int fid, int start, int end)
 {
     while(start<=end){
         int mid = (start+end)/2;
@@ -616,7 +614,7 @@ int Phase2_Searcher::find_index(vector<Fid_Occurence> *term_posting, int fid, in
 }
 
 // binary search within [start, end] using recursion
-int Phase2_Searcher::find_index_old(vector<Fid_Occurence> *term_posting, int fid, int start, int end)
+int Phase2_ClusterSearcher::find_index_old(vector<Fid_Occurence> *term_posting, int fid, int start, int end)
 {
     if (start > end)
         return -1; // error! fid not in term_posting
@@ -629,7 +627,7 @@ int Phase2_Searcher::find_index_old(vector<Fid_Occurence> *term_posting, int fid
         return find_index_old(term_posting, fid, mid+1, end);
 }
 
-void Phase2_Searcher::print_vid_postingC()
+void Phase2_ClusterSearcher::print_vid_postingC()
 {
     ofstream fout;
     fout.open(rel_path_to_target_dir + RTP::POSTING_FILE_NAME);
@@ -647,7 +645,7 @@ void Phase2_Searcher::print_vid_postingC()
     fout.close();
 }
 
-void Phase2_Searcher::print_vid_postingA()
+void Phase2_ClusterSearcher::print_vid_postingA()
 {
     ofstream fout;
     fout.open(rel_path_to_target_dir + RTP::POSTING_FILE_NAME);

@@ -1,4 +1,4 @@
-/** This file is used to generate fragment-based index for multiversion data in XML format.
+/** This program is used to generate the "cleaned" data from an XML file.
  *  Author: Nimisha Srinivasa
  **/
 

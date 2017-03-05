@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+#this python script generates the super_index
+
 import pickle
 import sys
 

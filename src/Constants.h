@@ -12,6 +12,7 @@ namespace RTP{
 	constexpr char SUPER_INDEX_FILE_NAME[] = "super_index";
 	constexpr char TITLE_LENGTH_FILE_NAME[] = "title_length.txt";
 	constexpr char BITMAP_FILE_NAME[] = "bitmap.txt";
+	constexpr char FINAL_RESULTS_FILE_NAME[] = "final_results.txt";
 
 	//file names created for each clsuter
 	constexpr char ALL_FRAGS_FILE_NAME[] = "all_fragments.txt";

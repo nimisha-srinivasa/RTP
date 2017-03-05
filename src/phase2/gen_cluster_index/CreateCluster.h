@@ -7,8 +7,8 @@
 #include <vector>
 #include <unordered_map>
 
-#include "../../data_structures/ReuseTableInfo.h"
 #include "NeverLostUtil.h"
+#include "../../data_structures/ReuseTableInfo.h"
 #include "../../utils/RepresentativeChoice.h"
 
 class CreateCluster{
@@ -17,9 +17,9 @@ public:
 
 	CreateCluster();
 	void init();
+	void deal_with_ver(string& content, int vid);
 	void gen_index_for_all_cluster();
 	int output_convert_table();
-	void deal_with_ver(string& content, int vid);
 
 private:
 	unordered_map<string,int> title_to_did;

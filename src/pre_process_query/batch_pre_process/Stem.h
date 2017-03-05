@@ -1,3 +1,4 @@
+
 /* This is the Porter stemming algorithm, coded up as thread-safe ANSI C
    by the author.
 
@@ -32,15 +33,39 @@
 
    Release 4: 25 Mar 2014, fixes the bug noted by Klemens Baum (see the
        basic version for details)
-
-
-   Notes (17 Feb 2015) - Michael : Extracted key code so you can call the function on individual strings
 */
 
 #include <stdlib.h>  /* for malloc, free */
 #include <string.h>  /* for memcmp, memmove */
-#include <ctype.h>  /* for tolower */
-#include "Stemmer.h"
+
+/* You will probably want to move the following declarations to a central
+   header file.
+*/
+
+struct stemmer;
+
+extern struct stemmer * create_stemmer(void);
+extern void free_stemmer(struct stemmer * z);
+
+extern int stem(struct stemmer * z, char * b, int k);
+
+
+
+/* The main part of the stemming algorithm starts here.
+*/
+
+#define TRUE 1
+#define FALSE 0
+
+/* stemmer is a structure for a few local bits of data,
+*/
+
+struct stemmer {
+   char * b;       /* buffer for word to be stemmed */
+   int k;          /* offset to the end of the string */
+   int j;          /* a general offset into the string */
+};
+
 
 /* Member b is a buffer holding a word to be stemmed. The letters are in
    b[0], b[1] ... ending at b[z->k]. Member k is readjusted downwards as
@@ -161,7 +186,7 @@ static int cvc(struct stemmer * z, int i)
 
 /* ends(z, s) is TRUE <=> 0,...k ends with the string s. */
 
-static int ends(struct stemmer * z, const char * s)
+static int ends(struct stemmer * z, char * s)
 {  int length = s[0];
    char * b = z->b;
    int k = z->k;
@@ -175,7 +200,7 @@ static int ends(struct stemmer * z, const char * s)
 /* setto(z, s) sets (j+1),...k to the characters in the string s, readjusting
    k. */
 
-static void setto(struct stemmer * z, const char * s)
+static void setto(struct stemmer * z, char * s)
 {  int length = s[0];
    int j = z->j;
    memmove(z->b + j + 1, s + 1, length);
@@ -184,7 +209,7 @@ static void setto(struct stemmer * z, const char * s)
 
 /* r(z, s) is used further down. */
 
-static void r(struct stemmer * z, const char * s) { if (m(z) > 0) setto(z, s); }
+static void r(struct stemmer * z, char * s) { if (m(z) > 0) setto(z, s); }
 
 /* step1ab(z) gets rid of plurals and -ed or -ing. e.g.
 
@@ -368,41 +393,3 @@ extern int stem(struct stemmer * z, char * b, int k)
 }
 
 /*--------------------stemmer definition ends here------------------------*/
-
-
-//(Michael) Added function to stem an entire string. All non-letters are preserved, and letters that are removed are replaced with space (so tokenizing should still work)
-//  Return value is b. Note though that the string is modified in place (the return value is just for convienience)
-char *stem_str(struct stemmer *z, char *b) {
-    int stem_len = 0;
-    char *start = b;
-    char *end;
-    do {
-        *start = tolower(*start);
-    } while (*(++start) != '\0');
-    start = b;
-    while(NULL != (end = strchr(start,' '))) {
-        if (start == end) { //skip empty words
-            ++start;
-            continue;
-        }
-        int k = (end-start)-1;
-        stem_len = stem(z,start,k);
-        if (stem_len < k) {
-            for(start = end - (k-stem_len); start < end; ++start) {
-                *start = ' ';
-            }
-        }
-        start=end+1;
-    }
-    if ('\0' != *start) { //do one last stem
-        int k = strlen(start)-1;
-        end = start+k+1;
-        stem_len = stem(z,start,k);
-        if (stem_len < k) {
-            for(start = end - (k-stem_len); start < end; ++start) {
-                *start = ' ';
-            }
-        }
-    }
-    return b;
-}

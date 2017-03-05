@@ -1,3 +1,7 @@
+/** This project is used to generate number of words in the titles of documents and store it in TITLE_LENGTH_FILE
+*  Author: Jiyu
+**/
+
 #include <iostream>
 #include <fstream>
 #include <string>

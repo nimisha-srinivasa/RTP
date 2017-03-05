@@ -1,3 +1,8 @@
+/* This program is used to convert from traditional reuse table to forward reuse table
+ * Author: Xin Jin
+ * Dec. 10. 2014
+ */
+
 #include <vector>
 
 #include "../../Constants.h"

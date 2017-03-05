@@ -1,3 +1,8 @@
+/* This program is used to generate the RESULTS_FILE from 
+ * INDEX_FILE, SEARCH_FRAG_FILE, VID_LIST_FILE, FORWARD_FILE within a particular cluster
+ * Author: Nimisha Srinivasa
+ */
+
 #include <unordered_map>
 #include <vector>
 #include <set>
@@ -8,7 +13,7 @@
 #include "../../data_structures/Vid_Occurence.h"
 #include "../../data_structures/ScoreResult.h"
 
-class Phase2_Searcher{
+class Phase2_ClusterSearcher{
 
 public:
 	int query_len;

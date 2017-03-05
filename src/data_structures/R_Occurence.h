@@ -1,3 +1,6 @@
+#ifndef _R_OCCURENCE_INFO_H_
+#define _R_OCCURENCE_INFO_H_
+
 #include <vector>
 #include <set>
 // result occurence
@@ -7,3 +10,5 @@ public:
     int vid;
     vector<set<int>> pos;
 };
+
+#endif

@@ -1,3 +1,7 @@
+#!/bin/bash
+
+#This script is used to generate the index for the representative document and generate TITLE_LENGTH_FILE
+
 cd ./target
 rm -rf index
 if [ $1 -eq 1 ]; then

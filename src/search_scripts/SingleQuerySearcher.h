@@ -18,10 +18,14 @@ public:
 	Phase1_Searcher* phase1_searcher;
 	Phase2_SearchRunner* phase2_searcher;
 
+	SingleQuerySearcher();
+	~SingleQuerySearcher();
 	void runSearch_without_preprocess();
 	void searchAgain_without_preprocess();
 	void runSearch();
+
 	
+private:
 	void pre_process_query();
 	void run_phase1_lucene_jar();
 	void generate_phase1_results();
@@ -29,7 +33,6 @@ public:
 	void run_phase2_search();
 	void run_phase2_search_again();
 	
-private:
 	//helper methods
 	char* appendChar(char* str, char c);
 	string stemstring(struct stemmer * z, string string1);

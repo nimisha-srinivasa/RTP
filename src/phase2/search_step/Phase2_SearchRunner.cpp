@@ -9,12 +9,14 @@
 #include <tuple>
 #include <stdio.h>
 #include <stdlib.h>
+#include <chrono>
 
 #include "../../Constants.h"
 #include "Phase2_SearchRunner.h"
 
 using namespace std;
 
+typedef chrono::system_clock Clock;
 string rel_path_to_target_dir2 = "./";
 string rel_path_to_source_dir = "../src/";
 bool show_output = false;
@@ -77,19 +79,25 @@ void Phase2_SearchRunner::writeResults(vector<ScoreResult> scoreResults, string 
 	ofstream fout;
 	fout.open(filepath);
     int num_results_to_output = scoreResults.size() < NUM_FINAL_RESULTS ? scoreResults.size(): NUM_FINAL_RESULTS;
-    for (int i=0; i< num_results_to_output; i++){
-        cout << scoreResults[i].vid << " " << scoreResults[i].score << endl;
-        fout << scoreResults[i].vid << " " << scoreResults[i].score << endl;
-    }
+    for (int i=0; i< num_results_to_output; i++)
+        fout << scoreResults[i].vid << " " << scoreResults[i].score<< endl;
     fout.close();
 }
 
 void Phase2_SearchRunner::runSearchInCluster(int curr_did, string phase2_exec_name, string curr_rel_path_to_target_dir, string query, int query_len){
     string command, cd_command;
 
+    //for timing
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
+
     //move to the directory
     cd_command = "cd "+ rel_path_to_target_dir2 + "cluster/" + to_string(curr_did) + "; ";
+    cout << "**********enter cluster " << curr_did << "**********" << endl;
     system(command.c_str());
+
+    start = Clock::now();
 
     //lucene search to generate "search_frag.txt"
     command = cd_command + "rm -rf ";
@@ -98,17 +106,35 @@ void Phase2_SearchRunner::runSearchInCluster(int curr_did, string phase2_exec_na
     command = cd_command + "cp "+ curr_rel_path_to_target_dir + phase2_exec_name + " ./";
     system(command.c_str());
     command = cd_command + "./" + phase2_exec_name + " --index index --no-features --postings " + query;
+    cout << "Generate search_frag.txt" << endl;
     system(command.c_str());
     command = cd_command + "rm -rf " + phase2_exec_name;
     system(command.c_str());
 
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase2 Cluster Search - generating ./target/cluster/x/search_frag.txt: " << elapsed_seconds.count() << endl;
+    start = Clock::now(); 
+
     //generate vidlist.txt from bitmap.txt
     command = cd_command + curr_rel_path_to_target_dir + "phase2_read_bitmap "+query;
+    cout << "generate vidlist.txt" << endl;
     system(command.c_str());
+
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase2 Cluster Search - generating ./target/cluster/x/vidlist.txt: " << elapsed_seconds.count() << endl;
+    start = Clock::now(); 
 
     //generate result.txt
     command = cd_command + curr_rel_path_to_target_dir + "phase2_cluster_search " + to_string(query_len);
+    cout << "run ./phase2_cluster_search. Generate result.txt" << endl;
     system(command.c_str());
+
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase2 Cluster Search - generating ./target/cluster/x/result.txt: " << elapsed_seconds.count() << endl;
+    start = Clock::now(); 
     
     //read results of this dir into final results
     vector<ScoreResult> phase2_cluster_results = readResultsFile("./cluster/" + to_string(curr_did) + "/" + RTP::RESULT_FILE_NAME);
@@ -124,17 +150,33 @@ void Phase2_SearchRunner::runSearchInCluster(int curr_did, string phase2_exec_na
 
 void Phase2_SearchRunner::run_search(int top_k, int query_len, string query){
     init();
+    //for timing
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
 
 	// process result file
 	vector<ScoreResult> phase1_results = readResultsFile(rel_path_to_target_dir2 + RTP::RESULT_FILE_NAME);
 	int num_lines = phase1_results.size();
 
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase2 Search - reading ./target/result.txt: " << elapsed_seconds.count() << endl;
+    start = Clock::now(); 
+
 	if(num_lines < top_k){
+    	cout << "not enough lines, k less than result length, set k to be " << num_lines << endl;
     	top_k = num_lines;
     }
 
     //read data into did_to_vids from convert table
 	did_to_vids = readConvertTable(rel_path_to_target_dir2 + RTP::CONVERT_TABLE); // stores the data from CONVERT_TABLE
+	
+    
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase2 Search - reading ./target/convert_table.txt: " << elapsed_seconds.count() << endl;
+    start = Clock::now(); 
 
     string phase2_exec_name = "phase2_index_search";
     string curr_rel_path_to_target_dir = "../../"; //from the cluster/x dir
@@ -146,6 +188,10 @@ void Phase2_SearchRunner::run_search(int top_k, int query_len, string query){
     	curr_did = phase1_results[i].vid;
         runSearchInCluster(curr_did, phase2_exec_name, curr_rel_path_to_target_dir, query, query_len);
     }
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase2 Search - Complete search for cluster " << curr_did << ": " << elapsed_seconds.count() << endl;
+    start = Clock::now();
 
     //sort final result
     sort(final_results.begin(), final_results.end(), ScoreResult::compare);
@@ -156,12 +202,22 @@ void Phase2_SearchRunner::run_search(int top_k, int query_len, string query){
 
 void Phase2_SearchRunner::run_search_again(int top_k, int query_len, string query){
     re_init();
+    //for timing
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
 
     // process result file
     vector<ScoreResult> phase1_results = readResultsFile(rel_path_to_target_dir2 + RTP::RESULT_FILE_NAME);
     int num_lines = phase1_results.size();
 
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase2 Search - reading ./target/result.txt: " << elapsed_seconds.count() << endl;
+    start = Clock::now(); 
+
     if(num_lines < top_k){
+        cout << "not enough lines, k less than result length, set k to be " << num_lines << endl;
         top_k = num_lines;
     }
 
@@ -175,6 +231,10 @@ void Phase2_SearchRunner::run_search_again(int top_k, int query_len, string quer
         curr_did = phase1_results[i].vid;
         runSearchInCluster(curr_did, phase2_exec_name, curr_rel_path_to_target_dir, query, query_len);
     }
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase2 Search - Complete search for cluster " << curr_did << ": " << elapsed_seconds.count() << endl;
+    start = Clock::now();
 
     //sort final result
     sort(final_results.begin(), final_results.end(), ScoreResult::compare);

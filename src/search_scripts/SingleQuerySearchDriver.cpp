@@ -22,5 +22,6 @@ int main(int argc, char** argv){
 	searcher->full_query=query;
 
 	searcher->runSearch();
+	delete searcher;
 	return 0;
 }

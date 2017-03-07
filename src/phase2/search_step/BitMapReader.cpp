@@ -5,12 +5,23 @@
 
 using namespace std;
 
-string rel_path_to_target_dir = "./";
+string rel_path_to_dir = "./";
 
+void BitMapReader::reset_all_data_structures(){
+    query.clear();
+}
+
+BitMapReader::BitMapReader(){
+    reset_all_data_structures();
+}
+
+BitMapReader::~BitMapReader(){
+    reset_all_data_structures();
+}
 //reads from BITMAP_FILE_NAME and creates VID_LIST_FILE_NAME
 void BitMapReader::read_bitmap(){
     ifstream fin;
-    string filename = rel_path_to_target_dir + RTP::BITMAP_FILE_NAME;
+    string filename = rel_path_to_dir + RTP::BITMAP_FILE_NAME;
     fin.open(filename.c_str());
     int vidnum,size;
     fin >> vidnum >> size;
@@ -35,7 +46,7 @@ void BitMapReader::read_bitmap(){
     fin.close();
 
     ofstream fout;
-    fout.open(rel_path_to_target_dir + RTP::VID_LIST_FILE_NAME);
+    fout.open(rel_path_to_dir + RTP::VID_LIST_FILE_NAME);
     for (int i=0; i<=size; i++){
         for (int j=0; j<64;j++){
             if (i*64+j<vidnum){
@@ -45,4 +56,5 @@ void BitMapReader::read_bitmap(){
         }
     }
     fout.close();
+    free(mask);
 }

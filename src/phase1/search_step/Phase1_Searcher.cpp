@@ -2,6 +2,8 @@
 #include <fstream>
 #include <sstream>
 #include <chrono>
+#include <algorithm>
+#include <math.h>
 
 #include "Phase1_Searcher.h"
 
@@ -42,6 +44,7 @@ void Phase1_Searcher::init()
     super_index.clear();
     splitFullQuery();
     setQueryLength();
+    duration=0;
 }
 
 void Phase1_Searcher::re_init(){
@@ -49,10 +52,16 @@ void Phase1_Searcher::re_init(){
     search_frag.clear();
     splitFullQuery();
     setQueryLength();
+    duration=0;
 }
 
 //query and query_len has to be set already
 void Phase1_Searcher::runSearch(string query){
+
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
+
     full_query = query;
     init();
     splitFullQuery();
@@ -62,10 +71,18 @@ void Phase1_Searcher::runSearch(string query){
     read_superinfo();
     intersection();
     scoring();
+
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Complete Phase1 Search took:" << elapsed_seconds.count() << endl;
 }
  
 //query and query_len has to be set already
 void Phase1_Searcher::runSearchAgain(string query){
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
+
     full_query = query;
     //no need to load super_index and title_len.txt this time
     re_init();
@@ -74,6 +91,10 @@ void Phase1_Searcher::runSearchAgain(string query){
     read_search_frag();
     intersection();
     scoring();
+
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Complete Phase1 Search took:" << elapsed_seconds.count() << endl;
 }
 
 void Phase1_Searcher::read_title_len(){
@@ -364,11 +385,20 @@ void Phase1_Searcher::scoring()
     // added by Susen
     duration += (clock() - start) / (double) CLOCKS_PER_SEC;  // added
     // added by Susen
+
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
+
     ofstream fout;
     fout.open(rel_path_to_target_dir + RTP::RESULT_FILE_NAME);
     for (int i=0; i<score_result.size(); i++)
         fout << score_result[i].vid << " " << score_result[i].score<< endl;
     fout.close();
+
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase1 Search - write result.txt:" << elapsed_seconds.count() << endl;
 }
 
 void Phase1_Searcher::score_page(int vid, vector<set<int>> &occur_terms)

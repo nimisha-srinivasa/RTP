@@ -6,29 +6,25 @@
 #include <unordered_map>
 #include <vector>
 #include <set>
+#include <algorithm>
+#include <math.h>
 
 #include "../../data_structures/ReuseTableInfo.h"
 #include "../../data_structures/ForwardTableInfo.h"
 #include "../../data_structures/Fid_Occurence.h"
 #include "../../data_structures/Vid_Occurence.h"
 #include "../../data_structures/ScoreResult.h"
-
+ 
 class Phase2_ClusterSearcher{
 
 public:
 	int query_len;
+	double duration;
 
-	// read reuse table: fid -> a list of vids for Option A
-	void read_index();
-    // read postings
-    void read_search_frag();
-    // read vids for Option C
-    void read_vid();
-    // read forward reuse table: vid -> a list of fids for Option C
-    void read_forward();
-    // calculate the positional information for each vid
-    void get_positional_info();
-    void scoring();
+	Phase2_ClusterSearcher();
+	~Phase2_ClusterSearcher();
+
+	void runSearch();
 
 private:
 	static const int MAX_VID = 5500000;//max number of VID
@@ -44,6 +40,18 @@ private:
 	unordered_map<int, vector<set<int>>> intersection_hash; // this keeps the intersection results
 	vector<ScoreResult> score_result; // this vector keeps the final scoring results
 
+	// read reuse table: fid -> a list of vids for Option A
+	void read_index();
+    // read postings
+    void read_search_frag();
+    // read vids for Option C
+    void read_vid();
+    // read forward reuse table: vid -> a list of fids for Option C
+    void read_forward();
+    // calculate the positional information for each vid
+    void get_positional_info();
+    void scoring();
+
 	// print search_frag in txt format
 	void validate();
 	void score_page(int vid, vector<set<int>> &occur_terms);
@@ -58,4 +66,6 @@ private:
 	bool MakeChoice(int k);
 	void print_vid_postingA();
 	void print_vid_postingC();
+
+	void reset_all_data_structures();
 };

@@ -10,5 +10,10 @@ using namespace std;
 class BitMapReader{
 public:
 	set<string> query;
+
+	BitMapReader();
+	~BitMapReader();
 	void read_bitmap();
-};
+private:
+	void reset_all_data_structures();
+}; 

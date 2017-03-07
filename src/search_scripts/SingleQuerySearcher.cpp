@@ -42,6 +42,7 @@ void SingleQuerySearcher::run_phase1_lucene_jar(){
 void SingleQuerySearcher::generate_phase1_results(){
   phase1_searcher = new Phase1_Searcher();
   phase1_searcher->runSearch(full_query);
+  cout << "Time taken for Phase1 Search without I/O:" << phase1_searcher->duration << endl;
 }
 
 void SingleQuerySearcher::generate_phase1_results_again(){

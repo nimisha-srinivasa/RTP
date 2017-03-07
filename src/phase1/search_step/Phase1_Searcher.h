@@ -3,20 +3,12 @@
 **/
 
 #include <vector>
-#include <ctime>
-#include <vector>
 #include <unordered_map>
 #include <set>
-#include <algorithm>
-#include <iterator>
-#include <math.h>
-#include <ctime>
 
 #include "../../Constants.h"
 #include "../../data_structures/ReuseTableInfo.h"
 #include "../../data_structures/Fid_Occurence.h"
-#include "../../data_structures/Vid_Occurence.h"
-#include "../../data_structures/Result_Occurence.h"
 #include "../../data_structures/ScoreResult.h"
 
 using namespace std;

@@ -10,6 +10,7 @@
 using namespace std;
 
 class Phase2_SearchRunner {
+	
 public:
 	Phase2_SearchRunner();
 	void run_search(int top_k, int query_len, string query);

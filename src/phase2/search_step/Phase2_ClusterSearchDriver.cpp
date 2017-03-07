@@ -15,18 +15,8 @@ int main(int argc, char** argv)
 
     Phase2_ClusterSearcher* phase2_ClusterSearcherObj = new Phase2_ClusterSearcher();
     phase2_ClusterSearcherObj->query_len=atoi(argv[1]);
-    // read reuse table: fid -> a list of vids for Option A
-    phase2_ClusterSearcherObj->read_index();
-    // read postings
-    phase2_ClusterSearcherObj->read_search_frag();
-    // read vids for Option C
-    phase2_ClusterSearcherObj->read_vid();
-    // read forward reuse table: vid -> a list of fids for Option C
-    phase2_ClusterSearcherObj->read_forward();
-    // calculate the positional information for each vid
-    phase2_ClusterSearcherObj->get_positional_info();
-    //the result is writen to RESULT_FILE_NAME
-    phase2_ClusterSearcherObj->scoring();
+    phase2_ClusterSearcherObj->runSearch();
+    delete phase2_ClusterSearcherObj;
     return 0;
 }
 

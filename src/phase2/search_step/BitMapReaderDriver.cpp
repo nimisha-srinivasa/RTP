@@ -16,5 +16,6 @@ int main(int argc, char** argv){
     }
 
     reader->read_bitmap();
+    delete reader;
     return 0;
 }

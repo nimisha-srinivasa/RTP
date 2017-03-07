@@ -1,13 +1,10 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <iostream>
-#include <sstream>
 #include <iterator>
 #include <algorithm>
 #include <vector>
-#include <tuple>
-#include <stdio.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
 #include <stdlib.h>
 #include <chrono>
 
@@ -21,6 +18,15 @@ string rel_path_to_target_dir2 = "./";
 string rel_path_to_source_dir = "../src/";
 bool show_output = false;
 int NUM_FINAL_RESULTS = 10;
+
+
+/*int main(){
+    Phase2_SearchRunner* obj = new Phase2_SearchRunner();
+    string q1 = "alumni stadium";
+    obj->run_search(1, 2, q1);
+    return 0;
+}*/
+
 void Phase2_SearchRunner::init(){
     final_results.clear();
     did_to_vids.clear();
@@ -133,7 +139,7 @@ void Phase2_SearchRunner::runSearchInCluster(int curr_did, string phase2_exec_na
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase2 Cluster Search - generating ./target/cluster/x/result.txt: " << elapsed_seconds.count() << endl;
+    cout << "Phase2 Cluster Search: " << elapsed_seconds.count() << endl;
     start = Clock::now(); 
     
     //read results of this dir into final results
@@ -151,7 +157,7 @@ void Phase2_SearchRunner::runSearchInCluster(int curr_did, string phase2_exec_na
 void Phase2_SearchRunner::run_search(int top_k, int query_len, string query){
     init();
     //for timing
-    chrono::time_point<Clock> start, end;
+    chrono::time_point<Clock> start, end, start1, end1;
     chrono::duration<double> elapsed_seconds;
     start = Clock::now();  // start ticking
 
@@ -176,7 +182,7 @@ void Phase2_SearchRunner::run_search(int top_k, int query_len, string query){
     end = Clock::now();
     elapsed_seconds = end - start;
     cout << "Phase2 Search - reading ./target/convert_table.txt: " << elapsed_seconds.count() << endl;
-    start = Clock::now(); 
+    start1 = Clock::now(); 
 
     string phase2_exec_name = "phase2_index_search";
     string curr_rel_path_to_target_dir = "../../"; //from the cluster/x dir
@@ -185,12 +191,19 @@ void Phase2_SearchRunner::run_search(int top_k, int query_len, string query){
     final_results.clear();
     //search on each of the top_k clusters
     for(int i=0; i<top_k; i++){
+        start = Clock::now(); 
+
     	curr_did = phase1_results[i].vid;
         runSearchInCluster(curr_did, phase2_exec_name, curr_rel_path_to_target_dir, query, query_len);
+
+        end = Clock::now();
+        elapsed_seconds = end - start;
+        cout << "Phase2 Search - Complete search for cluster " << curr_did << ": " << elapsed_seconds.count() << endl;
+        start = Clock::now();
     }
-    end = Clock::now();
-    elapsed_seconds = end - start;
-    cout << "Phase2 Search - Complete search for cluster " << curr_did << ": " << elapsed_seconds.count() << endl;
+    end1 = Clock::now();
+    elapsed_seconds = end1 - start1;
+    cout << "Phase2 Search - Complete search for " << top_k << " clusters: " << elapsed_seconds.count() << endl;
     start = Clock::now();
 
     //sort final result

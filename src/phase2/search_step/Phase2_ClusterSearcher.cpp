@@ -5,13 +5,54 @@
 #include <algorithm>
 #include <iterator>
 #include <sys/time.h>
+#include <chrono>
 
 #include "Phase2_ClusterSearcher.h"
 #include "../../Constants.h"
 
+//delete later
+//#include "nvwa/debug_new.h"
+
 using namespace std;
 
 string rel_path_to_target_dir = "./";
+typedef chrono::system_clock Clock;
+
+void Phase2_ClusterSearcher::runSearch(){
+    // read reuse table: fid -> a list of vids for Option A
+    read_index();
+    // read postings
+    read_search_frag();
+    // read vids for Option C
+    read_vid();
+    // read forward reuse table: vid -> a list of fids for Option C
+    read_forward();
+    // calculate the positional information for each vid
+    get_positional_info();
+    //the result is writen to RESULT_FILE_NAME
+    scoring();
+
+    cout << "Time taken for search without I/O:" << duration << endl;
+}
+
+void Phase2_ClusterSearcher::reset_all_data_structures(){
+    frag_reuse_table.clear();
+    vid_titlelen_hash.clear(); 
+    search_frag.clear(); 
+    vid_list.clear(); 
+    vid_posting.clear(); 
+    doc_posting.clear(); 
+    intersection_hash.clear(); 
+    score_result.clear();
+}
+
+Phase2_ClusterSearcher::Phase2_ClusterSearcher(){
+    reset_all_data_structures();
+}
+
+Phase2_ClusterSearcher::~Phase2_ClusterSearcher(){
+    reset_all_data_structures();
+}
 
 void Phase2_ClusterSearcher::read_index(){
 	ifstream fin;
@@ -167,11 +208,10 @@ void Phase2_ClusterSearcher::get_positional_info(){
     double dwtime = 0, dwtime_sort=0, dwtimeA=0, dwtimeC=0;
     int vid, fid, frag_offset;
 
-    // init Option C's data structures
+    // init Option B's data structures
     vector<vector<int>> *e = new vector<vector<int>>[vid_list.size()];
     for (int i=0; i<vid_list.size(); i++)
         e[i].resize(query_len);
-    bool flag_do_optionA = 1;
 
     // init Option A's data structures
     int term_number = query_len;
@@ -181,12 +221,8 @@ void Phase2_ClusterSearcher::get_positional_info(){
 
     // begin optionTest algorithm 
     double ratio;
-    int y;
-    if (query_len<5)
-        ratio = (5.0-query_len)/4.0;
-    else
-        ratio = 0.2;
-    ratio = 0.4;
+    int y; 
+
     //cout << "Option C:" << endl;
     for (int k=0; k<query_len; k++) // each time, deal with one term
     {
@@ -200,7 +236,6 @@ void Phase2_ClusterSearcher::get_positional_info(){
 		//timing 
 
         int f = search_frag[k].size();
-        flag_do_optionA = f < (y*ratio);
         if(aa)
         {
             cout << "Chose option A" << endl;
@@ -264,6 +299,13 @@ void Phase2_ClusterSearcher::get_positional_info(){
             for (int j=0; j<current->size(); j++)
             {
                 int v = (*current)[j].vid;
+                
+                //check if vid is present in vid_list before creating an entry in doc_posting for the vid
+                vector<int>::iterator vid_iter;
+                vid_iter = find (vid_list.begin(), vid_list.end(), vid);
+                if(vid_iter == vid_list.end())
+                    continue;
+
                 set<int> *tmp = new set<int>;
                 tmp->clear();
                 if (intersection_hash.find(v)==intersection_hash.end()){
@@ -271,6 +313,7 @@ void Phase2_ClusterSearcher::get_positional_info(){
                     intersection_hash[v]=new_entry;
                 }
                 intersection_hash[v].push_back(*tmp);
+
                 vector<int> *p = &((*current)[j].pos);
                 vector<int>::iterator iter;
                 for (iter = p->begin(); iter != p->end(); iter++){
@@ -309,57 +352,30 @@ void Phase2_ClusterSearcher::get_positional_info(){
                             (e[i])[k].push_back((*vpos)[l]+frag_offset);
                     }           
                 }
-
+ 
                 if (intersection_hash.find(vid)==intersection_hash.end()){
                     vector<set<int>> new_entry; new_entry.clear();
                     intersection_hash[vid]=new_entry;
                 }
+
                 set<int> *tmp = new set<int>;
                 tmp->clear();
                 intersection_hash[vid].push_back(*tmp);
                 for (int x = 0; x < e[i][k].size(); x++){
                     intersection_hash[vid][k].insert(e[i][k][x]);
                 }
-	/*
-                int j=0;
-                int j1=0;
-                int size1 = forward_table[vid].size();
-                int size2 = term_posting->size();
-                while(j<size1 && j1<size2){
-                    if(forward_table[vid][j].fid == (*term_posting)[j1].fid){
-                        frag_offset = forward_table[vid][j].offset;
-                        vector<int>* vpos = &((*term_posting)[j1].v_pos);
-                        for (int l=0; l<vpos->size(); l++)
-                            (e[i])[k].push_back((*vpos)[l]+frag_offset);
-                        j++;
-                        j1++;
-                    }
-                    else if(forward_table[vid][j].fid < (*term_posting)[j1].fid)
-                        j++;
-                    else
-                        j1++;
-                }
-	*/
-
+                delete tmp;
             }
             //y /= vid_list.size();
         }
 
         //timing
         gettimeofday(&dwend, NULL);
-        dwtime = 1000.0*(dwend.tv_sec-dwstart.tv_sec)+(dwend.tv_usec-dwstart.tv_usec)/1000.0 -dwtime_sort;
+        dwtime += 1000.0*(dwend.tv_sec-dwstart.tv_sec)+(dwend.tv_usec-dwstart.tv_usec)/1000.0 -dwtime_sort;
         //timing
-
-        //printf("%d %d\n",k,query_len);
-        //cout << "Calculate Term " << k << " : " << dwtime << " ms f= " << aa << endl;
     }
-    //cout << endl;
-
-    // end OptionC algorithm
-
-    // end timing
-    //print_vid_postingC(); // validate results posting
-    //print_vid_postingA(); // validate results posting
+    cout << "Finding positional info took: " << dwtime << " ms" << endl;
+    delete [] e;
 }
 
 bool Phase2_ClusterSearcher::MakeChoice(int k)
@@ -390,6 +406,7 @@ bool Phase2_ClusterSearcher::MakeChoice(int k)
 }
 
 void Phase2_ClusterSearcher::scoring(){
+    clock_t start1 = clock();  // start ticking
 
 	// go through the intersection_hash and score each entry
     score_result.clear();
@@ -401,15 +418,27 @@ void Phase2_ClusterSearcher::scoring(){
     // sort score_result
     sort(score_result.begin(), score_result.end(), ScoreResult::compare);
 
+    // added by Susen 
+    duration = (clock() - start1) / (double) CLOCKS_PER_SEC;  // added
     // added by Susen
-    //duration += (clock() - start) / (double) CLOCKS_PER_SEC;  // added
-    // added by Susen
+
+    cout << "Time taken for scoring the score_results: " << duration << endl;
+
+    //for timing
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking
+
     ofstream fout;
     fout.open(rel_path_to_target_dir + RTP::RESULT_FILE_NAME);
 
     for (int i=0; i<score_result.size(); i++)
         fout << score_result[i].vid << " " << score_result[i].score<< endl;
     fout.close();
+
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    cout << "Phase2 Cluster Search - generating ./target/cluster/x/result.txt: " << elapsed_seconds.count() << endl;
 }
 
 void Phase2_ClusterSearcher::score_page(int vid, vector<set<int>> &occur_terms)
@@ -596,6 +625,7 @@ int Phase2_ClusterSearcher::body_tf(int vid, vector<set<int>> &occur_terms, int 
         if (min_tf > tf[i])
             min_tf = tf[i];
     }
+    delete [] tf;
     return min_tf;
 }
 

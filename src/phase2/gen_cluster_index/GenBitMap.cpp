@@ -66,7 +66,9 @@ int write(){
             bitmap[i]=0;
         fout << iter->first << endl;
         for (auto it = iter->second.begin(); it != iter->second.end(); it++){
-            bitmap[(*it)/64]|=1 << ((*it)%64);
+                unsigned long long u = 1;
+                u <<= ((*it)%64);
+                bitmap[(*it)/64]|=u;
         }
         fout << bitmap[0];
         for (int i=1; i<num_of_bitmap; i++){

@@ -50,8 +50,10 @@ void BitMapReader::read_bitmap(){
     for (int i=0; i<=size; i++){
         for (int j=0; j<64;j++){
             if (i*64+j<vidnum){
-                if (mask[i] & (1 << (j)))
-                    fout << i*64+j <<" ";
+                unsigned long long u = 1;
+                u <<= j;
+                if (mask[i] & u)
+                    fout << i*64+j <<" "; 
             }
         }
     }

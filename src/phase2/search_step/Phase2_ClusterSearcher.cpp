@@ -302,7 +302,7 @@ void Phase2_ClusterSearcher::get_positional_info(){
                 
                 //check if vid is present in vid_list before creating an entry in doc_posting for the vid
                 vector<int>::iterator vid_iter;
-                vid_iter = find (vid_list.begin(), vid_list.end(), vid);
+                vid_iter = find (vid_list.begin(), vid_list.end(), v);
                 if(vid_iter == vid_list.end())
                     continue;
 

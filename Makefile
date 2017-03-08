@@ -7,17 +7,24 @@ DEBUG = -g
 PARSER_FLAG = -Wno-inconsistent-missing-override -Wno-deprecated -Wno-format -Wno-write-strings `pkg-config --cflags --libs libxml++-2.6 glibmm-2.4`
 OPENSSL_FLAGS=-lssl -lcrypto
 
-all : create_dir pre_process_data pre_process_query gen_cluster convert gen_title_len gen_bitmap phase2_index phase2_index_search phase2_read_bitmap phase2_cluster_search single_query_search batch_query_search
+#all : create_dir pre_process_data pre_process_query gen_cluster convert gen_title_len gen_bitmap phase2_index phase2_index_search phase2_read_bitmap phase2_cluster_search single_query_search batch_query_search
+all: create_dir preprocess index_data search
 
 create_dir:
 	rm -rf $(TARGET)
 	mkdir $(TARGET)
 
+preprocess: pre_process_data pre_process_query
+
+index_data: gen_cluster convert gen_title_len gen_bitmap phase2_index
+
+search: phase2_cluster_search phase2_read_bitmap phase2_index_search single_query_search batch_query_search
+
 pre_process_data: 
 	$(CC) $(CFLAGS) $(addprefix $(SOURCE)/pre_process_data/, Page.cpp XMLDataParser.cpp PreProcessor.cpp) -o $(TARGET)/pre_processor_data $(PARSER_FLAG)
 
 pre_process_query:
-	gcc $(addprefix $(SOURCE)/pre_process_query/batch_pre_process/, stem.c) -o $(TARGET)/pre_processor_query 
+	gcc $(addprefix $(SOURCE)/pre_process_query/batch_pre_process/, Stem.c) -o $(TARGET)/pre_processor_query 
 
 gen_cluster:
 	$(CC) $(CFLAGS) $(addprefix $(SOURCE)/phase2/gen_cluster_index/, NeverLostUtil.cpp  rabin_asm.S rabin.cpp CreateCluster.cpp  CreateClusterDriver.cpp) -o $(addprefix $(TARGET)/, gen_cluster)

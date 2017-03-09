@@ -5,6 +5,7 @@
 #include <cstring>
 #include <math.h>
 #include <sys/time.h>
+#include <chrono>
 
 
 #include "Phase2_ClusterSearcher.h"
@@ -233,6 +234,7 @@ bool Phase2_ClusterSearcher::makeChoice(int k)
         doc_sum += frag_reuse_table[o.fid].size();
         pos_sum = pos_sum + o.v_pos.size();
     }
+    
     int u = doc_sum/f;
     double p = pos_sum*1.0/f;
     int m = vid_list.size();
@@ -240,11 +242,12 @@ bool Phase2_ClusterSearcher::makeChoice(int k)
     for(int i=0;i<m;i++)
     {
         frag_sum += forward_table[vid_list[i]].size();
-        //frag_sum += forward_table[vid_list[i]].size() + f;
+        
     }
+    
     int pi = frag_sum/m;
     bool res = doc_sum*50<frag_sum*(1+(int)log2(f));
-    //bool res = doc_sum*50<frag_sum;
+    
     return res;
 }
 
@@ -675,88 +678,84 @@ uint64_t Phase2_ClusterSearcher::compute_term_id(std::string term) {
 }
 
 vector<vector<Fid_Occurence>> Phase2_ClusterSearcher::findSearchFrags(string index_path, string full_query){
-    
-  Phase2_IndexSearcher searcher(index_path);
-  vector<vector<Fid_Occurence>> search_frag;
-  search_frag.clear();
-  if (!searcher.is_open()) {
-    cerr << "failed to open index '" << index_path << "'\n";
-  }
-
-  size_t linelen = 1024;
-  char *line = new char[linelen];
-  char *tok;
-  std::string strline;
-  int qid = 0;
-  const char *qid_str = NULL;
-  int i=0;
+  //for timing
+    chrono::time_point<Clock> start, end;
+    chrono::duration<double> elapsed_seconds;
+    start = Clock::now();  // start ticking  
   
-  strline = full_query;
-  if (strline.size() < 1){cout << "strline size < 1 " << endl; return search_frag;}
-  if (strline.size() >= linelen) {
-  delete[] line;
-  while (strline.size() >= linelen) {
-    linelen *= 1.5;
-  }
-
-  line = new char[linelen];
-  }
-
-  strcpy(line,strline.c_str());
-  
-
-  strline = std::string(line);
-  clean_text(line); //stem and remove non-alphanumerics
-  
-  std::vector<std::string> base_terms;
-  std::vector<std::string> title_terms;
-  std::vector<std::string> body_pair_terms;
-  std::vector<std::string> title_pair_terms;
-
-  for(tok = strtok(line, " \t\n"); tok; tok = strtok(NULL, " \t\n")) {
-    base_terms.push_back(std::string(tok));
-  }
-
-  //first lookup base terms
-  int termid = 0;
-  int curTerm = 0;
-  int prevTerm=-1;
-  std::ofstream fout;
-  
-  fout.open(rel_path_to_cluster + "search_frag.txt", std::ofstream::app);
-  for(std::vector<std::string>::const_iterator it = base_terms.begin(); it != base_terms.end(); ++it) 
-  {
-    std::string term = *it;
-    curTerm = termid++;
-    std::vector<std::pair<uint64_t,std::vector<uint32_t> > > posting;
-    std::vector<std::pair<uint64_t,double> > features;
-    if (!searcher.lookup_term(compute_term_id(term), posting)) {
-      continue;
+    Phase2_IndexSearcher searcher(index_path);
+    vector<vector<Fid_Occurence>> search_frag;
+    search_frag.clear();
+    if (!searcher.is_open()) {
+        cerr << "failed to open index '" << index_path << "'\n";
     }
-    vector<Fid_Occurence> cur_v;
-    cur_v.clear();
-    search_frag.push_back(cur_v);
-    
-    for(std::vector<std::pair<uint64_t,std::vector<uint32_t> > >::const_iterator it2 = posting.begin(); it2 != posting.end(); ++it2) 
-    {    
-        vector<Fid_Occurence> *v;
-        v = &(search_frag[curTerm]);
-        Fid_Occurence occ;
-        occ.fid = it2->first;
-        
-        fout << curTerm << " " << it2->first << " ";
-        for(std::vector<uint32_t>::const_iterator it3 = it2->second.begin(); it3 != it2->second.end(); ++it3) {
-          //std::cout << *it3 << " ";
-          occ.v_pos.push_back(*it3);
-          fout << *it3 << " ";
+
+    size_t linelen = 1024;
+    char *line = new char[linelen];
+    char *tok;
+    std::string strline;
+    int qid = 0;
+    const char *qid_str = NULL;
+    int i=0;
+
+    strline = full_query;
+    if (strline.size() < 1){cout << "strline size < 1 " << endl; return search_frag;}
+    if (strline.size() >= linelen) {
+        delete[] line;
+        while (strline.size() >= linelen) {
+            linelen *= 1.5;
         }
-        //std::cout << -1;
-        fout << -1;
-        //std::cout << "\n";
-        fout << "\n";
-        v->push_back(occ);
+
+        line = new char[linelen];
     }
-    
-  }
-  return search_frag;
+
+    strcpy(line,strline.c_str());
+
+
+    strline = std::string(line);
+    clean_text(line); //stem and remove non-alphanumerics
+
+    std::vector<std::string> base_terms;
+    std::vector<std::string> title_terms;
+    std::vector<std::string> body_pair_terms;
+    std::vector<std::string> title_pair_terms;
+
+    for(tok = strtok(line, " \t\n"); tok; tok = strtok(NULL, " \t\n")) {
+        base_terms.push_back(std::string(tok));
+    }
+
+    //first lookup base terms
+    int termid = 0;
+    int curTerm = 0;
+    int prevTerm=-1;
+    std::ofstream fout;
+
+    for(std::vector<std::string>::const_iterator it = base_terms.begin(); it != base_terms.end(); ++it) 
+    { 
+        std::string term = *it;
+        curTerm = termid++;
+        std::vector<std::pair<uint64_t,std::vector<uint32_t> > > posting;
+        std::vector<std::pair<uint64_t,double> > features;
+        if (!searcher.lookup_term(compute_term_id(term), posting)) {
+          continue;
+        }
+        vector<Fid_Occurence> cur_v;
+        cur_v.clear();
+        search_frag.push_back(cur_v);
+
+        for(std::vector<std::pair<uint64_t,std::vector<uint32_t> > >::const_iterator it2 = posting.begin(); it2 != posting.end(); ++it2) 
+        {    
+            vector<Fid_Occurence> *v;
+            v = &(search_frag[curTerm]);
+            Fid_Occurence occ;
+            occ.fid = it2->first;
+            for(std::vector<uint32_t>::const_iterator it3 = it2->second.begin(); it3 != it2->second.end(); ++it3) {
+              occ.v_pos.push_back(*it3);
+            }
+            v->push_back(occ);
+        }
+    }
+    end = Clock::now();
+    elapsed_seconds = end - start;
+    return search_frag;
 }

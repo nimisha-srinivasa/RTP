@@ -47,16 +47,31 @@
 /* You will probably want to move the following declarations to a central
    header file.
 */
+struct stemmer{
+      char * b;       /* buffer for word to be stemmed */
+      int k;          /* offset to the end of the string */
+      int j;          /* a general offset into the string */
+};
 
-struct stemmer;
+class Stemmer{
+public:
 
-extern struct stemmer * create_stemmer(void);
-extern void free_stemmer(struct stemmer * z);
+   static struct stemmer *create_stemmer();
+   static void free_stemmer(struct stemmer * z);
+   static int stem(struct stemmer * z, char * b, int k);
+   static char *stem_str(struct stemmer *z, char *b);
+};
 
-extern int stem(struct stemmer * z, char * b, int k);
-extern char *stem_str(struct stemmer *z, char *b);
 
+/*struct stemmer;
 
+struct stemmer * create_stemmer(void);
+void free_stemmer(struct stemmer * z);
+
+int stem(struct stemmer * z, char * b, int k);
+char *stem_str(struct stemmer *z, char *b);
+
+*/
 
 /* The main part of the stemming algorithm starts here.
 */
@@ -67,10 +82,10 @@ extern char *stem_str(struct stemmer *z, char *b);
 /* stemmer is a structure for a few local bits of data,
 */
 
-struct stemmer {
-   char * b;       /* buffer for word to be stemmed */
-   int k;          /* offset to the end of the string */
-   int j;          /* a general offset into the string */
-};
+//struct stemmer {
+   //char * b;       /* buffer for word to be stemmed /*
+   //int k;          /* offset to the end of the string */
+   //int j;          /* a general offset into the string */
+//};
 
 #endif

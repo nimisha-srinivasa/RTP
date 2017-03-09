@@ -62,13 +62,13 @@
 */
 
 
-extern struct stemmer * create_stemmer(void)
+struct stemmer * Stemmer::create_stemmer(void)
 {
     return (struct stemmer *) malloc(sizeof(struct stemmer));
     /* assume malloc succeeds */
 }
 
-extern void free_stemmer(struct stemmer * z)
+void Stemmer::free_stemmer(struct stemmer * z)
 {
     free(z);
 }
@@ -350,7 +350,7 @@ static void step5(struct stemmer * z)
    length, so 0 <= k' <= k.
 */
 
-extern int stem(struct stemmer * z, char * b, int k)
+int Stemmer::stem(struct stemmer * z, char * b, int k)
 {
    if (k <= 1) return k; /*-DEPARTURE-*/
    z->b = b; z->k = k; /* copy the parameters into z */
@@ -386,7 +386,7 @@ char *stem_str(struct stemmer *z, char *b) {
             continue;
         }
         int k = (end-start)-1;
-        stem_len = stem(z,start,k);
+        stem_len = Stemmer::stem(z,start,k);
         if (stem_len < k) {
             for(start = end - (k-stem_len); start < end; ++start) {
                 *start = ' ';
@@ -397,7 +397,7 @@ char *stem_str(struct stemmer *z, char *b) {
     if ('\0' != *start) { //do one last stem
         int k = strlen(start)-1;
         end = start+k+1;
-        stem_len = stem(z,start,k);
+        stem_len = Stemmer::stem(z,start,k);
         if (stem_len < k) {
             for(start = end - (k-stem_len); start < end; ++start) {
                 *start = ' ';

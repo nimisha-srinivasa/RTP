@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "SingleQuerySearcher.h"
-#include "../pre_process_query/batch_pre_process/Stem.h"
+#include "../utils/Stemmer.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -65,13 +65,13 @@ void SingleQuerySearcher::run_phase2_search(){
   phase2_searcher = new Phase2_SearchRunner();
   cout << "Came to phase2 Search :" << endl;
   int num_words = setQueryLength();
-  phase2_searcher->run_search(top_k, num_words, full_query);
+  phase2_searcher->run_search(top_k, full_query);
 }
 
 void SingleQuerySearcher::run_phase2_search_again(){
   cout << "Came to phase2 Search :" << endl;
   int num_words = setQueryLength();
-  phase2_searcher->run_search_again(top_k, num_words, full_query);
+  phase2_searcher->run_search_again(top_k, full_query);
 }
 
 string SingleQuerySearcher::stemstring(struct stemmer * z, string str_to_stem)
@@ -95,7 +95,7 @@ string SingleQuerySearcher::stemstring(struct stemmer * z, string str_to_stem)
             ch = str_to_stem[j++];
             if (!LETTER(ch)) {j--; break; }
          }
-         s[stem(z, s, i - 1) + 1] = 0;
+         s[Stemmer::stem(z, s, i - 1) + 1] = 0;
          /* the previous line calls the stemmer and uses its result to
             zero-terminate the string in s */
          result.append(s);
@@ -109,11 +109,11 @@ string SingleQuerySearcher::stemstring(struct stemmer * z, string str_to_stem)
 }
 
 string SingleQuerySearcher::doStem(string str){
-    struct stemmer * z = create_stemmer();
+    struct stemmer * z = Stemmer::create_stemmer();
     s = (char *) malloc(i_max + 1);
     string result = stemstring(z, str);
     free(s);
-    free_stemmer(z);
+    Stemmer::free_stemmer(z);
     return result;
 }
 

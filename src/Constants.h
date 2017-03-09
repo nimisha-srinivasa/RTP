@@ -1,3 +1,6 @@
+#ifndef _CONSTANTS_H_
+#define _CONSTANTS_H_
+
 namespace RTP{
 
 	//all files created in the target/ directory
@@ -24,3 +27,5 @@ namespace RTP{
 	constexpr char POSTING_FILE_NAME[] = "posting.txt";
 
 }
+
+#endif

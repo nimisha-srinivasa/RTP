@@ -12,7 +12,7 @@
 using namespace std;
 
 typedef chrono::system_clock Clock;
-string rel_path_to_target_dir1 = "./";
+string rel_path_to_target_dir3 = "./";
 
 // NOTE: the query_file contains the cleaned, stemmed data
 int main(int argc, char** argv){
@@ -35,7 +35,7 @@ int main(int argc, char** argv){
 	SingleQuerySearcher* single_searcher = new SingleQuerySearcher();
 	single_searcher->top_k = top_k;
 
-    fin.open(rel_path_to_target_dir1 + query_file_name);
+    fin.open(rel_path_to_target_dir3 + query_file_name);
     
     while (std::getline(fin, line)){
     	cout << "####################Processing query number: " << curr_query_num << "####################" << endl;

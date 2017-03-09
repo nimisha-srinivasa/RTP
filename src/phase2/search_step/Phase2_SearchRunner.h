@@ -13,9 +13,8 @@ class Phase2_SearchRunner {
 	
 public:
 	Phase2_SearchRunner();
-	void run_search(int top_k, int query_len, string query);
-	void run_search_again(int top_k, int query_len, string query);
-
+	void run_search(int top_k, string full_query);
+	void run_search_again(int top_k, string full_query);
 
 private:
 	vector<ScoreResult> final_results;
@@ -26,5 +25,5 @@ private:
 	vector<ScoreResult> readResultsFile(string filepath);
 	unordered_map<int,vector<int>> readConvertTable(string filepath);
 	void writeResults(vector<ScoreResult> scoreResults, string filepath);
-	void runSearchInCluster(int curr_did, string phase2_exec_name, string curr_rel_path_to_target_dir, string query, int query_len);
+	void runSearchInCluster(int curr_did, string query);
 };

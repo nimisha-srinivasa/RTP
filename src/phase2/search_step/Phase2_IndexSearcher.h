@@ -1,3 +1,6 @@
+/* This program is used to generate the search fragments from the index files
+ */
+
 #ifndef _INDEX_SEARCHER_H_
 #define _INDEX_SEARCHER_H_
 #include <inttypes.h>

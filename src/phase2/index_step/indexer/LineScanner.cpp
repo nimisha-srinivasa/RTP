@@ -23,7 +23,7 @@ void LineCorpusScanner::freeScanner(DocumentScanner *scanner) {
 
 LineCorpusScanner::LineDocumentScanner::LineDocumentScanner(LineCorpusScanner *parent) : parent_(parent) {
   linebuf_ = (char*)malloc(BUFLEN);
-  z = create_stemmer();
+  z = Stemmer::create_stemmer();
 }
 
 //bool LineCorpusScanner::LineDocumentScanner::nextDocument(docid_t &docid) {
@@ -195,5 +195,5 @@ bool LineCorpusScanner::LineDocumentScanner::nextDocument(uint64_t &fpos, docid_
 
 LineCorpusScanner::LineDocumentScanner::~LineDocumentScanner() {
   free(linebuf_);
-  free_stemmer(z);
+  Stemmer::free_stemmer(z);
 }

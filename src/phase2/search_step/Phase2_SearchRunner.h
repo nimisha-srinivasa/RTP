@@ -13,6 +13,8 @@ using namespace std;
 class Phase2_SearchRunner {
 	
 public:
+	double phase2_duration; // global variable to calculate the actual time taken by Phase 2
+	
 	Phase2_SearchRunner();
 	~Phase2_SearchRunner();
 	void run_search(int top_k, string full_query);

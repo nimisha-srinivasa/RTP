@@ -44,7 +44,8 @@ void Phase1_Searcher::init()
     super_index.clear();
     splitFullQuery();
     setQueryLength();
-    duration=0;
+    duration = 0;
+    phase1_duration = 0;
 }
 
 void Phase1_Searcher::re_init(){
@@ -52,7 +53,8 @@ void Phase1_Searcher::re_init(){
     search_frag.clear();
     splitFullQuery();
     setQueryLength();
-    duration=0;
+    duration = 0;
+    phase1_duration = 0;
 }
 
 //query and query_len has to be set already
@@ -75,6 +77,7 @@ void Phase1_Searcher::runSearch(string query){
     end = Clock::now();
     elapsed_seconds = end - start;
     cout << "Complete Phase1 Search took:" << elapsed_seconds.count() << endl;
+    phase1_duration = elapsed_seconds.count();
 }
  
 //query and query_len has to be set already
@@ -95,6 +98,7 @@ void Phase1_Searcher::runSearchAgain(string query){
     end = Clock::now();
     elapsed_seconds = end - start;
     cout << "Complete Phase1 Search took:" << elapsed_seconds.count() << endl;
+    phase1_duration = elapsed_seconds.count();
 }
 
 void Phase1_Searcher::read_title_len(){

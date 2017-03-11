@@ -17,6 +17,8 @@ public:
 	int top_k;
 	Phase1_Searcher* phase1_searcher;
 	Phase2_SearchRunner* phase2_searcher;
+	double total_phase1_time_per_query;
+	double total_phase2_time_per_query;
 
 	SingleQuerySearcher();
 	~SingleQuerySearcher();

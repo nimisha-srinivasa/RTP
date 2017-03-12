@@ -190,7 +190,9 @@ void Phase2_ClusterSearcher::computeVidList(){
     unsigned long long *mask=(unsigned long long *) malloc (size*sizeof(unsigned long long));
     for (int i=0;i<size;i++){
         for (int j=0;j<64;j++){
-            mask[i]|=1<<j;
+            unsigned long long u = 1;
+            u <<= j;
+            mask[i]|=u;
         }
     }
     while (fin >> term){

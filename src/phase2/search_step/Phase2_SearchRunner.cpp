@@ -109,27 +109,21 @@ void Phase2_SearchRunner::runSearchInCluster(int curr_did, string query){
     }
 }
 
-void Phase2_SearchRunner::run_search(int top_k, string full_query){
+void Phase2_SearchRunner::run_search(int top_k, string full_query, vector<ScoreResult> phase1_results){
     init();
     //for timing
     chrono::time_point<Clock> start, end, start1, end1;
     chrono::duration<double> elapsed_seconds;
-    start = Clock::now();  // start ticking
 
-	// process result file
-	vector<ScoreResult> phase1_results = readResultsFile(rel_path_to_target_dir2 + RTP::RESULT_FILE_NAME);
+	// process results file
 	int num_lines = phase1_results.size();
-
-    end = Clock::now();
-    elapsed_seconds = end - start;
-    cout << "Phase2 Search - reading ./target/result.txt: " << elapsed_seconds.count() << endl;
-    phase2_duration += elapsed_seconds.count();
-    start = Clock::now(); 
 
 	if(num_lines < top_k){
     	cout << "not enough lines, k less than result length, set k to be " << num_lines << endl;
     	top_k = num_lines;
     }
+
+    start = Clock::now();  // start ticking
 
     //read data into did_to_vids from convert table
 	did_to_vids = readConvertTable(rel_path_to_target_dir2 + RTP::CONVERT_TABLE); // stores the data from CONVERT_TABLE
@@ -177,22 +171,15 @@ void Phase2_SearchRunner::run_search(int top_k, string full_query){
     phase2_duration += elapsed_seconds.count();
 }
 
-void Phase2_SearchRunner::run_search_again(int top_k, string full_query){
+void Phase2_SearchRunner::run_search_again(int top_k, string full_query, vector<ScoreResult> phase1_results){
     re_init();
 
     //for timing
     chrono::time_point<Clock> start, end, start1, end1;
     chrono::duration<double> elapsed_seconds;
-    start = Clock::now();  // start ticking
 
-    // process result file
-    vector<ScoreResult> phase1_results = readResultsFile(rel_path_to_target_dir2 + RTP::RESULT_FILE_NAME);
+    // process results
     int num_lines = phase1_results.size();
-
-    end = Clock::now();
-    elapsed_seconds = end - start;
-    cout << "Phase2 Search - reading ./target/result.txt: " << elapsed_seconds.count() << endl;
-    phase2_duration += elapsed_seconds.count();
 
     if(num_lines < top_k){
         cout << "not enough lines, k less than result length, set k to be " << num_lines << endl;

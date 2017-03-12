@@ -28,6 +28,8 @@ public:
 
 	
 private:
+	vector<ScoreResult> phase1_results;
+	
 	void pre_process_query();
 	void run_phase1_lucene_jar();
 	void generate_phase1_results();

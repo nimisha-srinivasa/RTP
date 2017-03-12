@@ -19,8 +19,8 @@ public:
 	double duration;  // global variable added to calculate non-I/O time
 	double phase1_duration; // global variable to calculate the actual time taken by Phase 1
 
-	void runSearch(string query);
-	void runSearchAgain(string query);
+	vector<ScoreResult> runSearch(string query);
+	vector<ScoreResult> runSearchAgain(string query);
 
 private:
 	string full_query;

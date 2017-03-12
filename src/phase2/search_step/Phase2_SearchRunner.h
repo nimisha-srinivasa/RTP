@@ -17,8 +17,8 @@ public:
 	
 	Phase2_SearchRunner();
 	~Phase2_SearchRunner();
-	void run_search(int top_k, string full_query);
-	void run_search_again(int top_k, string full_query);
+	void run_search(int top_k, string full_query, vector<ScoreResult> phase1_results);
+	void run_search_again(int top_k, string full_query, vector<ScoreResult> phase1_results);
 
 private:
 	vector<ScoreResult> final_results;

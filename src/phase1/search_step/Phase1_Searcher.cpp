@@ -58,7 +58,7 @@ void Phase1_Searcher::re_init(){
 }
 
 //query and query_len has to be set already
-void Phase1_Searcher::runSearch(string query){
+vector<ScoreResult> Phase1_Searcher::runSearch(string query){
 
     chrono::time_point<Clock> start, end;
     chrono::duration<double> elapsed_seconds;
@@ -78,10 +78,12 @@ void Phase1_Searcher::runSearch(string query){
     elapsed_seconds = end - start;
     cout << "Complete Phase1 Search took:" << elapsed_seconds.count() << endl;
     phase1_duration = elapsed_seconds.count();
+
+    return score_result;
 }
  
 //query and query_len has to be set already
-void Phase1_Searcher::runSearchAgain(string query){
+vector<ScoreResult> Phase1_Searcher::runSearchAgain(string query){
     chrono::time_point<Clock> start, end;
     chrono::duration<double> elapsed_seconds;
     start = Clock::now();  // start ticking
@@ -99,6 +101,8 @@ void Phase1_Searcher::runSearchAgain(string query){
     elapsed_seconds = end - start;
     cout << "Complete Phase1 Search took:" << elapsed_seconds.count() << endl;
     phase1_duration = elapsed_seconds.count();
+
+    return score_result;
 }
 
 void Phase1_Searcher::read_title_len(){
@@ -390,7 +394,7 @@ void Phase1_Searcher::scoring()
     duration += (clock() - start) / (double) CLOCKS_PER_SEC;  // added
     // added by Susen
 
-    chrono::time_point<Clock> start, end;
+    /*chrono::time_point<Clock> start, end;
     chrono::duration<double> elapsed_seconds;
     start = Clock::now();  // start ticking
 
@@ -402,7 +406,7 @@ void Phase1_Searcher::scoring()
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase1 Search - write result.txt:" << elapsed_seconds.count() << endl;
+    cout << "Phase1 Search - write result.txt:" << elapsed_seconds.count() << endl;*/
 }
 
 void Phase1_Searcher::score_page(int vid, vector<set<int>> &occur_terms)

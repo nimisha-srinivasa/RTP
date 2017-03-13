@@ -78,12 +78,23 @@ unordered_map<int,vector<int>> Phase2_SearchRunner::readConvertTable(string file
     return did_to_vids;
 }
 
-void Phase2_SearchRunner::writeResults(vector<ScoreResult> scoreResults, string filepath){
-	ofstream fout;
-	fout.open(filepath);
+void Phase2_SearchRunner::writeResults(vector<ScoreResult> scoreResults, string filepath, string query){
+    ofstream fout;
+    fout.open(filepath);
+    fout << "Results for: " << query << endl;
     int num_results_to_output = scoreResults.size() < NUM_FINAL_RESULTS ? scoreResults.size(): NUM_FINAL_RESULTS;
     for (int i=0; i< num_results_to_output; i++)
-        fout << scoreResults[i].vid << " " << scoreResults[i].score<< endl;
+        fout << "vid: " << scoreResults[i].vid << "\tscore: " << scoreResults[i].score<< endl;
+    fout.close();
+}
+
+void Phase2_SearchRunner::writeResults_again(vector<ScoreResult> scoreResults, string filepath, string query){
+	ofstream fout;
+	fout.open(filepath, ios_base::app | ios_base::out);
+    fout << "Results for: " << query << endl;
+    int num_results_to_output = scoreResults.size() < NUM_FINAL_RESULTS ? scoreResults.size(): NUM_FINAL_RESULTS;
+    for (int i=0; i< num_results_to_output; i++)
+        fout << "vid: " << scoreResults[i].vid << "\tscore: " << scoreResults[i].score<< endl;
     fout.close();
 }
 
@@ -163,7 +174,7 @@ void Phase2_SearchRunner::run_search(int top_k, string full_query, vector<ScoreR
     start = Clock::now();
 
     //write final result to file
-    writeResults(final_results, rel_path_to_target_dir2 + RTP::FINAL_RESULTS_FILE_NAME);
+    writeResults(final_results, rel_path_to_target_dir2 + RTP::FINAL_RESULTS_FILE_NAME, full_query);
 
     end = Clock::now();
     elapsed_seconds = end - start;
@@ -216,7 +227,7 @@ void Phase2_SearchRunner::run_search_again(int top_k, string full_query, vector<
     start = Clock::now();
 
     //write final result to file
-    writeResults(final_results, rel_path_to_target_dir2 + RTP::FINAL_RESULTS_FILE_NAME);
+    writeResults_again(final_results, rel_path_to_target_dir2 + RTP::FINAL_RESULTS_FILE_NAME, full_query);
 
     end = Clock::now();
     elapsed_seconds = end - start;

@@ -32,12 +32,12 @@ void SingleQuerySearcher::pre_process_query(){
 }
 
 void SingleQuerySearcher::run_phase1_lucene_jar(){
-  cout << "Phase1 Search..." << endl;
+  //cout << "Phase1 Search..." << endl;
   string command = "rm -rf " + rel_path_to_target + "search_frag.txt";
 	system(command.c_str());
 
 	//generate SEARCH_FRAGMENT_FILE_NAME
-	command = "java -jar " + rel_path_to_target + "lucene_search.jar " + full_query;
+	command = "java -jar " + rel_path_to_target + "lucene_search.jar " + full_query + " &> /dev/null";
 	system(command.c_str());
 }
 
@@ -46,14 +46,14 @@ void SingleQuerySearcher::generate_phase1_results(){
   phase1_searcher = new Phase1_Searcher();
   phase1_results.clear();
   phase1_results = phase1_searcher->runSearch(full_query);
-  cout << "Time taken for Phase1 Search without I/O:" << phase1_searcher->duration << endl;
+  //cout << "Time taken for Phase1 Search without I/O:" << phase1_searcher->duration << endl;
   total_phase1_time_per_query = phase1_searcher->phase1_duration;
 }
 
 void SingleQuerySearcher::generate_phase1_results_again(){
   phase1_results.clear();
   phase1_results = phase1_searcher->runSearchAgain(full_query);
-  cout << "Time taken for Phase1 Search without I/O:" << phase1_searcher->duration << endl;
+  //cout << "Time taken for Phase1 Search without I/O:" << phase1_searcher->duration << endl;
   total_phase1_time_per_query = phase1_searcher->phase1_duration;
 }
 
@@ -71,18 +71,18 @@ int SingleQuerySearcher::setQueryLength(){
 
 void SingleQuerySearcher::run_phase2_search(){
   phase2_searcher = new Phase2_SearchRunner();
-  cout << "Phase2 Search..." << endl;
+  //cout << "Phase2 Search..." << endl;
   int num_words = setQueryLength();
   phase2_searcher->run_search(top_k, full_query, phase1_results);
-  cout << "Complete Phase 2 Search took: " << phase2_searcher->phase2_duration << endl;
+  //cout << "Complete Phase 2 Search took: " << phase2_searcher->phase2_duration << endl;
   total_phase2_time_per_query = phase2_searcher->phase2_duration;
 }
 
 void SingleQuerySearcher::run_phase2_search_again(){
-  cout << "Phase2 Search..." << endl;
+  //cout << "Phase2 Search..." << endl;
   int num_words = setQueryLength();
   phase2_searcher->run_search_again(top_k, full_query, phase1_results);
-  cout << "Complete Phase 2 Search took: " << phase2_searcher->phase2_duration << endl;
+  //cout << "Complete Phase 2 Search took: " << phase2_searcher->phase2_duration << endl;
   total_phase2_time_per_query = phase2_searcher->phase2_duration;
 }
 

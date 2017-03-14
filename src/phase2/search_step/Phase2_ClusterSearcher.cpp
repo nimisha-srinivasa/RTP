@@ -18,7 +18,7 @@ typedef chrono::system_clock Clock;
 vector<ScoreResult> Phase2_ClusterSearcher::searchCluster(string full_query_words, int cluster_id){
     init(); 
 
-    cout << "************************Searching cluster " << cluster_id << " ********************************" << endl;
+    //cout << "************************Searching cluster " << cluster_id << " ********************************" << endl;
 	full_query = full_query_words;
     setQueryLength();
     setQueryWords();
@@ -41,7 +41,7 @@ vector<ScoreResult> Phase2_ClusterSearcher::searchCluster(string full_query_word
     //the result is writen to RESULT_FILE_NAME
     scoring();
 
-    cout << "******************** Done Searching cluster " << cluster_id << " ********************************" << endl;
+    //cout << "******************** Done Searching cluster " << cluster_id << " ********************************" << endl;
     return score_result;
 }
 
@@ -132,7 +132,7 @@ void Phase2_ClusterSearcher::read_index(){
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase2 Cluster Search: Reading index.txt=" << elapsed_seconds.count() << endl;
+    //cout << "Phase2 Cluster Search: Reading index.txt=" << elapsed_seconds.count() << endl;
 }
 
 // read forward reuse table: vid -> a list of fids for Option B
@@ -166,7 +166,7 @@ void Phase2_ClusterSearcher::read_forward(){
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase2 Cluster Search: Reading forward.txt=" << elapsed_seconds.count() << endl;
+    //cout << "Phase2 Cluster Search: Reading forward.txt=" << elapsed_seconds.count() << endl;
 }
 
 void Phase2_ClusterSearcher::computeSearchFrag(string index_path){
@@ -221,7 +221,7 @@ void Phase2_ClusterSearcher::computeVidList(){
     free(mask);
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase2 Cluster Search: Generating vid_list from bitmap.txt=" << elapsed_seconds.count() << endl;
+    //cout << "Phase2 Cluster Search: Generating vid_list from bitmap.txt=" << elapsed_seconds.count() << endl;
 }
 
 bool Phase2_ClusterSearcher::makeChoice(int k)
@@ -294,7 +294,7 @@ void Phase2_ClusterSearcher::get_positional_info(){
         int f = search_frag[k].size();
         if(aa)
         {
-            cout << "Chose option A" << endl;
+            //cout << "Chose option A" << endl;
             // Option A:
             // Step 1: Convert the fragment posting to document posting.
             //vector<Vid_Occurence> current_posting; // doc posting for current term
@@ -381,7 +381,7 @@ void Phase2_ClusterSearcher::get_positional_info(){
         }
         else
         {
-            cout << "Chose option B" << endl;
+            //cout << "Chose option B" << endl;
             // Option B:
             vector<Fid_Occurence> *term_posting = &(search_frag[k]);
             //y=0; // avg number of frags in vid_list
@@ -427,11 +427,11 @@ void Phase2_ClusterSearcher::get_positional_info(){
         dwtime += 1000.0*(dwend.tv_sec-dwstart.tv_sec)+(dwend.tv_usec-dwstart.tv_usec)/1000.0 -dwtime_sort;
         //timing
     }
-    cout << "Using clock_t, Finding positional info took: " << dwtime << " ms" << endl;
+    //cout << "Using clock_t, Finding positional info took: " << dwtime << " ms" << endl;
     delete [] e;
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase2 Cluster Search: Finding positional info took: " << elapsed_seconds.count() << endl;
+    //cout << "Phase2 Cluster Search: Finding positional info took: " << elapsed_seconds.count() << endl;
 }
 
 void Phase2_ClusterSearcher::scoring(){
@@ -456,11 +456,11 @@ void Phase2_ClusterSearcher::scoring(){
     duration = (clock() - start1) / (double) CLOCKS_PER_SEC;  // added
     // added by Susen
 
-    cout << "Using clock_t, Time taken for scoring the score_results without I/O: " << duration << endl;
+    //cout << "Using clock_t, Time taken for scoring the score_results without I/O: " << duration << endl;
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase2 Cluster Search: scoring took:" << elapsed_seconds.count() << endl;
+    //cout << "Phase2 Cluster Search: scoring took:" << elapsed_seconds.count() << endl;
 }
 
 void Phase2_ClusterSearcher::score_page(int vid, vector<set<int>> &occur_terms)

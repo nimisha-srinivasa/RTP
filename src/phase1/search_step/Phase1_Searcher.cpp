@@ -76,7 +76,7 @@ vector<ScoreResult> Phase1_Searcher::runSearch(string query){
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Complete Phase1 Search took:" << elapsed_seconds.count() << endl;
+    //cout << "Complete Phase1 Search took:" << elapsed_seconds.count() << endl;
     phase1_duration = elapsed_seconds.count();
 
     return score_result;
@@ -99,7 +99,7 @@ vector<ScoreResult> Phase1_Searcher::runSearchAgain(string query){
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Complete Phase1 Search took:" << elapsed_seconds.count() << endl;
+    //cout << "Complete Phase1 Search took:" << elapsed_seconds.count() << endl;
     phase1_duration = elapsed_seconds.count();
 
     return score_result;
@@ -137,7 +137,7 @@ void Phase1_Searcher::read_title_len(){
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase1 Search - read title_len.txt: " << elapsed_seconds.count() << endl;
+    //cout << "Phase1 Search - read title_len.txt: " << elapsed_seconds.count() << endl;
 }
 
 void Phase1_Searcher::validate()
@@ -164,7 +164,7 @@ void Phase1_Searcher::validate()
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase1 Search - output validate.txt:" << elapsed_seconds.count() << endl;
+    //cout << "Phase1 Search - output validate.txt:" << elapsed_seconds.count() << endl;
 }
 
 void Phase1_Searcher::read_search_frag()
@@ -217,7 +217,7 @@ void Phase1_Searcher::read_search_frag()
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase1 Search - read search_frag.txt:" << elapsed_seconds.count() << endl;
+    //cout << "Phase1 Search - read search_frag.txt:" << elapsed_seconds.count() << endl;
 }
 
 void Phase1_Searcher::read_superinfo()
@@ -250,7 +250,7 @@ void Phase1_Searcher::read_superinfo()
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase1 Search - read super_index:" << elapsed_seconds.count() << endl;
+    //cout << "Phase1 Search - read super_index:" << elapsed_seconds.count() << endl;
 }
 
 void Phase1_Searcher::intersection()

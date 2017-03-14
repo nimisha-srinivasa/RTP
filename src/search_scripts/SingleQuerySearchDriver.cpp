@@ -21,18 +21,18 @@ int main(int argc, char** argv){
 		query+=" " + string(argv[i]);
 	}
 	
-	cout << "The full query is:" << query << endl;
+	//cout << "The full query is:" << query << endl;
 	searcher->full_query=query;
 
-	chrono::time_point<Clock> start, end;
+	/*chrono::time_point<Clock> start, end;
     chrono::duration<double> elapsed_seconds;
-    start = Clock::now();  // start ticking
+    start = Clock::now(); */ // start ticking
 
 	searcher->runSearch();
 
-	end = Clock::now();
+	/*end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "The query " <<  query <<" took: " << elapsed_seconds.count() << endl;
+    cout << "The query " <<  query <<" took: " << elapsed_seconds.count() << endl;*/
 
 	delete searcher;
 	return 0;

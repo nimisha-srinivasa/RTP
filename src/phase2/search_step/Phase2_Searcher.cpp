@@ -195,7 +195,6 @@ void Phase2_Searcher::get_positional_info(){
         vector<Vid_Occurence> current_posting; // doc posting for current term
         current_posting.clear();
 		bool aa = MakeChoice(k);
-        cout << "result of options:" << aa <<endl;
 
 		//timing 
 		gettimeofday(&dwstart, NULL);
@@ -358,10 +357,10 @@ void Phase2_Searcher::get_positional_info(){
         dwtime = 1000.0*(dwend.tv_sec-dwstart.tv_sec)+(dwend.tv_usec-dwstart.tv_usec)/1000.0 -dwtime_sort;
         //timing
 
-        printf("%d %d\n",k,query_len);
-        cout << "Calculate Term " << k << " : " << dwtime << " ms f= " << aa << endl;
+        //printf("%d %d\n",k,query_len);
+        //cout << "Calculate Term " << k << " : " << dwtime << " ms f= " << aa << endl;
     }
-    cout << endl;
+    //cout << endl;
 
     // end OptionC algorithm
 

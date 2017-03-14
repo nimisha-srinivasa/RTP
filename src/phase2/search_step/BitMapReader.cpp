@@ -19,7 +19,9 @@ void BitMapReader::read_bitmap(){
     unsigned long long *mask=(unsigned long long *) malloc (size*sizeof(unsigned long long));
     for (int i=0;i<size;i++){
         for (int j=0;j<64;j++){
-            mask[i]|=1<<j;
+            unsigned long long u = 1;
+            u <<= j;
+            mask[i]|=u;
         }
     }
     while (fin >> term){
@@ -39,7 +41,9 @@ void BitMapReader::read_bitmap(){
     for (int i=0; i<=size; i++){
         for (int j=0; j<64;j++){
             if (i*64+j<vidnum){
-                if (mask[i] & (1 << (j)))
+                unsigned long long u = 1;
+                u <<= j;
+                if (mask[i] & u)
                     fout << i*64+j <<" ";
             }
         }

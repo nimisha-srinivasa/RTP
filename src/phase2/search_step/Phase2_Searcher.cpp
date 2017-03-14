@@ -266,6 +266,12 @@ void Phase2_Searcher::get_positional_info(){
             for (int j=0; j<current->size(); j++)
             {
                 int v = (*current)[j].vid;
+                //check if vid is present in vid_list before creating an entry in doc_posting for the vid
+                vector<int>::iterator vid_iter;
+                vid_iter = find (vid_list.begin(), vid_list.end(), v);
+                if(vid_iter == vid_list.end())
+                {    continue;   }
+
                 set<int> *tmp = new set<int>;
                 tmp->clear();
                 if (intersection_hash.find(v)==intersection_hash.end()){

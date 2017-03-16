@@ -1,4 +1,4 @@
-Representative Two-Phase Search (RTP) Graphical User Interface (GUI)
+Representative-guided Two-Phase Search (RTP) Graphical User Interface (GUI)
 =======================================
 How to run the GUI
 ------------

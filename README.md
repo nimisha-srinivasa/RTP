@@ -1,4 +1,4 @@
-Representative Two-Phase Search (RTP)
+Representative-guided Two-Phase Search (RTP)
 =======================================
 Release note: [March, 2017]
 -----------------

@@ -39,17 +39,21 @@ Quick start:
 
 Possible choices for &lt;choice_of_representative&gt; are:
 
-	1: for latest representative
+	1: for longest representative
 
-	2: for longest representative
+	2: for latest representative
 
 8) To run batch queries: Enter all the queries (1 per line) in a .txt file and run the following command:
 
 `./run_batch_query.sh <query_file>`
 
+**Note:** The package can only currently support conjunctive queries. Thus, there needs to be atleast 2 words in each query.
+
 9) To run single queries: Run the following command:
 
 `./run_single_query.sh "<query>" <top_k> `
+
+**Note:** The package can only currently support conjunctive queries. Thus, there needs to be atleast 2 words in the query.
 
 Dataset Format:
 ------------
@@ -72,6 +76,37 @@ The dataset has to be in the following format:
 Explanation:
 
 All the data needs to be wrapping within a &lt;data&gt; tag. The data is organized into versions and each version of the data is placed within a &lt;version&gt; tag. Each &lt;page&gt; contains a page (i.e., a document) that belongs to the current version. If the page (i.e., a document) does not contain the current version represented by the &lt;version&gt; tag, then it can be skipped.  Each page is represented with a title and content using the &lt;title&gt; and &lt;content&gt; tag respectively.
+
+Batch Query File format:
+------------
+
+For using the run_batch_query.sh script to run batch queries, one needs to specify the all the queries in a text file. The file needs to contain one query per line. For example:
+<pre><code>&lt;query1&gt;
+&lt;query2&gt;
+.
+.
+.
+&lt;queryN&gt;
+</code></pre>
+
+Result Format:
+------------
+The final results generated for a batch query will be in target/final_results.txt file. The format of the results is:
+<pre><code>Results for: &lt;query1&gt;
+vid: &lt;vid1&gt; score: &lt;score1&gt;
+.
+.
+.
+vid: &lt;vidN&gt; score: &lt;scoreN&gt;
+...
+Results for: &lt;queryN&gt
+vid: &lt;vid1&gt; score: &lt;score1&gt;
+.
+.
+.
+vid: &lt;vidN&gt; score: &lt;scoreN&gt;
+</code></pre>
+
 
 References:
 -----------

@@ -26,7 +26,6 @@ int main(int argc, char * argv[])
         const size_t buffer_size = sizeof(buffer) / sizeof(char);
 
         //Parse the file in chunks of "chunk_size" characters:
-        //calling the XMLDataParser will take care of calling the CreateCluster functions
         XMLDataParser parser;
         parser.set_substitute_entities(true);
         do

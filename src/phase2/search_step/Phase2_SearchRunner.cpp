@@ -101,15 +101,15 @@ void Phase2_SearchRunner::writeResults_again(vector<ScoreResult> scoreResults, s
 void Phase2_SearchRunner::runSearchInCluster(int curr_did, string query){
 
     //for timing
-    chrono::time_point<Clock> start, end;
+    /*chrono::time_point<Clock> start, end;
     chrono::duration<double> elapsed_seconds;
-    start = Clock::now();  // start ticking
+    start = Clock::now(); */ // start ticking
 
     vector<ScoreResult> phase2_cluster_results = phase2_ClusterSearcherObj->searchCluster(query, curr_did);
 
-    end = Clock::now();
+    /*end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase2 Cluster Search: " << elapsed_seconds.count() << endl;
+    cout << "Phase2 Cluster Search: " << elapsed_seconds.count() << endl;*/
 
     //store it in final results
     for(int i=0; i < phase2_cluster_results.size(); i++ ){
@@ -141,26 +141,26 @@ void Phase2_SearchRunner::run_search(int top_k, string full_query, vector<ScoreR
 	
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase2 Search - reading ./target/convert_table.txt: " << elapsed_seconds.count() << endl;
+    //cout << "Phase2 Search - reading ./target/convert_table.txt: " << elapsed_seconds.count() << endl;
     phase2_duration += elapsed_seconds.count();
     start1 = Clock::now(); 
 
     //search on each of the top_k clusters
     int curr_did;
     for(int i=0; i<top_k; i++){
-        start = Clock::now(); 
+        //start = Clock::now(); 
 
     	curr_did = phase1_results[i].vid;
         runSearchInCluster(curr_did, full_query);
 
-        end = Clock::now();
+        /*end = Clock::now();
         elapsed_seconds = end - start;
         cout << "Phase2 Search - Complete search for cluster " << curr_did << ": " << elapsed_seconds.count() << endl;
-        start = Clock::now();
+        start = Clock::now();*/
     }
     end1 = Clock::now();
     elapsed_seconds = end1 - start1;
-    cout << "Phase2 Search - Complete search for " << top_k << " clusters: " << elapsed_seconds.count() << endl;
+    //cout << "Phase2 Search - Complete search for " << top_k << " clusters: " << elapsed_seconds.count() << endl;
     phase2_duration += elapsed_seconds.count();
     start = Clock::now();
 
@@ -169,7 +169,7 @@ void Phase2_SearchRunner::run_search(int top_k, string full_query, vector<ScoreR
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase2 Search - sorting final results: " << elapsed_seconds.count() << endl;
+    //cout << "Phase2 Search - sorting final results: " << elapsed_seconds.count() << endl;
     phase2_duration += elapsed_seconds.count();
     start = Clock::now();
 
@@ -178,7 +178,7 @@ void Phase2_SearchRunner::run_search(int top_k, string full_query, vector<ScoreR
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase2 Search - writing to final_results.txt: " << elapsed_seconds.count() << endl;
+    //cout << "Phase2 Search - writing to final_results.txt: " << elapsed_seconds.count() << endl;
     phase2_duration += elapsed_seconds.count();
 }
 
@@ -201,19 +201,19 @@ void Phase2_SearchRunner::run_search_again(int top_k, string full_query, vector<
     int curr_did;
     start1 = Clock::now(); 
     for(int i=0; i<top_k; i++){
-        start = Clock::now(); 
+        //start = Clock::now(); 
 
         curr_did = phase1_results[i].vid;
         runSearchInCluster(curr_did, full_query);
 
-        end = Clock::now();
-        elapsed_seconds = end - start;
-        cout << "Phase2 Search - Complete search for cluster " << curr_did << ": " << elapsed_seconds.count() << endl;
-        start = Clock::now();
+        //end = Clock::now();
+        //elapsed_seconds = end - start;
+        //cout << "Phase2 Search - Complete search for cluster " << curr_did << ": " << elapsed_seconds.count() << endl;
+        //start = Clock::now();
     }
     end1 = Clock::now();
     elapsed_seconds = end1 - start1;
-    cout << "Phase2 Search - Complete search for " << top_k << " clusters: " << elapsed_seconds.count() << endl;
+    //cout << "Phase2 Search - Complete search for " << top_k << " clusters: " << elapsed_seconds.count() << endl;
     phase2_duration += elapsed_seconds.count();
     start = Clock::now();
 
@@ -222,7 +222,7 @@ void Phase2_SearchRunner::run_search_again(int top_k, string full_query, vector<
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase2 Search - Time for sorting final_results: " << elapsed_seconds.count() << endl;
+    //cout << "Phase2 Search - Time for sorting final_results: " << elapsed_seconds.count() << endl;
     phase2_duration += elapsed_seconds.count();
     start = Clock::now();
 
@@ -231,7 +231,7 @@ void Phase2_SearchRunner::run_search_again(int top_k, string full_query, vector<
 
     end = Clock::now();
     elapsed_seconds = end - start;
-    cout << "Phase2 Search - time for writing results to final_results.txt: " << elapsed_seconds.count() << endl;
+    //cout << "Phase2 Search - time for writing results to final_results.txt: " << elapsed_seconds.count() << endl;
     phase2_duration += elapsed_seconds.count();
 }
 

@@ -38,48 +38,39 @@
 typedef std::pair<docid_t,uint32_t> index_pair;
 
 bool illegalChar(const char &c) {
-  return !(std::isspace(c) || std::isalnum(c));
-  //return !(c == ' ' || c == '\n' || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+    return !(std::isspace(c) || std::isalnum(c));
+    //return !(c == ' ' || c == '\n' || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
 }
 
 std::string make_title_term(const std::string &t) {
-  return std::string("TTL|" + t);
+    return std::string("TTL|" + t);
 }
 
 std::string make_pair(std::string f1, std::string f2) {
-  if (f1 < f2) {
-    return f1 + "|" + f2;
-  } else {
-    return f2 + "|" + f1;
-  }
+    if (f1 < f2) {
+        return f1 + "|" + f2;
+    } else {
+        return f2 + "|" + f1;
+    }
 }
 
 std::string make_title_pair(std::string f1, std::string f2) {
-  if (f1 < f2) {
-    return "TTL|" + f1 + "|" + f2;
-  } else {
-    return "TTL|" + f2 + "|" + f1;
-  }
+    if (f1 < f2) {
+        return "TTL|" + f1 + "|" + f2;
+    } else {
+        return "TTL|" + f2 + "|" + f1;
+    }
 }
-
-//class CstrCmp {
-//    public:
-//        bool operator()(const char* a, const char* b)
-//        {
-//            return strcmp(a, b) < 0;
-//        }
-//};
-
 void usage(const char *path) {
-  std::cerr << "Usage: cat <files_to_index> | " << path << " <options>\n"
-    << "Takes lines on stdin, and writes index files\n";
+    std::cerr << "Usage: cat <files_to_index> | " << path << " <options>\n"
+              << "Takes lines on stdin, and writes index files\n";
 }
 
 docid_t compute_term_id(std::string term) {
-  const char *buf = term.c_str();
-  const size_t buflen = term.size();
+    const char *buf = term.c_str();
+    const size_t buflen = term.size();
 
-  return (docid_t)serializer::get_SHA1(buf,buflen);
+    return (docid_t)serializer::get_SHA1(buf,buflen);
 }
 
 int generate_index(int input_fd, bool debug);

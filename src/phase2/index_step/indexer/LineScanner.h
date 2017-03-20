@@ -33,13 +33,11 @@ public:
         docid_t curdoc_;
         char *saveptr_;
         stemmer *z;
-        //enum { TITLE_INIT, TITLE, BODY_INIT, BODY, END } state;
         inline void clean_text(char *buffer) {
           for(char *p = buffer;*p;++p) {
             char c = *p;
             if (!isalnum(c)) *p = ' '; //TODO: decide whether to include '-'
           }
-          //stem_str(z,buffer); //also does to-lower, but leaves symbols in-place
         }
 
 
@@ -47,8 +45,6 @@ public:
         ~LineDocumentScanner();
 
     public:
-        //bool nextDocument(docid_t &docid);
-        //bool nextTerm(std::string &term, DocumentScanner::term_type &type);
         bool nextDocument(uint64_t &fpos, docid_t &docid, std::string name, std::vector<std::string> &title_terms, std::vector<std::string> &body_terms);
         uint64_t get_file_pos();
     };

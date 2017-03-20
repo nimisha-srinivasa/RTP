@@ -38,7 +38,7 @@ gen_bitmap:
 	$(CC) $(CFLAGS) $(addprefix $(SOURCE)/phase2/gen_cluster_index/, GenBitMap.cpp) -o $(addprefix $(TARGET)/, gen_bitmap)
 
 phase2_index:
-	$(CC) $(CFLAGS) $(OPENSSL_FLAGS_MAC_ONLY) -o $(TARGET)/phase2_index $(addprefix $(SOURCE)/utils/, Stemmer.cpp Serializer.cpp) $(addprefix $(SOURCE)/phase2/index_step/indexer/, IndexGenerator.cpp LineScanner.cpp Coding.cpp) $(OPENSSL_FLAGS)
+	$(CC) $(CFLAGS) -o $(TARGET)/phase2_index $(addprefix $(SOURCE)/utils/, Stemmer.cpp Serializer.cpp) $(addprefix $(SOURCE)/phase2/index_step/indexer/, IndexGenerator.cpp LineScanner.cpp Coding.cpp) $(OPENSSL_FLAGS)
 
 single_query_search:
 	$(CC) $(CFLAGS) $(addprefix $(SOURCE)/data_structures/, Vid_Occurence.cpp Fid_Occurence.cpp ScoreResult.cpp) $(addprefix $(SOURCE)/phase1/search_step/, Phase1_Searcher.cpp) $(addprefix $(SOURCE)/utils/, Stemmer.cpp Serializer.cpp) $(addprefix $(SOURCE)/phase2/search_step/, Phase2_IndexSearcher.cpp Phase2_ClusterSearcher.cpp Phase2_SearchRunner.cpp) $(addprefix $(SOURCE)/search_scripts/, SingleQuerySearcher.cpp SingleQuerySearchDriver.cpp) -o $(TARGET)/single_query_search $(PARSER_FLAG) $(OPENSSL_FLAGS)

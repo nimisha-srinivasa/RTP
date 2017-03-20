@@ -26,6 +26,8 @@ namespace RTP{
 	constexpr char FORWARD_FILE_NAME[] = "forward.txt";
 	constexpr char POSTING_FILE_NAME[] = "posting.txt";
 
+	static const int MAX_VID = 5500000;//max number of VID
+
 }
 
 #endif

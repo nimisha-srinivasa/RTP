@@ -1,13 +1,13 @@
-Representative Two-Phase Search (RTP) Graphical User Interface (GUI)
+Representative-guided Two-Phase Search (RTP) Graphical User Interface (GUI)
 =======================================
 How to run the GUI
 ------------
 
-1) make sure apache is running
+1) make sure apache HTTP server is running. [http://httpd.apache.org/docs/2.4/install.html]
 
-2) make sure /var/www/html contains search.html and css/ folder
+2) make sure /var/www/html contains search.html and css/ folder (for Unix environment).
 
-3) make sure /var/www/cgi-bin contains the search.sh and run_single_query.sh files
+3) make sure /var/www/cgi-bin contains the search.sh and run_single_query.sh files (for Unix environment).
 
 4) run make on the root RTP directory
 
@@ -28,4 +28,4 @@ How to use the GUI
 
 2)Click on the drop-down and input the value of the top_k parameter if desired
 
-3) click on the search icon to run the search.
+3)Click on the search icon to run the search.

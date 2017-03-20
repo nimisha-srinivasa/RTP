@@ -10,11 +10,8 @@
 #include <openssl/md5.h>
 #include <openssl/sha.h>
 
-//#define MAX_DOCID 32767
-//#define MAX_VERSIONS 64
+
 #define BUFLEN ((1 << 20) * 16)
-//READSIZE MUST be a power of 2 and <= BUFLEN
-//  - reads will always be some multiple of READSIZE
 #define READSIZE (1<<20)
 
 #define FBUFFER_WRITE 0
@@ -31,10 +28,10 @@ struct file_buffer {
 };
 
 namespace coding {
-    struct bitset {
-        uint32_t *b;
-        int nbits;
-    };
+struct bitset {
+    uint32_t *b;
+    int nbits;
+};
 }
 
 
@@ -82,79 +79,79 @@ uint64_t get_MD5(const void *buffer, int len);
 
 //flush everything in the buffer to disk
 void fbuffer_flush(struct file_buffer *fb) {
-  //fprintf(stderr, "dumping %d chars\n",fb->i);
-  //fbuffer_flush_s9(fb); //FIXME: need to handle recursive deadlock
-  if (fb->i > 0) {
-    if (fb->fd < 0) {
-      fprintf(stderr, "Buffer overflow\n");
-      exit(-1);
+    //fprintf(stderr, "dumping %d chars\n",fb->i);
+    //fbuffer_flush_s9(fb); //FIXME: need to handle recursive deadlock
+    if (fb->i > 0) {
+        if (fb->fd < 0) {
+            fprintf(stderr, "Buffer overflow\n");
+            exit(-1);
+        }
+        int len = fb->i;
+        int c = 0;
+        int w;
+        while (c < len) {
+            w = write(fb->fd, &fb->buffer[c], len - c);
+            if (w < 0) {
+                fprintf(stderr, "Failed to flush buffer\n");
+                exit(-1);
+            }
+            c += w;
+            if (fb->offset != (uint64_t)-1) fb->offset += w;
+        }
+        fb->i = 0;
     }
-    int len = fb->i;
-    int c = 0;
-    int w;
-    while (c < len) {
-      w = write(fb->fd, &fb->buffer[c], len - c);
-      if (w < 0) {
-        fprintf(stderr, "Failed to flush buffer\n");
-        exit(-1);
-      }
-      c += w;
-      if (fb->offset != (uint64_t)-1) fb->offset += w;
-    }
-    fb->i = 0;
-  }
 }
 
 //ensure we have space for at least size bytes in the write buffer
 void fbuffer_reserve(struct file_buffer *fb, const int size) {
-  if (fb->i + size > BUFLEN) {
-    return fbuffer_flush(fb);
-  }
+    if (fb->i + size > BUFLEN) {
+        return fbuffer_flush(fb);
+    }
 }
 
 //read as much data as we can (must be a multiple of READSIZE though)
 int fbuffer_refill(struct file_buffer *fb) {
-  if (fb->i > 0) { //if the buffer isn't completely full
-    if (fb->fd < 0) {
-      fprintf(stderr, "Filebuffer out of data\n");
-      exit(-1);
-    }
-    int to_read = fb->i & ~(READSIZE-1); //read some multiple of the READSIZE
+    if (fb->i > 0) { //if the buffer isn't completely full
+        if (fb->fd < 0) {
+            fprintf(stderr, "Filebuffer out of data\n");
+            exit(-1);
+        }
+        int to_read = fb->i & ~(READSIZE-1); //read some multiple of the READSIZE
 
-    memmove(&fb->buffer[fb->i-to_read], &fb->buffer[fb->i], BUFLEN-fb->i); //shift the buffer back far enough for the new data
-    fb->i -= to_read;
+        memmove(&fb->buffer[fb->i-to_read], &fb->buffer[fb->i], BUFLEN-fb->i); //shift the buffer back far enough for the new data
+        fb->i -= to_read;
 
-    int r;
-    while (to_read > 0) {
-      r = read(fb->fd, &fb->buffer[BUFLEN-to_read], to_read);
-      if (r < 0) {
-        fprintf(stderr, "Failed to read to buffer\n");
-        exit(-1);
-      } else if (r == 0) { //we hit the end of the file
-        //we ran out of data, so fix the buffer and index
-        //  - the end of the read buffer should always be at BUFLEN
-        memmove(&fb->buffer[fb->i+to_read], &fb->buffer[fb->i], BUFLEN-fb->i-to_read);
-        fb->i += to_read;
-        return -1;
-      }
-      to_read -= r;
-      if (fb->offset != (uint64_t)-1) fb->offset += r;
+        int r;
+        while (to_read > 0) {
+            r = read(fb->fd, &fb->buffer[BUFLEN-to_read], to_read);
+            if (r < 0) {
+                fprintf(stderr, "Failed to read to buffer\n");
+                exit(-1);
+            } else if (r == 0) { //we hit the end of the file
+                //we ran out of data, so fix the buffer and index
+                //  - the end of the read buffer should always be at BUFLEN
+                memmove(&fb->buffer[fb->i+to_read], &fb->buffer[fb->i], BUFLEN-fb->i-to_read);
+                fb->i += to_read;
+                return -1;
+            }
+            to_read -= r;
+            if (fb->offset != (uint64_t)-1) fb->offset += r;
+        }
     }
-  }
-  return 0;
+    return 0;
 }
 
 //ensure that there are at least size bytes in the read buffer
 int fbuffer_ensure(struct file_buffer *fb, const int size) {
-  if (BUFLEN - size < fb->i) {
-    if (fbuffer_refill(fb)) {
-      if (BUFLEN - size < fb->i) {
-        //fprintf(stderr, "Failed to ensure enough buffer\n");
-        return -1;
-      }
+    if (BUFLEN - size < fb->i) {
+        if (fbuffer_refill(fb)) {
+            if (BUFLEN - size < fb->i) {
+                //fprintf(stderr, "Failed to ensure enough buffer\n");
+                return -1;
+            }
+        }
     }
-  }
-  return 0;
+    return 0;
 }
 
 

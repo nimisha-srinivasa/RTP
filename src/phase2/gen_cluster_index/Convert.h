@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "../../Constants.h"
-#include "../../data_structures/ForwardPosting.h"
+#include "../../data_structures/ForwardTableInfo.h"
 
 using namespace std;
 
@@ -20,5 +20,5 @@ public:
 
 private:
 	static const int MAX_VID=400000; // need to be >= max vid in "index.txt"
-	vector<ForwardPosting> v[MAX_VID]; // this saves the forward posting for each page
+	vector<ForwardTableInfo> v[MAX_VID]; // this saves the forward posting for each page
 };

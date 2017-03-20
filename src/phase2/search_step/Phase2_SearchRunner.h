@@ -13,7 +13,6 @@ using namespace std;
 class Phase2_SearchRunner {
 	
 public:
-	double phase2_duration; // global variable to calculate the actual time taken by Phase 2
 	
 	Phase2_SearchRunner();
 	~Phase2_SearchRunner();
@@ -27,7 +26,6 @@ private:
 
 	void init();
 	void re_init();
-	vector<ScoreResult> readResultsFile(string filepath);
 	unordered_map<int,vector<int>> readConvertTable(string filepath);
 	void writeResults(vector<ScoreResult> scoreResults, string filepath, string query);
 	void writeResults_again(vector<ScoreResult> scoreResults, string filepath, string query);

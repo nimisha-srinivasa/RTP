@@ -13,7 +13,7 @@
 
 
 class serializer {
-  public:
+public:
     static uint64_t pack754(long double f, unsigned bits, unsigned expbits);
     static long double unpack754(uint64_t i, unsigned bits, unsigned expbits);
     static uint64_t get_SHA1(const void *buffer, int len);
@@ -38,7 +38,9 @@ class serializer {
     int write_bytes(const char *buf, size_t size);
 
     int read_tok(char *buffer, char d, const size_t &max_size);
-    inline int read_line(char *buffer, const size_t &max_size) { return read_tok(buffer, '\n', max_size); }
+    inline int read_line(char *buffer, const size_t &max_size) {
+        return read_tok(buffer, '\n', max_size);
+    }
     int read_string(char *buf, const size_t &max_size);
 
     bool seek(size_t offset);
@@ -69,13 +71,21 @@ class serializer {
     //writes zero, 1, or 4 bytes (zero if we are stil collecting values, 1 if v is in -9 to -15 (flag), 4 if we are flushing a uint32
     bool write_s9(int v);
     bool flush_s9();
-    void clear_s9() { s9_i = s9_len = 0; }
+    void clear_s9() {
+        s9_i = s9_len = 0;
+    }
 
-    inline bool can_read() { return mode != WRITE; }
-    inline bool can_write() { return mode != READ; }
-    inline bool can_rw() { return mode == READWRITE; }
+    inline bool can_read() {
+        return mode != WRITE;
+    }
+    inline bool can_write() {
+        return mode != READ;
+    }
+    inline bool can_rw() {
+        return mode == READWRITE;
+    }
 
-  protected:
+protected:
     static const int s9_field_length[9];
     static const int s9_field_count[9];
     static const uint32_t s9_field_max[9];

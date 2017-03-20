@@ -24,13 +24,11 @@ public:
 	vector<ScoreResult> searchCluster(string full_query, int cluster_id);
 
 private:
-	static const int MAX_VID = 5500000;//max number of VID
 
 	string full_query;
 	int num_words_in_query;
 	int cluster_id;
 	set<string> query_words;
-	double duration; // duration for scoring
 	string rel_path_to_cluster;
 
 	//data structures used
@@ -38,7 +36,7 @@ private:
 	vector<int> vid_list; // vid list
 	unordered_map<int, vector<ReuseTableInfo>> frag_reuse_table;
 	unordered_map<int ,int> vid_titlelen_hash; // vid to title length
-	vector<ForwardTableInfo> forward_table[MAX_VID];
+	vector<ForwardTableInfo> forward_table[RTP::MAX_VID];
 	vector<vector<Vid_Occurence>> doc_posting; // each term, a list of vid_occurence, result of step 1 is saved in this.
 	unordered_map<int, vector<set<int>>> intersection_hash; // this keeps the intersection results
 	vector<ScoreResult> score_result; // this vector keeps the final scoring results
@@ -46,9 +44,7 @@ private:
 	//member functions
 	void init();
 	void read_index();
-	void read_forward(); 	// read forward reuse table: vid -> a list of fids for Option B
 	void computeSearchFrag(string index_path);
-	void computeVidList();
 	void setQueryLength();
 	void setQueryWords();
 	bool makeChoice(int k);
@@ -61,8 +57,6 @@ private:
 	int find_index(vector<Fid_Occurence> *term_posting, int fid, int start, int end);
 	void clean_text(char *buffer);
 	uint64_t compute_term_id(string term);
-	vector<vector<Fid_Occurence>> findSearchFrags(string index_path, string full_query);
-
-	
+	vector<vector<Fid_Occurence>> findSearchFrags(string index_path, string full_query);	
 
 };

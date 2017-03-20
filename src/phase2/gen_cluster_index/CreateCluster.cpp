@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <set>
 
 #include "CreateCluster.h"
 #include "../../Constants.h"
@@ -171,7 +172,7 @@ void CreateCluster::gen_index_for_cluster_latest(string& folder_base){
     fin.open(filename.c_str());
     string line; // each line of the input file is a document
     int doc_num=0;
-    cluster_init();
+    cluster_init(); 
     string latest_line;
     while(getline(fin, line))
     {
@@ -370,10 +371,10 @@ void CreateCluster::hash_content(char *result_hash, vector<string>& v)
 void CreateCluster::output_index(string& folder_base)
 {
     ofstream findex;
-    string file_name = folder_base+"index.txt";
+    string file_name = folder_base+ RTP::INDEX_FILE_NAME;
     findex.open(file_name.c_str());
     // output index in txt format
-    // output reuse_table
+    /* ----------------------- output reuse table -----------------------*/
     unordered_map<int, vector<ReuseTableInfo>>::iterator iter;
     for (iter = frag_reuse_table.begin(); iter != frag_reuse_table.end(); iter++)
     {
@@ -387,7 +388,40 @@ void CreateCluster::output_index(string& folder_base)
         findex << endl;
     }
     findex << -99999 << endl; // index separator
-    // output vid title hash
+    /* ----------------------- output forward table -----------------------*/
+    //init
+    for (int i=0; i<RTP::MAX_VID; i++)
+        forward_table[i].clear();
+     //populate forward table
+    int fid, vid, offset;
+    for (iter = frag_reuse_table.begin(); iter != frag_reuse_table.end(); iter++)
+    {
+        fid=iter->first;
+        vector<ReuseTableInfo> v;
+        v = iter->second;
+        for (int i=0; i<v.size(); i++){
+            vid = v[i].vid;
+            offset = v[i].offset;
+            ForwardTableInfo e;
+            e.fid = fid;
+            e.offset = offset;
+            forward_table[vid].push_back(e); 
+        }
+    }
+    //now write forward_table to file
+    for (int i=0; i<RTP::MAX_VID; i++){
+        if (forward_table[i].size() > 0){
+            findex << i << " " << forward_table[i].size();
+            for (int j=0; j<forward_table[i].size(); j++){
+                findex << " " << forward_table[i][j].fid << " " << forward_table[i][j].offset;
+            }
+            findex << endl;
+        }
+    }
+    findex << -99999 << endl; // index separator
+
+
+    /* ----------------------- output vid title hash -----------------------*/
     unordered_map<int ,int>::iterator iter2; // iteration of vid_did_hash
     for (iter2 = vid_did_hash.begin(); iter2 != vid_did_hash.end(); iter2++)
     {
@@ -401,6 +435,71 @@ void CreateCluster::output_index(string& folder_base)
     }
     findex << -99999 << endl; // index separator
     findex.close();
+
+    /* ----------------------- output bitmap -----------------------*/
+    genBitMap(folder_base, file_name);
+}
+
+void CreateCluster::genBitMap(string& folder_base, string filename){
+    unordered_map<string,set<int>> term_to_v;
+    int maxvid,num_of_bitmap;
+
+    //init 
+    term_to_v.clear();
+
+    //read ALL_VERSIONS_FILE_NAME & populate term_to_v
+    ifstream fin; 
+    string all_ver_filename = folder_base + RTP::ALL_VERSIONS_FILE_NAME;
+    fin.open(all_ver_filename.c_str());
+    string line;
+    int vid = 0;
+    while (getline(fin,line)){
+        int las=0;
+        int i=line.find_first_of(" \t\n",las);
+        while (i != string::npos){
+            if (i>las){
+                string term = line.substr(las,i-las);
+                if (term_to_v.find(term)==term_to_v.end()){
+                    set<int> *tmp = new set<int>;
+                    tmp->clear();
+                    term_to_v[term]=*tmp;
+                }
+                term_to_v[term].insert(vid);
+            }
+            las = i+1;
+            i=line.find_first_of(" \t\n",las);
+        }
+        vid++;
+    }
+    fin.close();
+    maxvid=vid;
+
+    //generate and write bitmap to INDEX_FILE in append mode
+    ofstream fout;
+    fout.open(filename.c_str(), ofstream::app);
+    num_of_bitmap = (maxvid-1)/64+1;
+
+    fout << maxvid << " " << num_of_bitmap << endl;
+
+    int number_of_term = term_to_v.size();
+    unsigned long long *bitmap = (unsigned long long *) malloc (num_of_bitmap * sizeof(unsigned long long));
+
+    for (auto iter = term_to_v.begin();iter != term_to_v.end();iter++){
+        for (int i=0;i<num_of_bitmap;i++)
+            bitmap[i]=0;
+        fout << iter->first << endl;
+        for (auto it = iter->second.begin(); it != iter->second.end(); it++){
+                unsigned long long u = 1;
+                u <<= ((*it)%64);
+                bitmap[(*it)/64]|=u;
+        }
+        fout << bitmap[0];
+        for (int i=1; i<num_of_bitmap; i++){
+            fout << " " << bitmap[i];
+        }
+        fout << endl;
+    }
+    fout.close(); 
 }
 
 // output the relationship between version and document

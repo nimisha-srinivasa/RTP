@@ -29,8 +29,6 @@ for line in fin.readlines():
     if (int(did) % 100 == 0):
         print "finish lucene_step for "+did+ " clusters"
     os.chdir(did+'/')
-    #run_command_n('cp ../../lucene_step/binary_index_gen ./')
     run_command_n(curr_path_to_target_dir + 'phase2_index --index index < all_fragments.txt')
-    run_command_n(curr_path_to_target_dir + 'gen_bitmap')
     os.chdir('..')
 

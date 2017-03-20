@@ -35,7 +35,7 @@ void Convert::read_index()
         fin >> size;
         for (i=0; i<size; i++){
             fin >> vid >> offset;
-            ForwardPosting e;
+            ForwardTableInfo e;
             e.fid = fid;
             e.offset = offset;
             v[vid].push_back(e);

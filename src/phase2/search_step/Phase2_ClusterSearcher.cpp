@@ -18,7 +18,7 @@ typedef chrono::system_clock Clock;
 vector<ScoreResult> Phase2_ClusterSearcher::searchCluster(string full_query_words, int cluster_id){
     init(); 
 
-    //cout << "************************Searching cluster " << cluster_id << " ********************************" << endl;
+    cout << "************************Searching cluster " << cluster_id << " ********************************" << endl;
 	full_query = full_query_words;
     setQueryLength();
     setQueryWords();
@@ -27,21 +27,15 @@ vector<ScoreResult> Phase2_ClusterSearcher::searchCluster(string full_query_word
 	string index_path = rel_path_to_cluster + "index";
 
 	computeSearchFrag(index_path);
-	computeVidList();
 
-	// read reuse table: fid -> a list of vids for Option A
     read_index();
-    
-    // read forward reuse table: vid -> a list of fids for Option B
-    read_forward();
 
     // calculate the positional information for each vid
     get_positional_info();
 
     //the result is writen to RESULT_FILE_NAME
     scoring();
-
-    //cout << "******************** Done Searching cluster " << cluster_id << " ********************************" << endl;
+    cout << "******************** Done Searching cluster " << cluster_id << " ********************************" << endl;
     return score_result;
 }
 
@@ -90,12 +84,6 @@ void Phase2_ClusterSearcher::setQueryWords(){
 }
 
 void Phase2_ClusterSearcher::read_index(){
-
-    //for timing
-    /*chrono::time_point<Clock> start, end;
-    chrono::duration<double> elapsed_seconds;
-    start = Clock::now();  // start ticking*/
-
 	ifstream fin;
     fin.open(rel_path_to_cluster + RTP::INDEX_FILE_NAME);
 
@@ -120,75 +108,41 @@ void Phase2_ClusterSearcher::read_index(){
         }
         frag_reuse_table[fid] = v; // create one entry
     }
-    int title_len;
-    while(fin >> vid)
+    // read forward
+    int f_vid, f_size, f_fid, f_offset;
+    while(fin >> f_vid) // deal with one line
     {
-        if (vid == -99999) // index separator
+        if(f_vid == -99999) // index separator
             break;
-        fin >> title_len;
-        vid_titlelen_hash[vid] = title_len;
-    }
-    fin.close();
-
-    /*end = Clock::now();
-    elapsed_seconds = end - start;*/
-    //cout << "Phase2 Cluster Search: Reading index.txt=" << elapsed_seconds.count() << endl;
-}
-
-// read forward reuse table: vid -> a list of fids for Option B
-void Phase2_ClusterSearcher::read_forward(){
-    //for timing
-    /*chrono::time_point<Clock> start, end;
-    chrono::duration<double> elapsed_seconds;
-    start = Clock::now();  // start ticking*/
-
-	ifstream fin;
-    fin.open(rel_path_to_cluster + RTP::FORWARD_FILE_NAME);
-    int vid, size, fid, offset;
-    int count=0;
-    while(fin >> vid) // deal with one line
-    {
-        count++;
-        fin >> size;
+        fin >> f_size;
         vector<ForwardTableInfo> v;
         v.clear();
-        for (int i=0; i<size; i++)
+        for (int i=0; i<f_size; i++)
         {
-            fin >> fid >> offset;
+            fin >> f_fid >> f_offset;
             ForwardTableInfo r;
-            r.fid = fid;
-            r.offset = offset;
+            r.fid = f_fid;
+            r.offset = f_offset;
             v.push_back(r);
         }
-        forward_table[vid] = v; // create one entry for vid
+        forward_table[f_vid] = v; // create one entry for vid
     }
-    fin.close();
-
-    /*end = Clock::now();
-    elapsed_seconds = end - start;
-    cout << "Phase2 Cluster Search: Reading forward.txt=" << elapsed_seconds.count() << endl;*/
-}
-
-void Phase2_ClusterSearcher::computeSearchFrag(string index_path){
-	search_frag = findSearchFrags(index_path, full_query);
-}
-
-void Phase2_ClusterSearcher::computeVidList(){
-    //for timing
-    /*chrono::time_point<Clock> start, end;
-    chrono::duration<double> elapsed_seconds;
-    start = Clock::now(); */ // start ticking
-
-	//generate vid from BITMAP_FILE_NAME
-	ifstream fin;
-    string filename = rel_path_to_cluster + RTP::BITMAP_FILE_NAME;
-    fin.open(filename.c_str());
-    int vidnum,size;
-    fin >> vidnum >> size;
+    //read title_length for vid
+    int t_vid, title_len;
+    while(fin >> t_vid)
+    {
+        if (t_vid == -99999) // index separator
+            break;
+        fin >> title_len;
+        vid_titlelen_hash[t_vid] = title_len;
+    }
+    //compute vidList
+    int vidnum, b_size;
+    fin >> vidnum >> b_size;
     string term;
     unsigned long long tmp;
-    unsigned long long *mask=(unsigned long long *) malloc (size*sizeof(unsigned long long));
-    for (int i=0;i<size;i++){
+    unsigned long long *mask=(unsigned long long *) malloc (b_size*sizeof(unsigned long long));
+    for (int i=0;i<b_size;i++){
         for (int j=0;j<64;j++){
             unsigned long long u = 1;
             u <<= j;
@@ -199,15 +153,16 @@ void Phase2_ClusterSearcher::computeVidList(){
         int flag=0;
         if (query_words.find(term)!=query_words.end())
             flag=1;
-        for (int i=0;i<size;i++){
+        for (int i=0;i<b_size;i++){
             fin>>tmp;
             if (flag)
                 mask[i]&=tmp;
         }
     }
     fin.close();
+
     vid_list.clear();
-    for (int i=0; i<=size; i++){
+    for (int i=0; i<=b_size; i++){
         for (int j=0; j<64;j++){
             if (i*64+j<vidnum){
                 unsigned long long u = 1;
@@ -217,11 +172,11 @@ void Phase2_ClusterSearcher::computeVidList(){
             }
         }
     }
-    
     free(mask);
-    /*end = Clock::now();
-    elapsed_seconds = end - start;
-    cout << "Phase2 Cluster Search: Generating vid_list from bitmap.txt=" << elapsed_seconds.count() << endl;*/
+}
+
+void Phase2_ClusterSearcher::computeSearchFrag(string index_path){
+	search_frag = findSearchFrags(index_path, full_query);
 }
 
 bool Phase2_ClusterSearcher::makeChoice(int k)
@@ -246,9 +201,9 @@ bool Phase2_ClusterSearcher::makeChoice(int k)
         frag_sum += forward_table[vid_list[i]].size();
         
     }
-    
+    int param = 50; //use 50 for wiki, 400 for github, 800 for wiki for best results
     int pi = frag_sum/m;
-    bool res = doc_sum*50<frag_sum*(1+(int)log2(f));
+    bool res = doc_sum*param < frag_sum*(1+(int)log2(f));
     
     return res;
 }
@@ -256,14 +211,6 @@ bool Phase2_ClusterSearcher::makeChoice(int k)
 // calculate the positional information for each vid
 // each vid: vector<set<int>>, each term corresponds to a set of positions
 void Phase2_ClusterSearcher::get_positional_info(){
-    //for timing
-    /*chrono::time_point<Clock> start, end;
-    chrono::duration<double> elapsed_seconds;
-    start = Clock::now(); */ // start ticking
-
-    // begin timing
-    struct timeval dwstart, dwend, dwstart_sort, dwend_sort, dwstartA, dwendA, dwstartC, dwendC;
-    double dwtime = 0, dwtime_sort=0, dwtimeA=0, dwtimeC=0;
     int vid, fid, frag_offset;
 
     // init Option B's data structures
@@ -279,17 +226,11 @@ void Phase2_ClusterSearcher::get_positional_info(){
     // begin optionTest algorithm 
     double ratio;
     int y; 
-    //cout << "Option C:" << endl;
     for (int k=0; k < num_words_in_query; k++) // each time, deal with one term
     {
-        dwtime_sort = 0.0;
         vector<Vid_Occurence> current_posting; // doc posting for current term
         current_posting.clear();
 		bool aa = makeChoice(k);
-
-		//timing 
-		gettimeofday(&dwstart, NULL);
-		//timing 
 
         int f = search_frag[k].size();
         if(aa)
@@ -321,14 +262,9 @@ void Phase2_ClusterSearcher::get_positional_info(){
                         v_occur->pos.push_back(frag_offset+o->v_pos[l]);
                 }
             }
-            //timing
-            gettimeofday(&dwstart_sort, NULL);
-            //timing
 
             // sort: sort current_posting by its element's vid entry
             sort(current_posting.begin(), current_posting.end(), Vid_Occurence::compare);
-            //gettimeofday(&dwend_sort, NULL);
-            //dwtime_sort = 1000.0*(dwend_sort.tv_sec-dwstart_sort.tv_sec)+(dwend_sort.tv_usec-dwstart_sort.tv_usec)/1000.0;
             
             // merge: After sorting, elements with same vid must be adjacent. Merge them.
             vector<Vid_Occurence> *merge_result = &(doc_posting[k]);
@@ -374,10 +310,6 @@ void Phase2_ClusterSearcher::get_positional_info(){
                     intersection_hash[v][k].insert(*iter);
                 }
             }
-            //timing
-	        gettimeofday(&dwend_sort, NULL);
-            dwtime_sort = 1000.0*(dwend_sort.tv_sec-dwstart_sort.tv_sec)+(dwend_sort.tv_usec-dwstart_sort.tv_usec)/1000.0;
-        	//timing
         }
         else
         {
@@ -419,28 +351,12 @@ void Phase2_ClusterSearcher::get_positional_info(){
                 }
                 delete tmp;
             }
-            //y /= vid_list.size();
         }
-
-        //timing
-        gettimeofday(&dwend, NULL);
-        dwtime += 1000.0*(dwend.tv_sec-dwstart.tv_sec)+(dwend.tv_usec-dwstart.tv_usec)/1000.0 -dwtime_sort;
-        //timing
     }
-    //cout << "Using clock_t, Finding positional info took: " << dwtime << " ms" << endl;
     delete [] e;
-    /*end = Clock::now();
-    elapsed_seconds = end - start;
-    cout << "Phase2 Cluster Search: Finding positional info took: " << elapsed_seconds.count() << endl;*/
 }
 
 void Phase2_ClusterSearcher::scoring(){
-    //for timing
-    /*chrono::time_point<Clock> start, end;
-    chrono::duration<double> elapsed_seconds;
-    start = Clock::now();*/  // start ticking
-
-    //clock_t start1 = clock();  // start ticking
 
 	// go through the intersection_hash and score each entry
     score_result.clear();
@@ -451,16 +367,6 @@ void Phase2_ClusterSearcher::scoring(){
     }
     // sort score_result
     sort(score_result.begin(), score_result.end(), ScoreResult::compare);
-
-    // added by Susen 
-    //duration = (clock() - start1) / (double) CLOCKS_PER_SEC;  // added
-    // added by Susen
-
-    //cout << "Using clock_t, Time taken for scoring the score_results without I/O: " << duration << endl;
-
-    /*end = Clock::now();
-    elapsed_seconds = end - start;
-    cout << "Phase2 Cluster Search: scoring took:" << elapsed_seconds.count() << endl;*/
 }
 
 void Phase2_ClusterSearcher::score_page(int vid, vector<set<int>> &occur_terms)
@@ -680,10 +586,6 @@ uint64_t Phase2_ClusterSearcher::compute_term_id(std::string term) {
 }
 
 vector<vector<Fid_Occurence>> Phase2_ClusterSearcher::findSearchFrags(string index_path, string full_query){
-  //for timing
-    /*chrono::time_point<Clock> start, end;
-    chrono::duration<double> elapsed_seconds;
-    start = Clock::now();*/  // start ticking  
   
     Phase2_IndexSearcher searcher(index_path);
     vector<vector<Fid_Occurence>> search_frag;
@@ -757,7 +659,5 @@ vector<vector<Fid_Occurence>> Phase2_ClusterSearcher::findSearchFrags(string ind
             v->push_back(occ);
         }
     }
-    /*end = Clock::now();
-    elapsed_seconds = end - start;*/
     return search_frag;
 }

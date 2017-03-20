@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <chrono>
 #include <algorithm>
 #include <math.h>
 
@@ -10,7 +9,6 @@
 using namespace std;
 
 string rel_path_to_target_dir = "./";
-typedef chrono::system_clock Clock;
 
 void Phase1_Searcher::splitFullQuery(){
     short counter = 0;
@@ -40,12 +38,11 @@ void Phase1_Searcher::setQueryLength(){
 void Phase1_Searcher::init()
 {
     vid_titlelen_hash.clear();
-    intersection_hash.clear();
     super_index.clear();
+    intersection_hash.clear();
+    search_frag.clear();
     splitFullQuery();
     setQueryLength();
-    duration = 0;
-    phase1_duration = 0;
 }
 
 void Phase1_Searcher::re_init(){
@@ -53,16 +50,10 @@ void Phase1_Searcher::re_init(){
     search_frag.clear();
     splitFullQuery();
     setQueryLength();
-    duration = 0;
-    phase1_duration = 0;
 }
 
 //query and query_len has to be set already
 vector<ScoreResult> Phase1_Searcher::runSearch(string query){
-
-    chrono::time_point<Clock> start, end;
-    chrono::duration<double> elapsed_seconds;
-    start = Clock::now();  // start ticking*/
 
     full_query = query;
     init();
@@ -74,44 +65,27 @@ vector<ScoreResult> Phase1_Searcher::runSearch(string query){
     intersection();
     scoring();
 
-    end = Clock::now();
-    elapsed_seconds = end - start;
-    //cout << "Complete Phase1 Search took:" << elapsed_seconds.count() << endl;
-    phase1_duration = elapsed_seconds.count();
-
     return score_result;
 }
  
 //query and query_len has to be set already
 vector<ScoreResult> Phase1_Searcher::runSearchAgain(string query){
-    chrono::time_point<Clock> start, end;
-    chrono::duration<double> elapsed_seconds;
-    start = Clock::now();  // start ticking
 
     full_query = query;
-    //no need to load super_index and title_len.txt this time
     re_init();
+
+    //no need to load super_index and title_len.txt this time
     splitFullQuery();
     setQueryLength();
     read_search_frag();
     intersection();
     scoring();
 
-    end = Clock::now();
-    elapsed_seconds = end - start;
-    //cout << "Complete Phase1 Search took:" << elapsed_seconds.count() << endl;
-    phase1_duration = elapsed_seconds.count();
-
     return score_result;
 }
 
 void Phase1_Searcher::read_title_len(){
-
-    /*chrono::time_point<Clock> start, end;
-    chrono::duration<double> elapsed_seconds;
-    start = Clock::now();  // start ticking*/
-
-	ifstream fin;
+    ifstream fin;
     fin.open(rel_path_to_target_dir + RTP::TITLE_LEN_FILE_NAME);
 
     // read frag_reuse_table
@@ -134,17 +108,10 @@ void Phase1_Searcher::read_title_len(){
         frag_reuse_table[vid] = v;
     }
     fin.close();
-
-    /*end = Clock::now();
-    elapsed_seconds = end - start;
-    cout << "Phase1 Search - read title_len.txt: " << elapsed_seconds.count() << endl;*/
 }
 
 void Phase1_Searcher::validate()
 {
-    /*chrono::time_point<Clock> start, end;
-    chrono::duration<double> elapsed_seconds;
-    start = Clock::now();  // start ticking*/
 
     ofstream fout;
     fout.open(rel_path_to_target_dir + RTP::VALIDATION_FILE_NAME);
@@ -161,18 +128,10 @@ void Phase1_Searcher::validate()
         }
     }
     fout.close();
-
-    /*end = Clock::now();
-    elapsed_seconds = end - start;
-    cout << "Phase1 Search - output validate.txt:" << elapsed_seconds.count() << endl;*/
 }
 
 void Phase1_Searcher::read_search_frag()
 {
-    /*chrono::time_point<Clock> start, end;
-    chrono::duration<double> elapsed_seconds;
-    start = Clock::now();  // start ticking*/
-
     ifstream fin;
     string search_frag_path = rel_path_to_target_dir + RTP::SEARCH_FRAGMENT_FILE_NAME;
     fin.open(search_frag_path);
@@ -214,17 +173,10 @@ void Phase1_Searcher::read_search_frag()
     }
     //validate();
     fin.close();
-
-    /*end = Clock::now();
-    elapsed_seconds = end - start;
-    cout << "Phase1 Search - read search_frag.txt:" << elapsed_seconds.count() << endl;*/
 }
 
 void Phase1_Searcher::read_superinfo()
 {
-    /*chrono::time_point<Clock> start, end;
-    chrono::duration<double> elapsed_seconds;
-    start = Clock::now();  // start ticking*/
 
     ifstream fin;
     int vid, did;
@@ -247,18 +199,10 @@ void Phase1_Searcher::read_superinfo()
         super_index[word] = m;
     }
     fin.close();
-
-    /*end = Clock::now();
-    elapsed_seconds = end - start;
-    cout << "Phase1 Search - read super_index:" << elapsed_seconds.count() << endl;*/
 }
 
 void Phase1_Searcher::intersection()
-{
-    // added by Susen
-    start = clock();  // start ticking
-    // added by Susen
-
+{  
     int term_number = search_frag.size();
     // init our intersection data structure "intersection_hash" for the first term
     vector<Fid_Occurence> v_occ;
@@ -347,12 +291,6 @@ void Phase1_Searcher::intersection()
         }
         intersection_hash = temp_intersection_hash; // update the new "intersection_hash"
     }
-
-    //print_intersection(term_number);
-    // added by Susen
-    duration = (clock() - start) / (double) CLOCKS_PER_SEC;
-    start = clock();
-    // added by Susen
 }
 
 // Print the information after intersection step. 
@@ -390,23 +328,6 @@ void Phase1_Searcher::scoring()
     }
     // sort score_result
     sort(score_result.begin(), score_result.end(), ScoreResult::compare);
-    // added by Susen
-    duration += (clock() - start) / (double) CLOCKS_PER_SEC;  // added
-    // added by Susen
-
-    /*chrono::time_point<Clock> start, end;
-    chrono::duration<double> elapsed_seconds;
-    start = Clock::now();  // start ticking
-
-    ofstream fout;
-    fout.open(rel_path_to_target_dir + RTP::RESULT_FILE_NAME);
-    for (int i=0; i<score_result.size(); i++)
-        fout << score_result[i].vid << " " << score_result[i].score<< endl;
-    fout.close();
-
-    end = Clock::now();
-    elapsed_seconds = end - start;
-    cout << "Phase1 Search - write result.txt:" << elapsed_seconds.count() << endl;*/
 }
 
 void Phase1_Searcher::score_page(int vid, vector<set<int>> &occur_terms)

@@ -8,7 +8,9 @@
 
 #include "NeverLostUtil.h"
 #include "../../data_structures/ReuseTableInfo.h"
+#include "../../data_structures/ForwardTableInfo.h"
 #include "../../utils/RepresentativeChoice.h"
+#include "../../Constants.h"
 
 class CreateCluster{
 public:
@@ -39,6 +41,7 @@ private:
 	unordered_map<int ,string> did_title_hash; // hash from did to title 
 	ofstream latest_version;
 	unordered_map<int, vector<ReuseTableInfo>> frag_reuse_table;
+	vector<ForwardTableInfo> forward_table[RTP::MAX_VID]; //the forward posting for each page
 	ofstream representative_version;	//could be latest or longest depending on users input
 
 	void cluster_init();
@@ -46,6 +49,7 @@ private:
 	void maintain_did_vid_hash();	// maintain did_vid_hash
 	int get_words_number(string &line);	// calculate the number of words in a string
 	void output_fragment(int fid, string &line, string& folder_base);
+	void genBitMap(string& folder_base, string filename);
 	void deal_with_title(string title, int pageno);
 	void do_fragments(vector<string>& frag, int pageno, string& folder_base); 	// do the work for all the fragments
 	void do_page(vector<string>& frag, int pageno, string& folder_base); // do the work for a page which can be acquired using the input file stream "fin"

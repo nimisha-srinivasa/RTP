@@ -28,4 +28,4 @@ How to use the GUI
 
 2)Click on the drop-down and input the value of the top_k parameter if desired
 
-3) click on the search icon to run the search.
+3)Click on the search icon to run the search.

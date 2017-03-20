@@ -5,6 +5,7 @@
 #include <vector>
 #include <unordered_map>
 #include <set>
+#include <sys/time.h>
 
 #include "../../Constants.h"
 #include "../../data_structures/ReuseTableInfo.h"
@@ -16,8 +17,6 @@ using namespace std;
 class Phase1_Searcher{
 
 public:
-	double duration;  // global variable added to calculate non-I/O time
-	double phase1_duration; // global variable to calculate the actual time taken by Phase 1
 
 	vector<ScoreResult> runSearch(string query);
 	vector<ScoreResult> runSearchAgain(string query);
@@ -33,7 +32,6 @@ private:
 	unordered_map<int, vector<set<int>>> intersection_hash; // this keeps the intersection results
 	vector<ScoreResult> score_result; // this vector keeps the final scoring results
 	unordered_map<string, unordered_map<int, double>> super_index;
-	clock_t start;  // global variable added to mark the starting point of time statistics
 
 	void splitFullQuery();
 	void setQueryLength();
